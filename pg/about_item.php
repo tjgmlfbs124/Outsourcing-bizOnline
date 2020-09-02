@@ -1,394 +1,280 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subas || Home</title>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
-</head>
-
-<body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Body main wrapper start -->
-    <div class="wrapper">
-
-        <!-- START HEADER AREA -->
-        <header class="header-area header-wrapper">
-          <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
-        </header>
-        <!-- END HEADER AREA -->
-
-        <!-- BREADCRUMBS SETCTION START -->
-        <div class="breadcrumbs-section plr-200 mb-80 section">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Subas || Home</title>
+      <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
+   </head>
+   <body>
+      <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+      <!-- Body main wrapper start -->
+      <div class="wrapper">
+         <!-- START HEADER AREA -->
+         <header class="header-area header-wrapper">
+            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
+         </header>
+         <!-- END HEADER AREA -->
+         <!-- BREADCRUMBS SETCTION START -->
+         <div class="breadcrumbs-section plr-200 mb-80 section">
             <div class="breadcrumbs overlay-bg" style="background: url('<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/custom/index-main01.jpg')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Login / Register</h1>
-                            </div>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="breadcrumbs-inner">
+                           <h1 class="breadcrumbs-title">Login / Register</h1>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-        <!-- BREADCRUMBS SETCTION END -->
-
-        <section id="page-content" class="page-wrapper section">
-
+         </div>
+         <!-- BREADCRUMBS SETCTION END -->
+         <section id="page-content" class="page-wrapper section">
             <!-- SHOP SECTION START -->
             <div class="shop-section mb-80">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- single-product-area start -->
-                            <div class="single-product-area mb-80">
-                                <div class="row">
-                                    <!-- imgs-zoom-area start -->
-                                    <div class="col-lg-4">
-                                        <div class="imgs-zoom-area">
-                                            <img id="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/6.jpg" data-zoom-image="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/6.jpg" alt="">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/2.jpg" data-zoom-image="img/product/2.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/2.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/3.jpg" data-zoom-image="img/product/3.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/3.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/4.jpg" data-zoom-image="img/product/4.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/4.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/5.jpg" data-zoom-image="img/product/5.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/5.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/6.jpg" data-zoom-image="img/product/6.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/6.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/7.jpg" data-zoom-image="img/product/7.jpg">
-                                                                <img class="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/7.jpg" alt="">
-                                                            </a>
+               <div class="container"  style="max-width:1400px;">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <!-- single-product-area start -->
+                        <div class="single-product-area mb-80">
+                           <div class="row">
+                              <div class="col-lg-7">
+                                 <div class="table-content table-responsive mb-50">
+                                    <table class="text-center">
+                                       <tbody>
+                                         <tr>
+                                            <td class="product-price" colspan="4">GALAXY S20</td>
+                                         </tr>
+                                          <tr>
+                                            <td rowspan="7" >
+                                               <div class="imgs-zoom-area">
+                                                  <img id="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/6.jpg" data-zoom-image="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/6.jpg" alt="">
+                                               </div>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-price" colspan="1">저장용량</td>
+                                             <td class="product-subtotal" colspan="3">256G</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-price" colspan="1">가입형태</td>
+                                             <td class="product-subtotal" colspan="3">
+                                                <ul ㄴ쇼>
+                                                   <li style="float:left" >신규&nbsp&nbsp&nbsp</li>
+                                                   <li style="float:left" >번호이동&nbsp&nbsp&nbsp</li>
+                                                   <li style="float:left">기기변경</li>
+                                                </ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-price" colspan="1">할인방식</td>
+                                             <td class="product-subtotal" colspan="3">
+                                                <ul >
+                                                   <li style="float:left" >공시지원할인 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+                                                   <li style="float:left" >선택약정할인</li>
+                                                </ul>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-price" colspan="1">요금제</td>
+                                             <td class="product-subtotal" colspan="3">선택</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-price" colspan="1">할부개월</td>
+                                             <td class="product-subtotal" colspan="3">선택</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="product-subtotal" colspan="1">색상</td>
+                                             <td class="product-subtotal" colspan="3">
+                                                <div class="single-pro-color-rating clearfix">
+                                                   <div class="sin-pro-color fix">
+                                                      <div class="widget-color fix" >
+                                                         <ul>
+                                                            <li class="color-1"><a href="#"></a></li>
+                                                            <li class="color-2"><a href="#"></a></li>
+                                                            <li class="color-3"><a href="#"></a></li>
+                                                            <li class="color-4"><a href="#"></a></li>
+                                                         </ul>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              <div class="col-lg-5">
+                                 <div class="table-content table-responsive mb-50">
+                                    <table class="text-center">
+                                       <tbody >
+                                          <tr>
+                                             <td class="product-price" colspan="2">할인방식</td>
+                                             <td class="product-price" colspan="1">공시지원할인</td>
+                                             <td class="product-price" colspan="1">선택약정할인</td>
+                                          </tr>
+                                           <tr>
+                                              <td class="product-price" rowspan="7" colspan="1">단말기</td>
+                                              <td class="product-price" colspan="1">중고가</td>
+                                              <td class="product-price" colspan="1">0원</td>
+                                              <td class="product-price" colspan="1">0원</td>
+                                           </tr>
+                                          <tr>
+                                            <td class="product-price" colspan="1">공시지원금</td>
+                                             <td class="product-price" colspan="1">0원</td>
+                                             <td class="product-price" colspan="1">0원</td>
+                                          </tr>
+                                         <tr>
+                                           <td class="product-price" colspan="1">추가지원금</td>
+                                            <td class="product-price" colspan="1">0원</td>
+                                            <td class="product-price" colspan="1">0원</td>
+                                         </tr>
+                                        <tr>
+                                          <td class="product-price" colspan="1">총 할부원금</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                        </tr>
+                                         <tr>
+                                           <td class="product-price" colspan="1">월 할부금</td>
+                                            <td class="product-price" colspan="1">0원</td>
+                                            <td class="product-price" colspan="1">0원</td>
+                                         </tr>
+                                        <tr>
+                                          <td class="product-price" colspan="1">월 할부이자</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                        </tr>
+                                       <tr>
+                                         <td class="product-price" colspan="1">월 할부금 합계</td>
+                                          <td class="product-price" colspan="1">0원</td>
+                                          <td class="product-price" colspan="1">0원</td>
+                                       </tr>
+                                        <tr>
+                                           <td class="product-price" rowspan="4" colspan="1">요금제</td>
+                                           <td class="product-price" colspan="1">기본료</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                           <td class="product-price" colspan="1">0원</td>
+                                        </tr>
+                                       <tr>
+                                         <td class="product-price" colspan="1">요금약정할인</td>
+                                          <td class="product-price" colspan="1">0원</td>
+                                          <td class="product-price" colspan="1">0원</td>
+                                       </tr>
+                                      <tr>
+                                        <td class="product-price" colspan="1">선택약정할인</td>
+                                         <td class="product-price" colspan="1">0원</td>
+                                         <td class="product-price" colspan="1">0원</td>
+                                      </tr>
+                                     <tr>
+                                       <td class="product-price" colspan="1">월 요금합계</td>
+                                        <td class="product-price" colspan="1">0원</td>
+                                        <td class="product-price" colspan="1">0원</td>
+                                     </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              <div class="col-lg-12">
+                                        <!-- hr -->
+                                        <hr>
+                                        <div class="single-product-tab reviews-tab">
+                                            <ul class="nav mb-20">
+                                                <li><a class="active" href="#description" data-toggle="tab">상세보기</a></li>
+                                                <li><a href="#information" data-toggle="tab">제품 스펙보기</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active show" id="description">
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane" id="information">
+                                                   <div class="table-content table-responsive mb-50">
+                                                      <table class="text-center">
+                                                         <tbody>
+                                                          <tr>
+                                                            <td colspan="6">SM-N986N</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td colspan="1">제품명</td>
+                                                            <td colspan="1">갤럭시 노트20 울트라 5G</td>
+                                                            <td colspan="1">모델명</td>
+                                                            <td colspan="1">SM-N986N</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td colspan="1">제조사</td>
+                                                            <td colspan="1">삼성전자</td>
+                                                            <td colspan="1">제조국</td>
+                                                            <td colspan="1">한국</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td colspan="1">KC인증번호</td>
+                                                            <td colspan="1"></td>
+                                                            <td colspan="1">디스플레이</td>
+                                                            <td colspan="1">6.9” QHD+Dynamic AMOLED 2X 엣지 디스플레이</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td colspan="1">크기/무게</td>
+                                                            <td colspan="1">164.8 × 77.2 × 8.1 mm / 208g</td>
+                                                            <td colspan="1">카메라화소</td>
+                                                            <td colspan="1">전면 1,000만 / 후면 1억800만(광각) + 1,200만(초광각) + 1,200만(망원)</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td colspan="1">제조연월일</td>
+                                                            <td colspan="1"></td>
+                                                            <td colspan="1">CPU</td>
+                                                            <td colspan="1">Qualcomm Snapdragon 865+</td>
+                                                          </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                                    <!-- reviews-tab-desc -->
+                                                    <div class="reviews-tab-desc">
+                                                        <!-- single comments -->
+                                                        <div class="media mt-30">
+                                                            <div class="media-left">
+                                                                <a href="#"><img class="media-object" src="img/author/1.jpg" alt="#"></a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="clearfix">
+                                                                    <div class="name-commenter pull-left">
+                                                                        <h6 class="media-heading"><a href="#">Gerald Barnes</a>
+                                                                        </h6>
+                                                                        <p class="mb-10">27 Jun, 2019 at 2:30pm</p>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <ul class="reply-delate">
+                                                                            <li><a href="#">Reply</a></li>
+                                                                            <li>/</li>
+                                                                            <li><a href="#">Delate</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur
+                                                                    adipiscing elit. Integer accumsan egestas .</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--  hr -->
+                                        <hr>
                                     </div>
-
-                                    <div class="col-lg-8">
-                                      <div class="table-content table-responsive mb-50">
-                                              <table class="text-center">
-                                                  <tbody>
-                                                      <tr>
-                                                          <td class="product-price" colspan="4">GALAXY S20</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <td class="product-price" rowspan="1">제품명</td>
-                                                          <td class="product-subtotal" rowspan="1">$560.00</td>
-                                                          <td class="product-subtotal" rowspan="1">색상</td>
-                                                          <td class="product-subtotal" rowspan="1">
-                                                            <div class="single-pro-color-rating clearfix">
-                                                              <div class="sin-pro-color fix">
-                                                                  <div class="widget-color fix" >
-                                                                      <ul>
-                                                                          <li class="color-1"><a href="#"></a></li>
-                                                                          <li class="color-2"><a href="#"></a></li>
-                                                                          <li class="color-3"><a href="#"></a></li>
-                                                                          <li class="color-4"><a href="#"></a></li>
-                                                                      </ul>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                          <td class="product-price" rowspan="1">제품명</td>
-                                                          <td class="product-subtotal" rowspan="1">$560.00</td>
-                                                          <td class="product-subtotal" rowspan="1">색상</td>
-                                                          <td class="product-subtotal" rowspan="1">$560.00</td>
-                                                      </tr>
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                    </div>
-                                    <!-- single-product-info end -->
-                                </div>
-								<!-- single-product-tab -->
-								<div class="row">
-									<div class="col-lg-12">
-										<!-- hr -->
-										<hr>
-										<div class="single-product-tab reviews-tab">
-											<ul class="nav mb-20">
-												<li><a class="active" href="#description" data-toggle="tab">description</a></li>
-												<li ><a href="#information" data-toggle="tab">information</a></li>
-												<li ><a href="#reviews" data-toggle="tab">reviews</a></li>
-											</ul>
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active show" id="description">
-													<p>There are many variations of passages of Lorem Ipsum available, but the majo Rity have be suffered alteration in some form, by injected humou or randomis Rity have be suffered alteration in some form, by injected humou or randomis words which donot look even slightly believable. If you are going to use a passage Lorem Ipsum.</p>
-													<p>rerum blanditiis dolore dignissimos expedita consequatur deleniti consectetur non exercitationem. rerum blanditiis dolore dignissimos expedita consequatur deleniti consectetur non exercitationem.</p>
-												</div>
-												<div role="tabpanel" class="tab-pane" id="information">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, neque fugit inventore quo dignissimos est iure natus quis nam illo officiis,  deleniti consectetur non ,aspernatur.</p>
-													<p>rerum blanditiis dolore dignissimos expedita consequatur deleniti consectetur non exercitationem.</p>
-												</div>
-												<div role="tabpanel" class="tab-pane" id="reviews">
-													<!-- reviews-tab-desc -->
-													<div class="reviews-tab-desc">
-														<!-- single comments -->
-														<div class="media mt-30">
-															<div class="media-left">
-																<a href="#"><img class="media-object" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/author/1.jpg" alt="#"></a>
-															</div>
-															<div class="media-body">
-																<div class="clearfix">
-																	<div class="name-commenter pull-left">
-																		<h6 class="media-heading"><a href="#">Gerald Barnes</a></h6>
-																		<p class="mb-10">27 Jun, 2019 at 2:30pm</p>
-																	</div>
-																	<div class="pull-right">
-																		<ul class="reply-delate">
-																			<li><a href="#">Reply</a></li>
-																			<li>/</li>
-																			<li><a href="#">Delate</a></li>
-																		</ul>
-																	</div>
-																</div>
-																<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas .</p>
-															</div>
-														</div>
-														<!-- single comments -->
-														<div class="media mt-30">
-															<div class="media-left">
-																<a href="#"><img class="media-object" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/author/2.jpg" alt="#"></a>
-															</div>
-															<div class="media-body">
-																<div class="clearfix">
-																	<div class="name-commenter pull-left">
-																		<h6 class="media-heading"><a href="#">Gerald Barnes</a></h6>
-																		<p class="mb-10">27 Jun, 2019 at 2:30pm</p>
-																	</div>
-																	<div class="pull-right">
-																		<ul class="reply-delate">
-																			<li><a href="#">Reply</a></li>
-																			<li>/</li>
-																			<li><a href="#">Delate</a></li>
-																		</ul>
-																	</div>
-																</div>
-																<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas .</p>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--  hr -->
-										<hr>
-									</div>
-								</div>
-                            </div>
-                            <!-- single-product-area end -->
-                            <div class="related-product-area">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="section-title text-left mb-40">
-                                            <h2 class="uppercase">related product</h2>
-                                            <h6>There are many variations of passages of brands available,</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="active-related-product">
-                                    <!-- product-item start -->
-                                    <div class="col-lg-12">
-                                        <div class="product-item">
-                                            <div class="product-img">
-                                                <a href="single-product.html">
-                                                    <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/1.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h6 class="product-title">
-                                                    <a href="single-product.html">Product Name</a>
-                                                </h6>
-                                                <div class="pro-rating">
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                                </div>
-                                                <h3 class="pro-price">$ 869.00</h3>
-                                                <ul class="action-button">
-                                                    <li>
-                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i
-                                                                class="zmdi zmdi-zoom-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
-                                    <div class="col-lg-12">
-                                        <div class="product-item">
-                                            <div class="product-img">
-                                                <a href="single-product.html">
-                                                    <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/1.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h6 class="product-title">
-                                                    <a href="single-product.html">Product Name</a>
-                                                </h6>
-                                                <div class="pro-rating">
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                                </div>
-                                                <h3 class="pro-price">$ 869.00</h3>
-                                                <ul class="action-button">
-                                                    <li>
-                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i
-                                                                class="zmdi zmdi-zoom-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
-                                    <div class="col-lg-12">
-                                        <div class="product-item">
-                                            <div class="product-img">
-                                                <a href="single-product.html">
-                                                    <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/1.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h6 class="product-title">
-                                                    <a href="single-product.html">Product Name</a>
-                                                </h6>
-                                                <div class="pro-rating">
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                                </div>
-                                                <h3 class="pro-price">$ 869.00</h3>
-                                                <ul class="action-button">
-                                                    <li>
-                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i
-                                                                class="zmdi zmdi-zoom-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product-item end -->
-                                    <!-- product-item start -->
-                                    <div class="col-lg-12">
-                                        <div class="product-item">
-                                            <div class="product-img">
-                                                <a href="single-product.html">
-                                                    <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/product/1.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <h6 class="product-title">
-                                                    <a href="single-product.html">Product Name</a>
-                                                </h6>
-                                                <div class="pro-rating">
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                                    <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                                </div>
-                                                <h3 class="pro-price">$ 869.00</h3>
-                                                <ul class="action-button">
-                                                    <li>
-                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i
-                                                                class="zmdi zmdi-zoom-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Compare"><i class="zmdi zmdi-refresh"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product-item end -->
-                                </div>
-                            </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
             </div>
             <!-- SHOP SECTION END -->
-
-        </section>
-        <!-- End page content -->
-
-        <footer id="footer" class="footer-area section">
-          <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/footer.php'?>
-        </footer>
-    </div>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
-
-</body>
-
+         </section>
+         <!-- End page content -->
+         <footer id="footer" class="footer-area section">
+            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/footer.php'?>
+         </footer>
+      </div>
+      <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
+   </body>
 </html>
