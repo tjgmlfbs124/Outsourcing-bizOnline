@@ -5,34 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Subas || Home</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/icon/favicon.png">
-
-    <!-- All CSS Files -->
-    <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/bootstrap.min.css">
-    <!-- Nivo-slider css -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/lib/css/nivo-slider.css">
-    <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/core.css">
-    <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/shortcode/shortcodes.css">
-    <!-- Theme main style -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/responsive.css">
-    <!-- User style -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/custom.css">
-
-    <!-- Style customizer (Remove these two lines please) -->
-    <link rel="stylesheet" href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/css/style-customizer.css">
-    <link href="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/#" data-style="styles" rel="stylesheet">
-
-    <!-- Modernizr JS -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/vendor/modernizr-2.8.3.min.js"></script>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
 </head>
 
 <body>
@@ -51,7 +24,7 @@
         </div>
 
         <!-- BREADCRUMBS SETCTION START -->
-        <div class="breadcrumbs-section plr-200 mb-80 section">
+        <div class="breadcrumbs-section plr-200 mb-80 section" style="padding-left:0px; padding-right:0px;">
             <div class="breadcrumbs overlay-bg" style="background: url('<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/custom/index-main01.jpg')">
                 <div class="container">
                     <div class="row">
@@ -448,24 +421,8 @@
         </div>
         <!-- END QUICKVIEW PRODUCT -->
     </div>
-    <!-- Body main wrapper end -->
 
-
-    <!-- Placed JS at the end of the document so the pages load faster -->
-
-    <!-- jquery latest version -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/vendor/jquery-3.1.1.min.js"></script>
-    <!-- Popper js js -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/popper.min.js"></script>
-    <!-- Bootstrap framework js -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/bootstrap.min.js"></script>
-    <!-- jquery.nivo.slider js -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/lib/js/jquery.nivo.slider.js"></script>
-    <!-- All js plugins included in this file. -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/plugins.js"></script>
-    <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/main.js"></script>
-
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
 </body>
 
 </html>
