@@ -70,261 +70,8 @@
                     </div>
                     <div class="tab-content">
                         <div id="popular-product" class="tab-pane active show">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/1.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">갤럭시 노트20 울트라 5G</a>
-                                            </h6>
-                                            <h6 class="brand-name">256GB</h6>
-                                            <h3 class="pro-price">1,560,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">갤럭시 노트20 5G</a>
-                                            </h6>
-                                            <h6 class="brand-name">256G</h6>
-                                            <h3 class="pro-price">1,280,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/3.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">갤럭시 A21s</a>
-                                            </h6>
-                                            <h6 class="brand-name">32G</h6>
-                                            <h3 class="pro-price">850,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/4.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">갤럭시 A 퀀텀 5G</a>
-                                            </h6>
-                                            <h6 class="brand-name">128G</h6>
-                                            <h3 class="pro-price">1,350,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/7.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">LG Q92 5G</a>
-                                            </h6>
-                                            <h6 class="brand-name">128G</h6>
-                                            <h3 class="pro-price">2,100,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/8.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">LG Q61</a>
-                                            </h6>
-                                            <h6 class="brand-name">64G</h6>
-                                            <h3 class="pro-price">1,280,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/9.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">LG 벨벳 5G</a>
-                                            </h6>
-                                            <h6 class="brand-name">128G</h6>
-                                            <h3 class="pro-price">980,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/10.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">LG폴더2</a>
-                                            </h6>
-                                            <h6 class="brand-name">8G</h6>
-                                            <h3 class="pro-price">280,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div id="device-list" class="row">
 
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/11.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">아이폰 SE(2020)</a>
-                                            </h6>
-                                            <h6 class="brand-name">64G | 128G | 256G</h6>
-                                            <h3 class="pro-price">2,100,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/12.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">아이폰 11</a>
-                                            </h6>
-                                            <h6 class="brand-name">64G | 128G | 256G</h6>
-                                            <h3 class="pro-price">1,680,000/h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/1.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">아이폰 11 PRO</a>
-                                            </h6>
-                                            <h6 class="brand-name">64G | 256G | 512G</h6>
-                                            <h3 class="pro-price">2,560,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="product-item product-item-2">
-                                        <div class="product-img">
-                                            <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">
-                                                <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h6 class="product-title">
-                                                <a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php">아이폰 XR</a>
-                                            </h6>
-                                            <h6 class="brand-name">64G | 128G | 256G</h6>
-                                            <h3 class="pro-price">2,280,000</h3>
-                                        </div>
-                                        <ul class="action-button">
-                                            <li>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -424,5 +171,48 @@
 
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
 </body>
+
+<!-- Javascript -->
+<script>
+  function addItem(name, storage){
+    var html =
+      "<div class=\"col-lg-3 col-md-4\">"+
+      	"<div class=\"product-item product-item-2\">"+
+      		"<div class=\"product-img\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php\">"+
+      				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg\" alt=\"\" />"+
+      			"</a>"+
+      		"</div>"+
+      		"<div class=\"product-info\">"+
+      			"<h6 class=\"product-title\">"+
+      				"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php\">갤럭시 노트20 5G</a>"+
+      			"</h6>"+
+      			"<h6 class=\"brand-name\">256G</h6>"+
+      			"<h3 class=\"pro-price\">1,280,000</h3>"+
+      		"</div>"+
+      		"<ul class=\"action-button\">"+
+      			"<li>"+
+      				"<a href=\"#\" title=\"Wishlist\"><i class=\"zmdi zmdi-favorite\"></i></a>"+
+      			"</li>"+
+      		"</ul>"+
+      	"</div>"+
+      "</div>";
+    return html;
+  }
+  $("#device-list").append(addItem(123,123));
+</script>
+
+
+<!-- PHP -->
+<script>
+  <?php
+    require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+    $api = new getForm();
+
+    /*while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
+
+    <?php }*/
+  ?>
+</script>
 
 </html>
