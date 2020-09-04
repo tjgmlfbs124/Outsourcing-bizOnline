@@ -43,7 +43,7 @@
                            <div class="row">
                               <div class="col-lg-7">
                                  <div class="table-content table-responsive mb-50">
-                                    <table class="text-center">
+                                    <table class="table-content table-responsive mb-50">
                                        <tbody>
                                          <tr>
                                             <td class="product-price" colspan="4">GALAXY S20</td>
@@ -57,34 +57,63 @@
                                           </tr>
                                           <tr>
                                              <td class="product-price" colspan="1">저장용량</td>
-                                             <td class="product-subtotal" colspan="3">256G</td>
+                                             <td class="product-subtotal" colspan="3">
+                                               <div class="product-tab pro-tab-menu" style="margin:0; justify-content:center">
+                                                  <ul class="nav">
+                                                      <li><a class="active" href="#popular-product" data-toggle="tab">128GB</a></li>
+                                                      <li><a href="#new-arrival" data-toggle="tab">256GB</a></li>
+                                                      <li><a href="#best-seller" data-toggle="tab">518GB</a></li>
+                                                  </ul>
+                                              </div>
+                                             </td>
                                           </tr>
                                           <tr>
                                              <td class="product-price" colspan="1">가입형태</td>
                                              <td class="product-subtotal" colspan="3">
-                                                <ul ㄴ쇼>
-                                                   <li style="float:left" >신규&nbsp&nbsp&nbsp</li>
-                                                   <li style="float:left" >번호이동&nbsp&nbsp&nbsp</li>
-                                                   <li style="float:left">기기변경</li>
-                                                </ul>
+                                                <div class="product-tab pro-tab-menu" style="margin:0; justify-content:center">
+                                                  <ul class="nav">
+                                                      <li><a class="active" href="#popular-product" data-toggle="tab">신규</a></li>
+                                                      <li><a href="#new-arrival" data-toggle="tab">번호이동</a></li>
+                                                      <li><a href="#best-seller" data-toggle="tab">기기변경</a></li>
+                                                  </ul>
+                                                </div>
                                              </td>
                                           </tr>
                                           <tr>
                                              <td class="product-price" colspan="1">할인방식</td>
                                              <td class="product-subtotal" colspan="3">
-                                                <ul >
-                                                   <li style="float:left" >공시지원할인 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
-                                                   <li style="float:left" >선택약정할인</li>
-                                                </ul>
+                                               <div class="product-tab pro-tab-menu" style="margin:0; justify-content:center">
+                                                 <ul class="nav">
+                                                     <li><a class="active" href="#popular-product" data-toggle="tab">공시지원할인</a></li>
+                                                     <li><a href="#new-arrival" data-toggle="tab">선택약정할인</a></li>
+                                                 </ul>
+                                               </div>
                                              </td>
                                           </tr>
                                           <tr>
                                              <td class="product-price" colspan="1">요금제</td>
-                                             <td class="product-subtotal" colspan="3">선택</td>
+                                             <td class="product-subtotal" colspan="3">
+                                               <select class="custom-select" style="margin:0;">
+                                                   <option value="defalt">선택</option>
+                                                   <option value="c-1">5GX스텐다드</option>
+                                                   <option value="c-2">5GX프라임</option>
+                                                   <option value="c-3">5GX플래티넘</option>
+                                                   <option value="c-4">0틴 5G</option>
+                                                   <option value="c-5">슬림</option>
+                                               </select>
+                                             </td>
                                           </tr>
                                           <tr>
                                              <td class="product-price" colspan="1">할부개월</td>
-                                             <td class="product-subtotal" colspan="3">선택</td>
+                                             <td class="product-subtotal" colspan="3">
+                                               <select class="custom-select" style="margin:0;">
+                                                   <option value="defalt">선택</option>
+                                                   <option value="c-1">24개월</option>
+                                                   <option value="c-2">30개월</option>
+                                                   <option value="c-3">36개월</option>
+                                                   <option value="c-4">48개월</option>
+                                               </select>
+                                             </td>
                                           </tr>
                                           <tr>
                                              <td class="product-subtotal" colspan="1">색상</td>
@@ -118,7 +147,7 @@
                                           </tr>
                                            <tr>
                                               <td class="product-price" rowspan="7" colspan="1">단말기</td>
-                                              <td class="product-price" colspan="1">중고가</td>
+                                              <td class="product-price" colspan="1">출고가</td>
                                               <td class="product-price" colspan="1">0원</td>
                                               <td class="product-price" colspan="1">0원</td>
                                            </tr>

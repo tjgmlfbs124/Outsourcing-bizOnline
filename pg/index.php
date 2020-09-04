@@ -174,21 +174,21 @@
 
 <!-- Javascript -->
 <script>
-  function addItem(name, storage){
+  function addItem(id, name, model, storage, manufacturer, url){
     var html =
       "<div class=\"col-lg-3 col-md-4\">"+
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
-      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer="+ manufacturer +"\">"+
       				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php\">갤럭시 노트20 5G</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer="+ manufacturer +"\">" + name + "</a>"+
       			"</h6>"+
-      			"<h6 class=\"brand-name\">256G</h6>"+
-      			"<h3 class=\"pro-price\">1,280,000</h3>"+
+      			"<h6 class=\"brand-name\">" + model + "</h6>"+
+      			"<h5 class=\"pro-price\">" + storage + "</h5>"+
       		"</div>"+
       		"<ul class=\"action-button\">"+
       			"<li>"+
@@ -199,7 +199,14 @@
       "</div>";
     return html;
   }
-  $("#device-list").append(addItem(123,123));
+
+  // 반환받은 용량(string)에서 ','를 떼서 String으로 반환
+  function separator(storage){
+    var storages = storage.split(",");
+    storages.sort();
+    if(storages.lengh <= 1) return storages[0];
+    else return storages.join(' | ');
+  }
 </script>
 
 
@@ -208,10 +215,18 @@
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
+    $items = $api -> select_items($_GET['mobile_carrier']);
 
-    /*while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
-
-    <?php }*/
+    while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
+      $("#device-list").append(addItem(
+        "<?php echo $row['_id'] ?>",
+        "<?php echo $row['name'] ?>",
+        "<?php echo $row['model'] ?>",
+        separator("<?php echo $row['storage'] ?>"),
+        "<?php echo $row['manufacturer_id'] ?>",
+        "<?php echo $row['image_url'] ?>"
+      ));
+    <?php }
   ?>
 </script>
 
