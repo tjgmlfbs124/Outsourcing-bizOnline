@@ -59,11 +59,11 @@
                         <div class="col-lg-6">
                             <div class="product-tab pro-tab-menu pro-tab-menu-2 text-right">
                                 <!-- Nav tabs -->
-                                <ul class="nav">
-                                    <li><a class="active" href="#popular-product" data-toggle="tab">알뜰폰</a></li>
-                                    <li><a href="#new-arrival" data-toggle="tab">SKT</a></li>
-                                    <li><a href="#best-seller" data-toggle="tab">KT</a></li>
-                                    <li><a href="#special-offer" data-toggle="tab">LG U+</a></li>
+                                <ul id="menu-list"class="nav">
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=0"'>알뜰폰</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=1"'>KT</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=2"'>SKT</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=3"'>LG U+</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -207,6 +207,14 @@
     if(storages.lengh <= 1) return storages[0];
     else return storages.join(' | ');
   }
+
+  function menuHighlight(){
+    var menu = $("#menu-list").children();
+    children = menu[<?php echo $_GET['mobile_carrier']?>];
+    children.classList.add("active");
+  }
+
+  menuHighlight();
 </script>
 
 
