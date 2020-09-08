@@ -39,7 +39,8 @@ VALUES (
   "전면 : 1,000만(듀얼 픽셀 AF) / 후면 : 1,200만(F2.2 초광각) + 1,200만 2PD OIS(F1.8 일반) + 6,400만 OIS(F2.0 망원) + ToF(VGA)",
   "Qualcomm SD865 + SDX55M",
   "161.9 x 73.7 x 7.8mm / 186g",
-  1
+  1,
+  "2020-03-06"
 );
 #SET @mDevice_id=LAST_INSERT_ID();
 SET @mDevice_id = (SELECT _id FROM device ORDER BY _id DESC LIMIT 1);

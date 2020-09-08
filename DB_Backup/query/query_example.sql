@@ -23,9 +23,15 @@ ADD COLUMN `carrier_id` INT UNSIGNED,
 ADD CONSTRAINT `fk_device_image_mobile_carrier1_idx` FOREIGN KEY (`carrier_id`)
 REFERENCES `mobile_carrier`(`_id`);
 
+###
+ALTER TABLE `device`
+ADD COLUMN `release` DATE NOT NULL;
+
+
 ### 포린키 설정된 컬럼의 값 수정
 SET foreign_key_checks = 0;
 UPDATE device_image
 SET carrier_id=0
 WHERE carrier_id IS NULL;
 SET foreign_key_checks = 1;
+

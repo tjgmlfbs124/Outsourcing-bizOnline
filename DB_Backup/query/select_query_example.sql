@@ -43,11 +43,25 @@ SELECT D._id, D.name, C.name
 FROM device D, device_image C
 WHERE C.device_id = D._id;
 
-### 디바이스, 저장소 리스트
+### 디바이스 목록 +저장소 ###
 SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage
 FROM device D, device_storage S
 WHERE S.device_id = D._id
 GROUP BY D._id;
+
+### 특정 제조사 디바이스 목록+용량(manufacturer._id)
+SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as
+storage, D.release
+FROM device D, device_storage S
+WHERE S.device_id = D._id AND D.manufacturer_id = %{manufacturer._id}
+GROUP BY D._id;
+
+### 디바이스 목록+용량+출시일 최근 출시 순 ###
+SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage, D.release
+FROM device D, device_storage S
+WHERE S.device_id = D._id
+GROUP BY D._id
+ORDER BY D.release DESC;
 
 ### 디바이스, 색상 리스트
 SELECT D._id, D.name, GROUP_CONCAT(C.name SEPARATOR ',') as colors
@@ -60,6 +74,7 @@ SELECT D._id, D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GRO
 FROM device D, device_storage S, device_image C
 WHERE S.device_id = %{device._id}
 AND C.device_id = %{device._id}
+AND D._ID = %{device._id}
 GROUP BY D._id;
 
 ### 특정 디바이스, 통신사 포함 상세 조회 (device._id, mobile_carrier._id)
