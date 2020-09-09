@@ -36,7 +36,7 @@
 
              <!-- SHOP SECTION START -->
              <div class="shop-section mb-80">
-                 <div class="container">
+                 <div class="container" style="padding:0px;">
                      <div class="row">
                          <div class="col-lg-12">
                              <!-- Tab panes -->
@@ -44,6 +44,18 @@
                                  <div class="tab-pane active" id="checkout">
                                      <div class="checkout-content box-shadow p-30">
                                          <form action="#">
+                                             <div class="row">
+                                                 <div class="col-lg-12" >
+                                                     <div class="product-tab pro-tab-menu pro-tab-menu-2 text-left" style="justify-content:flex-end;">
+                                                         <!-- Nav tabs -->
+                                                         <ul id="menu-list"class="nav" style="color:#555;">
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=0"' style="cursor:pointer;">KT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=1"'style="cursor:pointer;">SKT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=2"'style="cursor:pointer;">LG U+</a></li>
+                                                         </ul>
+                                                     </div>
+                                                 </div>
+                                             </div>
                                              <div class="row">
                                                  <!-- billing details -->
                                                  <div class="col-md-6">
@@ -112,31 +124,31 @@
                                                          <table>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">출고가</td>
-                                                               <td class="td-title-2" style="color:#666666;">1,800,000</td>
+                                                               <td id="device-price"class="td-title-2" style="color:#666666;">1,800,000</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">공시지원금</td>
-                                                               <td class="td-title-2" style="color:#666666;">350,000</td>
+                                                               <td id="support-price-01"class="td-title-2" style="color:#666666;">350,000</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">추가지원금</td>
-                                                               <td class="td-title-2" style="color:#666666;">200,000</td>
+                                                               <td id="support-price-02" class="td-title-2" style="color:#666666;">200,000</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">총 할부원금</td>
-                                                               <td class="td-title-2" style="color:#666666;">850,000</td>
+                                                               <td id="installment-price" class="td-title-2" style="color:#666666;">850,000</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부금</td>
-                                                               <td class="td-title-2" style="color:#666666;">60,000</td>
+                                                               <td id="installment-month" class="td-title-2" style="color:#666666;">60,000</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부이자</td>
-                                                               <td class="td-title-2" style="color:#666666;">5,412</td>
+                                                               <td id="installment-cash" class="td-title-2" style="color:#666666;">5,412</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부금 합계</td>
-                                                               <td class="td-title-2" style="color:#666666;">545,000</td>
+                                                               <td id="installment-total"class="td-title-2" style="color:#666666;">545,000</td>
                                                            </tr>
                                                          </table>
                                                      </div>
@@ -145,23 +157,23 @@
                                                          <table>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">기본료</td>
-                                                                 <td class="td-title-2" style="color:#666666;">1,800,000</td>
+                                                                 <td id="carrier-price" class="td-title-2" style="color:#666666;">1,800,000</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">요금약정할인</td>
-                                                                 <td class="td-title-2" style="color:#666666;">350,000</td>
+                                                                 <td id="carrier-support-01" class="td-title-2" style="color:#666666;">350,000</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">선택약정할인</td>
-                                                                 <td class="td-title-2" style="color:#666666;">200,000</td>
+                                                                 <td id="carrier-support-02"class="td-title-2" style="color:#666666;">200,000</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">월 요금합계</td>
-                                                                 <td class="td-title-2" style="color:#666666;">850,000</td>
+                                                                 <td id="carrier-total"class="td-title-2" style="color:#666666;">850,000</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="order-total">Order Total</td>
-                                                                 <td class="order-total-price">1,680,000</td>
+                                                                 <td id="price-total"class="order-total-price">1,680,000</td>
                                                              </tr>
                                                          </table>
                                                      </div>
@@ -272,20 +284,28 @@
       <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
    </body>
 
-   <script>
-     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-       $("#resultPopup").show();
-      }
-     function showTotal(){
-       if($("#mobileWrap").is(":hidden")){
-         $("#mobileWrap").show();
-       }
-       else{
-         $("#mobileWrap").hide();
-       }
-       console.log()
+ <script>
+   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+     $("#resultPopup").show();
+    }
+   function showTotal(){
+     if($("#mobileWrap").is(":hidden")){
+       $("#mobileWrap").show();
      }
-   </script>
+     else{
+       $("#mobileWrap").hide();
+     }
+     console.log()
+   }
+
+   function menuHighlight(){
+     var menu = $("#menu-list").children();
+     children = menu[<?php echo $_GET['manufacturer']?>];
+     children.classList.add("active");
+   }
+
+   menuHighlight();
+ </script>
 
 
   <script>

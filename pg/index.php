@@ -60,10 +60,11 @@
                             <div class="product-tab pro-tab-menu pro-tab-menu-2 text-right">
                                 <!-- Nav tabs -->
                                 <ul id="menu-list"class="nav">
-                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=0"'>알뜰폰</a></li>
-                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=1"'>KT</a></li>
-                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=2"'>SKT</a></li>
-                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?mobile_carrier=3"'>LG U+</a></li>
+
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=1"' style="cursor:pointer;">삼성</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=2"'style="cursor:pointer;">애플</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=3"'style="cursor:pointer;">LG</a></li>
+                                    <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=999"' style="cursor:pointer;">기타</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -179,13 +180,13 @@
       "<div class=\"col-lg-3 col-md-4\">"+
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
-      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer="+ manufacturer +"\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer=0\">"+
       				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer="+ manufacturer +"\">" + name + "</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer=0\">" + name + "</a>"+
       			"</h6>"+
       			"<h6 class=\"brand-name\">" + model + "</h6>"+
       			"<h5 class=\"pro-price\">" + storage + "</h5>"+
@@ -210,7 +211,7 @@
 
   function menuHighlight(){
     var menu = $("#menu-list").children();
-    children = menu[<?php echo $_GET['mobile_carrier']?>];
+    children = menu[<?php echo $_GET['manufacturer']?>];
     children.classList.add("active");
   }
 
@@ -223,7 +224,7 @@
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
-    $items = $api -> select_items($_GET['mobile_carrier']);
+    $items = $api -> select_items($_GET['manufacturer']);
 
     while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
       $("#device-list").append(addItem(
@@ -234,6 +235,7 @@
         "<?php echo $row['manufacturer_id'] ?>",
         "<?php echo $row['image_url'] ?>"
       ));
+      console.log("<?php echo $row['manufacturer_id'] ?>")
     <?php }
   ?>
 </script>
