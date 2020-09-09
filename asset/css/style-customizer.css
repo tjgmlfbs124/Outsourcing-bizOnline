@@ -24,7 +24,7 @@ div.style-customizer {
 }
 
 .style-customizer a.button:hover {
-    color:#ff7f00 !important; 
+    color:#ff7f00 !important;
 }
 
 .style-customizer.closed {
@@ -116,7 +116,7 @@ div.style-customizer a.opener {
     box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.14), -1px 0 3px 0 rgba(0, 0, 0, 0.14);
 }
 div.style-customizer a.opener i {
-    line-height: 45px;	
+    line-height: 45px;
 }
 div.style-customizer.opened a.opener {
     right: -45px;

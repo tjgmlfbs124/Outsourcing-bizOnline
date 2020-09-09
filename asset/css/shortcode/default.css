@@ -59,9 +59,12 @@
 /*************************
   1.General
 *************************/
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 body {
   background: #fff;
-  font-family: 'Raleway', sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 14px;
@@ -114,7 +117,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Raleway', sans-serif;
+font-family: "Noto Sans KR", sans-serif;
   font-weight: normal;
   color: #434343;
   margin-top: 0px;
@@ -228,7 +231,7 @@ span.tooltip-content {
   padding: 0.2em 0;
 }
 .g-font-1 {
-  font-family: "Raleway",sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 .g-font-2 {
   font-family: 'Roboto', sans-serif;
