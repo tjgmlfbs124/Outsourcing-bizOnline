@@ -49,9 +49,9 @@
                                                      <div class="product-tab pro-tab-menu pro-tab-menu-2 text-left" style="justify-content:flex-end;">
                                                          <!-- Nav tabs -->
                                                          <ul id="menu-list"class="nav" style="color:#555;">
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=0"' style="cursor:pointer;">KT</a></li>
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=1"'style="cursor:pointer;">SKT</a></li>
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=2"'style="cursor:pointer;">LG U+</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=1"' style="cursor:pointer;">KT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=2"'style="cursor:pointer;">SKT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=3"'style="cursor:pointer;">LG U+</a></li>
                                                          </ul>
                                                      </div>
                                                  </div>
@@ -300,7 +300,7 @@
 
    function menuHighlight(){
      var menu = $("#menu-list").children();
-     children = menu[<?php echo $_GET['manufacturer']?>];
+     children = menu[<?php echo $_GET['manufacturer']?>-1];
      children.classList.add("active");
    }
 
@@ -312,7 +312,7 @@
     <?php
       require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
       $api = new getForm();
-      $items = $api -> select_item($_GET['manufacturer'], $_GET['id']);
+      $items = $api -> select_item($_GET['id'], $_GET['carrier']);
 
       while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
         $("#device-list").append(addItem(
