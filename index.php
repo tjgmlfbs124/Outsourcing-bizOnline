@@ -80,7 +80,7 @@
                                         <input type="text" name="name" placeholder="아이디">
                                         <input type="password" name="password" placeholder="패스워드">
                                         <p><small><a href="#">비밀번호 찾기</a></small></p>
-                                        <button class="submit-btn-1 btn-hover-1" type="submit" onclick="location.href='<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=0'">login</button>
+                                        <button class="submit-btn-1 btn-hover-1" type="submit" onclick="location.href='<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=1'">login</button>
                                     </div>
                                 <!-- </form> -->
                             </div>

@@ -175,20 +175,20 @@
 
 <!-- Javascript -->
 <script>
-  function addItem(id, name, model, storage, manufacturer, url){
+  function addItem(id, name,  date, storage, manufacturer, url){
     var html =
       "<div class=\"col-lg-3 col-md-4\">"+
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
-      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer=0\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer=" + manufacturer + "&carrier=1\">"+
       				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer=0\">" + name + "</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer="+ manufacturer +"&carrier=1\">" + name + "</a>"+
       			"</h6>"+
-      			"<h6 class=\"brand-name\">" + model + "</h6>"+
+      			"<h6 class=\"brand-name\">출시 : " + date + "</h6>"+
       			"<h5 class=\"pro-price\">" + storage + "</h5>"+
       		"</div>"+
       		"<ul class=\"action-button\">"+
@@ -211,7 +211,7 @@
 
   function menuHighlight(){
     var menu = $("#menu-list").children();
-    children = menu[<?php echo $_GET['manufacturer']?>];
+    children = menu[<?php echo $_GET['manufacturer']-1?>];
     children.classList.add("active");
   }
 
@@ -230,12 +230,11 @@
       $("#device-list").append(addItem(
         "<?php echo $row['_id'] ?>",
         "<?php echo $row['name'] ?>",
-        "<?php echo $row['model'] ?>",
+        "<?php echo $row['release'] ?>",
         separator("<?php echo $row['storage'] ?>"),
         "<?php echo $row['manufacturer_id'] ?>",
         "<?php echo $row['image_url'] ?>"
       ));
-      console.log("<?php echo $row['manufacturer_id'] ?>")
     <?php }
   ?>
 </script>

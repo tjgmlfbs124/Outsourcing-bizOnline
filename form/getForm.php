@@ -9,16 +9,12 @@ class getForm{
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql ="
-			SELECT M.name as m_name, D.*
-			FROM manufacturer M, device D
-			WHERE M._id = ".$manufacturer.";
+			SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage, D.release, D.manufacturer_id
+			FROM device D, device_storage S
+			WHERE S.device_id = D._id AND D.manufacturer_id = ".$manufacturer."
+			GROUP BY D._id;
       ";
-			echo $sql;
-			$stmt = $pdo->prepare("
-			SELECT M.name as m_name, D.*
-			FROM manufacturer M, device D
-			WHERE M._id = D.manufacturer_id;
-      ");
+			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			return $stmt;
 		}catch(Exception $e){
@@ -30,14 +26,14 @@ class getForm{
   function select_item($id, $mobile_carrier){
 		try{
 			$pdo = $GLOBALS["pdo"];
-			// $stmt = $pdo->prepare("
-			// 	SELECT D._id, D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
-			// 	FROM device D, device_storage S, device_image C
-			// 	WHERE S.device_id = %{device._id}
-			// 	AND C.device_id = %{device._id}
-			// 	AND (C.carrier_id = %{mobile_carrier.id} OR C.carrier_id = 0)
-			// 	GROUP BY D._id;
-      // ");
+			$stmt = $pdo->prepare("
+				SELECT * GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
+				FROM device D, device_storage S, device_image C
+				WHERE S.device_id = ".$id."
+				AND C.device_id = ".$id."
+				AND (C.carrier_id = ".$mobile_carrier." OR C.carrier_id = 0)
+				GROUP BY D._id;
+      ");
 			$stmt->execute();
 			return $stmt;
 		}catch(Exception $e){
