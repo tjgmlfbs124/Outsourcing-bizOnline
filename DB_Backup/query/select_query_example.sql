@@ -89,3 +89,18 @@ AND C.device_id = %{device._id}
 AND (C.carrier_id = %{mobile_carrier.id} OR C.carrier_id = 0)
 GROUP BY D._id;
 
+### 특정 통신사 요금제 조회 (mobile_carrier)
+SELECT * 
+FROM mobile_plan Plan
+WHERE Plan.category_id = 
+    ANY(SELECT _id
+    FROM mobile_plan_category
+    WHERE mobile_carrier_id = 1);
+
+### 특정 통신사 특정 카테고리 요금제 조회(mobile_carrier, mobile_plan_category.name)
+SELECT * 
+FROM mobile_plan Plan
+WHERE Plan.category_id = 
+    (SELECT _id
+    FROM mobile_plan_category
+    WHERE mobile_carrier_id = 1 AND name="5G");
