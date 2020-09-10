@@ -22,16 +22,16 @@ class getForm{
 		}
   }
 
-	// 기기의 id와 회사에 맞는 기기
-  function select_item($id, $mobile_carrier){
+	// 기기 id로 특정 디바이스 조회
+  function select_item($id){
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$stmt = $pdo->prepare("
-				SELECT * GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
+				SELECT D.*, GROUP_CONCAT(DISTINCT S.storage,\":\",S.price) as price, GROUP_CONCAT(DISTINCT C._id,\":\",C.name,\":\",C.image_url,\":\",C.color) as color
 				FROM device D, device_storage S, device_image C
 				WHERE S.device_id = ".$id."
 				AND C.device_id = ".$id."
-				AND (C.carrier_id = ".$mobile_carrier." OR C.carrier_id = 0)
+				AND D._ID = ".$id."
 				GROUP BY D._id;
       ");
 			$stmt->execute();
