@@ -180,13 +180,13 @@
       "<div class=\"col-lg-3 col-md-4\">"+
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
-      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer=" + manufacturer + "&carrier=1\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&manufacturer=" + manufacturer + "&carrier=0\">"+
       				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/phoneModel/2.jpg\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer="+ manufacturer +"&carrier=1\">" + name + "</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&manufacturer="+ manufacturer +"&carrier=0\">" + name + "</a>"+
       			"</h6>"+
       			"<h6 class=\"brand-name\">출시 : " + date + "</h6>"+
       			"<h5 class=\"pro-price\">" + storage + "</h5>"+
