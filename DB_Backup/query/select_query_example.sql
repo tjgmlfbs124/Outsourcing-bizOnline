@@ -1,24 +1,24 @@
 ### 요금제 조회
-SELECT C.name as c_name, P.* 
+SELECT C.name as c_name, P.*
 FROM mobile_carrier C, mobile_plan P
 WHERE C._id = (
-	SELECT mobile_carrier_id 
-	FROM mobile_plan_category 
+	SELECT mobile_carrier_id
+	FROM mobile_plan_category
 	WHERE _id = P.category_id);
 
-### 참고 SELECT 쿼리 문 >> 
-SELECT _id FROM mobile_plan_category 
-WHERE name = "5G" AND mobile_carrier_id = ( 
+### 참고 SELECT 쿼리 문 >>
+SELECT _id FROM mobile_plan_category
+WHERE name = "5G" AND mobile_carrier_id = (
 	SELECT _id FROM mobile_carrier WHERE name="SKT"
 );
 
 ### 요금제 조회 (통신사 추가) ###
 # 컬럼 이름이 name 으로 같아서 as 로 별칭 사용
-SELECT C.name as c_name, P.* 
+SELECT C.name as c_name, P.*
 FROM mobile_carrier C, mobile_plan P
 WHERE C._id = (
-	SELECT mobile_carrier_id 
-	FROM mobile_plan_category 
+	SELECT mobile_carrier_id
+	FROM mobile_plan_category
 	WHERE _id = P.category_id);
 
 ### 디바이스 조회 (제조사 지정)
@@ -76,8 +76,8 @@ WHERE S.device_id = %{device._id}
 AND C.device_id = %{device._id}
 AND D._ID = %{device._id}
 GROUP BY D._id;
-/*용량및 색상 결과값 ex> 
-용량>(128G:990000,256G:1200000) 
+/*용량및 색상 결과값 ex>
+용량>(128G:990000,256G:1200000)
 색상>(11:화이트:A1110_white.jpg:ffffff, 12:블랙:A1110_black.jpg:000000)
 */
 
@@ -88,4 +88,3 @@ WHERE S.device_id = %{device._id}
 AND C.device_id = %{device._id}
 AND (C.carrier_id = %{mobile_carrier.id} OR C.carrier_id = 0)
 GROUP BY D._id;
-
