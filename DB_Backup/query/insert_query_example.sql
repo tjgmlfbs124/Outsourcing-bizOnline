@@ -27,6 +27,16 @@ VALUES (
   1199000
 );
 
+### 특정 디바이스 색상 추가 (device_id, {mobile_carrier_id} )
+INSERT INTO device_image(`device_id`,`name`,`image_url`,`color`,`carrier_id`)
+VALUES (
+  %{device_id},
+  "레드",
+  "LGM-G900_red.jpg",
+  "ff0000",
+  %{mobile_carrier_id}
+)
+
 ### 디바이스 추가 ###
 # (SELECT _id FROM manufacturer WHERE name="삼성전자")
 BEGIN;

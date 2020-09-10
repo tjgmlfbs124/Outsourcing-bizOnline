@@ -35,3 +35,31 @@ SET carrier_id=0
 WHERE carrier_id IS NULL;
 SET foreign_key_checks = 1;
 
+
+### 특정 제조사 디바이스 이름, 용량 조회
+SELECT S.*, D.name
+FROM device_storage S, device D
+WHERE D._id = S.device_id AND D.manufacturer_id = 2
+
+SELECT D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(DISTINCT C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
+    FROM device D, device_storage S, device_image C
+    WHERE S.device_id = 21
+    AND C.device_id = 21
+    AND D._id = 21
+    GROUP BY D._id;
+
+### 제약조건 삭제/추가 ###
+ALTER TABLE `{FK_table_name}`
+DROP CONSTRAINT `{fk_constraint_name}`;
+
+ALTER TABLE `device_image`
+ADD CONSTRAINT `fk_device_image_mobile_carrier1_idx`
+FOREIGN KEY (`carrier_id`) REFERENCES `mobile_carrier`(`_id`)
+ON UPDATE CASCADE;
+
+### 테이블 만들기 ###
+CREATE TABLE `installment` 
+(
+    `_id` INT PRIMARY KEY AUTO_INCREMENT,
+    `month` INT NOT NULL
+);

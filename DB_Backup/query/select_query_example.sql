@@ -70,12 +70,16 @@ WHERE C.device_id = D._id
 GROUP BY D._id;
 
 ### 특정 디바이스 상세 조회 (device._id)
-SELECT D._id, D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(C.name,":",C.image_url,":",C.color) as color
+SELECT D.*, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(DISTINCT C._id,":",C.name,":",C.image_url,":",C.color) as color
 FROM device D, device_storage S, device_image C
 WHERE S.device_id = %{device._id}
 AND C.device_id = %{device._id}
 AND D._ID = %{device._id}
 GROUP BY D._id;
+/*용량및 색상 결과값 ex> 
+용량>(128G:990000,256G:1200000) 
+색상>(11:화이트:A1110_white.jpg:ffffff, 12:블랙:A1110_black.jpg:000000)
+*/
 
 ### 특정 디바이스, 통신사 포함 상세 조회 (device._id, mobile_carrier._id)
 SELECT D._id, D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
