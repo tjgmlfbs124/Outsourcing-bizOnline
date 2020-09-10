@@ -49,9 +49,9 @@
                                                      <div class="product-tab pro-tab-menu pro-tab-menu-2 text-left" style="justify-content:flex-end;">
                                                          <!-- Nav tabs -->
                                                          <ul id="menu-list"class="nav" style="color:#555;">
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=1"' style="cursor:pointer;">KT</a></li>
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=2"'style="cursor:pointer;">SKT</a></li>
-                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?manufacturer=3"'style="cursor:pointer;">LG U+</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?carrier_id=1"' style="cursor:pointer;">KT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?carrier_id=2"'style="cursor:pointer;">SKT</a></li>
+                                                             <li><a data-toggle="tab" onclick='location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?carrier_id=3"'style="cursor:pointer;">LG U+</a></li>
                                                          </ul>
                                                      </div>
                                                  </div>
@@ -66,11 +66,8 @@
                                                           </div>
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:20px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">저장용량</a>
-                                                            <select class="custom-select">
+                                                            <select id="device-storage" class="custom-select">
                                                                 <option value="defalt">선택</option>
-                                                                <option value="defalt">128GB</option>
-                                                                <option value="c-1">256GB</option>
-                                                                <option value="c-2">512GB</option>
                                                             </select>
                                                           </div>
 
@@ -87,11 +84,6 @@
                                                             <a style="width:100px; line-height:40px; color:#666666;">요금제</a>
                                                             <select class="custom-select">
                                                                 <option value="defalt">선택</option>
-                                                                <option value="c-1">5GX스텐다드</option>
-                                                                <option value="c-2">5GX프라임</option>
-                                                                <option value="c-3">5GX플래티넘</option>
-                                                                <option value="c-4">0틴 5G</option>
-                                                                <option value="c-5">슬림</option>
                                                             </select>
                                                           </div>
 
@@ -108,12 +100,8 @@
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">색상</a>
-                                                            <select class="custom-select">
+                                                            <select id="device-color" class="custom-select">
                                                                 <option value="defalt">선택</option>
-                                                                <option value="c-1">골드</option>
-                                                                <option value="c-2">브라운</option>
-                                                                <option value="c-3">블랙</option>
-                                                                <option value="c-4">화이트</option>
                                                             </select>
                                                           </div>
                                                      </div>
@@ -124,31 +112,31 @@
                                                          <table>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">출고가</td>
-                                                               <td id="device-price"class="td-title-2" style="color:#666666;">1,800,000</td>
+                                                               <td id="device-price"class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">공시지원금</td>
-                                                               <td id="support-price-01"class="td-title-2" style="color:#666666;">350,000</td>
+                                                               <td id="support-price-01"class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">추가지원금</td>
-                                                               <td id="support-price-02" class="td-title-2" style="color:#666666;">200,000</td>
+                                                               <td id="support-price-02" class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">총 할부원금</td>
-                                                               <td id="installment-price" class="td-title-2" style="color:#666666;">850,000</td>
+                                                               <td id="installment-price" class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부금</td>
-                                                               <td id="installment-month" class="td-title-2" style="color:#666666;">60,000</td>
+                                                               <td id="installment-month" class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부이자</td>
-                                                               <td id="installment-cash" class="td-title-2" style="color:#666666;">5,412</td>
+                                                               <td id="installment-cash" class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">월 할부금 합계</td>
-                                                               <td id="installment-total"class="td-title-2" style="color:#666666;">545,000</td>
+                                                               <td id="installment-total"class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                          </table>
                                                      </div>
@@ -157,23 +145,23 @@
                                                          <table>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">기본료</td>
-                                                                 <td id="carrier-price" class="td-title-2" style="color:#666666;">1,800,000</td>
+                                                                 <td id="carrier-price" class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">요금약정할인</td>
-                                                                 <td id="carrier-support-01" class="td-title-2" style="color:#666666;">350,000</td>
+                                                                 <td id="carrier-support-01" class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">선택약정할인</td>
-                                                                 <td id="carrier-support-02"class="td-title-2" style="color:#666666;">200,000</td>
+                                                                 <td id="carrier-support-02"class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">월 요금합계</td>
-                                                                 <td id="carrier-total"class="td-title-2" style="color:#666666;">850,000</td>
+                                                                 <td id="carrier-total"class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="order-total">Order Total</td>
-                                                                 <td id="price-total"class="order-total-price">1,680,000</td>
+                                                                 <td id="price-total" class="order-total-price">0</td>
                                                              </tr>
                                                          </table>
                                                      </div>
@@ -192,15 +180,15 @@
                                                                       <tbody>
                                                                        <tr>
                                                                          <td>제품명</td>
-                                                                         <td>갤럭시 노트20 울트라 5G</td>
+                                                                         <td id="product-name"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">모델명</td>
-                                                                         <td colspan="1">SM-N986N</td>
+                                                                         <td colspan="1" id="product-model"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td>제조사</td>
-                                                                         <td>삼성전자</td>
+                                                                         <td id="product-manufacturer"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td>제조국</td>
@@ -212,23 +200,23 @@
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">디스플레이</td>
-                                                                         <td colspan="1">6.9” QHD+Dynamic AMOLED 2X 엣지 디스플레이</td>
+                                                                         <td colspan="1" id="product-display"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">크기/무게</td>
-                                                                         <td colspan="1">164.8 × 77.2 × 8.1 mm / 208g</td>
+                                                                         <td colspan="1" id="product-size"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">카메라화소</td>
-                                                                         <td colspan="1">전면 1,000만 / 후면 1억800만(광각) + 1,200만(초광각) + 1,200만(망원)</td>
+                                                                         <td colspan="1" id="product-cam"></td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">제조연월일</td>
-                                                                         <td colspan="1">-</td>
+                                                                         <td colspan="1" id="product-release">-</td>
                                                                        </tr>
                                                                        <tr>
                                                                          <td colspan="1">CPU</td>
-                                                                         <td colspan="1">Qualcomm Snapdragon 865+</td>
+                                                                         <td colspan="1" id="product-cpu"></td>
                                                                        </tr>
                                                                       </tbody>
                                                                    </table>
@@ -267,7 +255,7 @@
                    <table>
                      <tr>
                          <td class="td-title-1" style="color:#ffffff;">출고가</td>
-                         <td class="td-title-2" style="color:#ffffff;">1,800,000</td>
+                         <td class="td-title-2" style="color:#ffffff;"><a id="product-price"></a></td>
                      </tr>
                      <tr>
                          <td class="td-title-1" style="color:#ffffff;">지원금+할인</td>
@@ -284,45 +272,103 @@
       <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
    </body>
 
- <script>
-   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-     $("#resultPopup").show();
-    }
-   function showTotal(){
-     if($("#mobileWrap").is(":hidden")){
-       $("#mobileWrap").show();
-     }
-     else{
-       $("#mobileWrap").hide();
-     }
-     console.log()
-   }
+   <script>
+      function showTotal(){
+        if($("#mobileWrap").is(":hidden")){
+          $("#mobileWrap").show();
+        }
+        else{
+          $("#mobileWrap").hide();
+        }
+      }
 
-   function menuHighlight(){
-     var menu = $("#menu-list").children();
-     children = menu[<?php echo $_GET['manufacturer']?>-1];
-     children.classList.add("active");
-   }
+      // 통신사 탭메뉴에 하이라이트
+      function menuHighlight(){
+        var menu = $("#menu-list").children();
+        children = menu[<?php echo $_GET['manufacturer']?>-1];
+        children.classList.add("active");
+      }
 
-   menuHighlight();
- </script>
+      // 저장용량에 따른 가격리턴
+      function storageToPrice(price){
+        var storages = price.split(",");
+        storages.forEach((item, i) => {
+          var storage = item.split(":")[0];
+          var price = item.split(":")[1];
+          addStorageOption(storage, price)
+        });
+      }
+
+      // color id에 따른 이름 리턴
+      function colorToName(color){
+        var colors = color.split(",");
+        colors.forEach((item, i) => {
+          var id = item.split(":")[0];
+          var name = item.split(":")[1];
+          var url = item.split(":")[2];
+          var rgb = item.split(":")[3];
+          addColorOption(id, name)
+        });
+
+      }
+
+      // 기기용량 옵션추가
+      function addStorageOption(storage, price){
+        $("#device-storage").append("<option value=\"" + price + "\">" + storage + "</option>");
+      };
+
+      // 기기색상 옵션추가
+      function addColorOption(id, name){
+        $("#device-color").append("<option value=\"" + id + "\">" + name + "</option>");
+      }
+
+      // 출고가 가격설정
+      function setDevicePrice(price){
+        $("#device-price").text(numberWithCommas(price));
+      }
+
+      function totalPrice(){
+        var device_price = CommasToNumber($("#device-price").text());
+        console.log("device_price : " ,  device_price);
+        $("#price-total").text(numberWithCommas(device_price));
+      }
+
+   </script>
+
+
+   <script>
+     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+       $("#resultPopup").show();
+      }
+
+     menuHighlight();
+
+    $("#device-storage").change(function(){
+      setDevicePrice($(this).val());
+      totalPrice();
+    });
+   </script>
 
 
   <script>
     <?php
       require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
       $api = new getForm();
-      $items = $api -> select_item($_GET['id'], $_GET['carrier']);
+      $items = $api -> select_item($_GET['id']);
 
       while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
-        $("#device-list").append(addItem(
-          "<?php echo $row['_id'] ?>",
-          "<?php echo $row['name'] ?>",
-          "<?php echo $row['model'] ?>",
-          separator("<?php echo $row['storage'] ?>"),
-          "<?php echo $row['manufacturer_id'] ?>",
-          "<?php echo $row['image_url'] ?>"
-        ));
+        $("#product-name").text("<?php echo $row['name']?>");
+        $("#product-model").text("<?php echo $row['model']?>");
+        $("#product-manufacturer").text("<?php echo $row['manufacturer_id']?>");
+        $("#product-display").text("<?php echo $row['spec_display']?>");
+        $("#product-size").text("<?php echo $row['spec_size']?>");
+        $("#product-cam").text("<?php echo $row['spec_cam']?>");
+        $("#product-release").text("<?php echo $row['release']?>");
+        $("#product-cpu").text("<?php echo $row['spec_cpu']?>");
+        $("#product-name").text("<?php echo $row['name']?>");
+
+        storageToPrice("<?php echo $row['price']?>");
+        colorToName("<?php echo $row['color']?>")
       <?php }
     ?>
   </script>
