@@ -11,3 +11,6 @@
 <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/main.js"></script>
 <!-- 컴포넌트를 그리기위한 스트링 모음-->
 <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/Items/items.js"></script>
+
+<!-- 유틸 모음 -->
+<script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/bz_online.js"></script>
