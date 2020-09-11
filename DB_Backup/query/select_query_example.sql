@@ -158,21 +158,22 @@ WHERE PC.mobile_carrier_id = C._id
 	AND C._id = 1;
 
 
-### 특정 디바스의 특정 통신사 요금제 조회(device_id, mobile_carrier_id)
-SELECT P.*
-FROM mobile_plan P
-LEFT JOIN device_mobile_category M on P.category_id = M.category_id
+### 특정 디바스의 특정 통신사 요금제 조회+요금제종류(device_id, mobile_carrier_id)
+SELECT P.*, PC.name as c_name
+FROM mobile_plan_category PC mobile_plan P 
+	LEFT JOIN device_mobile_category M on P.category_id = M.category_id
 WHERE M.device_id = %{device_id}
 AND M.category_id = 
 	ANY(SELECT _id
 	FROM mobile_plan_category
 	WHERE mobile_carrier_id = %{mobile_carrier_id});
 /* EX (1번디바이스의 1번 통신사) */
-SELECT P.*
-FROM mobile_plan P
-LEFT JOIN device_mobile_category M on P.category_id = M.category_id
+SELECT P.*, PC.name as c_name
+FROM mobile_plan_category PC, mobile_plan P
+	LEFT JOIN device_mobile_category M on P.category_id = M.category_id
 WHERE M.device_id = 1
 AND M.category_id = 
 	ANY(SELECT _id
 	FROM mobile_plan_category
-	WHERE mobile_carrier_id = 1);
+	WHERE mobile_carrier_id = 1)
+AND P.category_id = PC._id;
