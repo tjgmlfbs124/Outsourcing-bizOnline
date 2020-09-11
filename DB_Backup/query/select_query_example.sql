@@ -177,3 +177,20 @@ AND M.category_id =
 	FROM mobile_plan_category
 	WHERE mobile_carrier_id = 1)
 AND P.category_id = PC._id;
+
+### 특정 디바이스의 특정 통신사 요금제 카테고리 조회(device_id, mobile_carrier_id)
+/*21번 디바이스의 1번 통신사(KT)의 사용가능한 요금제*/
+SELECT PC._id, PC.name
+FROM device_mobile_category M, mobile_plan_category PC
+WHERE M.device_id = 21
+	AND M.category_id = PC._id
+	AND PC.mobile_carrier_id = 1;
+
+### 특정 요금카테고리의 요금제 조회(mobile_plan_category.id)
+SELECT P.*
+FROM mobile_plan P
+WHERE P.category_id = %{mobile_plan_category.id};
+/*5번 카테고리(KT.LTE)*/
+SELECT P.*
+FROM mobile_plan P
+WHERE P.category_id = 5;

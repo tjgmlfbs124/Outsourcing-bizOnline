@@ -84,3 +84,10 @@ CREATE TABLE `device_mobile_category`
 ### 디바이스의 요금제 카테고리 삭제
 DELETE FROM device_mobile_category
 WHERE _id = 77;
+
+### 테이블 비교 (같은 값 가진 데이터)
+SELECT A.*, B.*
+FROM device_mobile_category A, device_mobile_category B
+WHERE A.device_id = B.device_id
+AND A.category_id = B.category_id
+AND A._id <> B._id;
