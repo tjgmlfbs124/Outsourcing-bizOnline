@@ -89,3 +89,32 @@ VALUES
 ({id},"코스믹그레이", "SM-G988N_img_gray.jpg", "545454", NULL),
 ({id},"코스믹블랙", "SM-G988N_img_black.jpg", "000000", NULL);
 
+### 특정 디바이스의 요금제 카테고리 추가(`device_id`, `category_id`)
+INSERT INTO device_mobile_category(`device_id`,`category_id`)
+VALUES (%{device_id}, %{category_id});
+/*EX (1번 디바이스 에 KT.5G, SKT.5G, LG.5G 추가)*/
+INSERT INTO device_mobile_category(`device_id`,`category_id`)
+VALUES (1, 1),(1, 4),(1, 7);
+
+### 특정 디바이스의 3사 요금제_카테고리.이름 추가2(`device_id`, str{요금제카테고리})
+/*EX ( 27 디바이스 에 3사.LTE 추가)*/
+INSERT INTO device_mobile_category(`device_id`,`category_id`)
+SELECT Dev._id , M._id
+FROM device Dev, mobile_plan_category M
+WHERE M.name = "LTE"
+  AND Dev._id = 27
+
+### 특정 제조사의 디바이스 3사 요금제 카테고리 추가3(str{제조사}, str{요금카테고리})
+INSERT 
+  INTO device_mobile_category(`device_id`, `category_id`)
+  SELECT Dev._id, M._id
+  FROM device Dev, mobile_plan_category M
+  WHERE M.name = "{요금카테고리}"
+    AND Dev.manufacturer_id = (SELECT _id FROM manufacturer WHERE name="{제조사}");
+/*EX*/
+INSERT 
+  INTO device_mobile_category(`device_id`, `category_id`)
+  SELECT Dev._id, M._id
+  FROM device Dev, mobile_plan_category M
+  WHERE M.name = "LTE" 
+    AND Dev.manufacturer_id = (SELECT _id FROM manufacturer WHERE name="애플");

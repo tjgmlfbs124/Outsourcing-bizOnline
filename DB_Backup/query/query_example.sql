@@ -63,3 +63,24 @@ CREATE TABLE `installment`
     `_id` INT PRIMARY KEY AUTO_INCREMENT,
     `month` INT NOT NULL
 );
+
+### 테이블 만들기+제약조건
+CREATE TABLE `device_mobile_category`
+(
+    `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `device_id` INT UNSIGNED NOT NULL,
+    `category_id` INT UNSIGNED NOT NULL,
+    PRIMARY KEY (`_id`),
+    CONSTRAINT `fk_device_mobile_catoery_deivce1`
+        FOREIGN KEY (`device_id`)
+        REFERENCES `biz_online`.`device`(`_id`)
+        ON UPDATE CASCADE ,
+    CONSTRAINT `fk_device_mobile_category_mobile_plan_category1`
+        FOREIGN KEY (`category_id`)
+        REFERENCES `biz_online`.`mobile_plan_category`(`_id`)
+        ON UPDATE CASCADE
+);
+
+### 디바이스의 요금제 카테고리 삭제
+DELETE FROM device_mobile_category
+WHERE _id = 77;
