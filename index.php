@@ -45,7 +45,17 @@
 
         <!-- START HEADER AREA -->
         <header class="header-area header-wrapper">
-          <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
+          <div class="header-top-bar plr-185">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 d-none d-md-block">
+                        <div class="call-us">
+                            <p class="mb-0 roboto">(+88) 01234-567890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </header>
         <!-- END HEADER AREA -->
 
