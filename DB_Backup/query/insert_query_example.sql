@@ -118,3 +118,25 @@ INSERT
   FROM device Dev, mobile_plan_category M
   WHERE M.name = "LTE" 
     AND Dev.manufacturer_id = (SELECT _id FROM manufacturer WHERE name="애플");
+
+## 할부 개월 추가하기
+INSERT INTO installment(`month`)
+VALUES 
+(0),(6),(12),(18),(24),(30),(36)
+
+
+### 특정 요금제 카테고리에 특정 할부 개월 id 추가(category_id, installment_id)
+INSERT INTO mobile_category_installment(`category_id`, `instsallment_id`)
+VALUES %{category_id}, %{installment_id};
+/* EX:모든 요금제 카테고리에 23이상 할부 추가 */
+INSERT INTO mobile_category_installment(`category_id`, `installment_id`)
+SELECT CAT._id, I._id
+FROM mobile_plan_category CAT, installment I
+  WHERE I.month > 23;
+/* EX:모든 통신사 5G요금제 카테고리에 6개월 할부 추가 */
+INSERT INTO mobile_category_installment(`category_id`,`installment_id`)
+SELECT CAT._id, I._id
+FROM mobile_plan_category CAT, installment I
+  WHERE CAT.name = "5G";
+  AND I.month = 6;
+

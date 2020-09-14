@@ -42,11 +42,20 @@ FROM device_storage S, device D
 WHERE D._id = S.device_id AND D.manufacturer_id = 2
 
 SELECT D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONCAT(DISTINCT C.name,":",C.image_url,":",C.color,":",C.carrier_id) as color
-    FROM device D, device_storage S, device_image C
-    WHERE S.device_id = 21
-    AND C.device_id = 21
-    AND D._id = 21
-    GROUP BY D._id;
+  FROM device D, device_storage S, device_image C
+  WHERE S.device_id = 21
+  AND C.device_id = 21
+  AND D._id = 21
+  GROUP BY D._id;
+
+### 제약조건 조회
+SELECT * 
+FROM information_schema.table_constraints
+
+### 특정DB(biz_online)의 제약조건 조회
+SELECT * 
+FROM information_schema.table_constraints TB
+WHERE TB.TABLE_SCHEMA = "biz_online";
 
 ### 제약조건 삭제/추가 ###
 ALTER TABLE `{FK_table_name}`
@@ -60,25 +69,25 @@ ON UPDATE CASCADE;
 ### 테이블 만들기 ###
 CREATE TABLE `installment` 
 (
-    `_id` INT PRIMARY KEY AUTO_INCREMENT,
-    `month` INT NOT NULL
+  `_id` INT PRIMARY KEY AUTO_INCREMENT,
+  `month` INT NOT NULL
 );
 
 ### 테이블 만들기+제약조건
 CREATE TABLE `device_mobile_category`
 (
-    `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `device_id` INT UNSIGNED NOT NULL,
-    `category_id` INT UNSIGNED NOT NULL,
-    PRIMARY KEY (`_id`),
-    CONSTRAINT `fk_device_mobile_catoery_deivce1`
-        FOREIGN KEY (`device_id`)
-        REFERENCES `biz_online`.`device`(`_id`)
-        ON UPDATE CASCADE ,
-    CONSTRAINT `fk_device_mobile_category_mobile_plan_category1`
-        FOREIGN KEY (`category_id`)
-        REFERENCES `biz_online`.`mobile_plan_category`(`_id`)
-        ON UPDATE CASCADE
+  `_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `device_id` INT UNSIGNED NOT NULL,
+  `category_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`_id`),
+  CONSTRAINT `fk_device_mobile_catoery_deivce1`
+    FOREIGN KEY (`device_id`)
+    REFERENCES `biz_online`.`device`(`_id`)
+    ON UPDATE CASCADE ,
+  CONSTRAINT `fk_device_mobile_category_mobile_plan_category1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `biz_online`.`mobile_plan_category`(`_id`)
+    ON UPDATE CASCADE
 );
 
 ### 디바이스의 요금제 카테고리 삭제
@@ -90,4 +99,4 @@ SELECT A.*, B.*
 FROM device_mobile_category A, device_mobile_category B
 WHERE A.device_id = B.device_id
 AND A.category_id = B.category_id
-AND A._id <> B._id;
+AND A._id <> B._id; #다름 (!=)

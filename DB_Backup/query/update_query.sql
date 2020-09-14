@@ -55,3 +55,7 @@ COMMIT; ===
 UPDATE `device`
 SET `release` = DATE_FORMAT('2019-10-25','%Y-%m-%d') WHERE _id=21;
 
+### 요금제 컬럼 업데이트
+UPDATE `mobile_plan`
+SET `name`="뉴 T끼리 맞춤형(200분+6GB)"
+WHERE _id = 113;

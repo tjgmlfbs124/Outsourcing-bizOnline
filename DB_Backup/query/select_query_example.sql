@@ -1,10 +1,11 @@
 ### 요금제 조회
-SELECT C.name as c_name, P.* 
-FROM mobile_carrier C, mobile_plan P
+SELECT C.name as c_name, P.*, PC.name as cat_name
+FROM mobile_carrier C, mobile_plan P, mobile_plan_category PC
 WHERE C._id = (
 	SELECT mobile_carrier_id 
 	FROM mobile_plan_category 
-	WHERE _id = P.category_id);
+	WHERE _id = P.category_id)
+AND PC._id = P.category_id;
 
 ### 참고 SELECT 쿼리 문 >> 
 SELECT _id FROM mobile_plan_category 
@@ -77,6 +78,21 @@ WHERE manufacturer_id=(
 SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage, D.release
 FROM device D, device_storage S
 WHERE S.device_id = D._id
+ AND D.manufacturer_id = 2
+GROUP BY D._id
+ORDER BY D.release DESC;
+
+### 디바이스 목록+색상 ###
+SELECT D._id, D.name, GROUP_CONCAT(C.name SEPARATOR ',') as color
+FROM device D
+ LEFT JOIN device_image C ON D._id = C.device_id
+GROUP BY D._id;
+
+### 특정 제조사 디바이스 목록+용량+최근 출시순(manufacturer_id)
+SELECT D._id, D.name, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage, D.release
+FROM device D, device_storage S
+WHERE S.device_id = D._id
+ AND D.manufacturer_id = %{manufacturer_id}
 GROUP BY D._id
 ORDER BY D.release DESC;
 
