@@ -186,7 +186,7 @@
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item.php?id="+ id + "&carrier=1\">" + name + "</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&carrier=1\">" + name + "</a>"+
       			"</h6>"+
       			"<h6 class=\"brand-name\">출시 : " + date + "</h6>"+
       			"<h5 class=\"pro-price\">" + storage + "</h5>"+

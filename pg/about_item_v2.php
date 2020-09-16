@@ -16,22 +16,7 @@
          <header class="header-area header-wrapper">
             <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
          </header>
-         <!-- END HEADER AREA -->
-         <!-- BREADCRUMBS SETCTION START -->
-         <div class="breadcrumbs-section plr-200 mb-80 section">
-            <div class="breadcrumbs overlay-bg" style="background: url('<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/custom/index-main01.jpg')">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <div class="breadcrumbs-inner">
-                           <h1 class="breadcrumbs-title">Login / Register</h1>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- BREADCRUMBS SETCTION END -->
+
          <section id="page-content" class="page-wrapper section">
 
              <!-- SHOP SECTION START -->
@@ -67,21 +52,20 @@
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:20px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">저장용량</a>
                                                             <select id="device-storage" class="custom-select">
-                                                                <option value="defalt">선택</option>
                                                             </select>
                                                           </div>
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">요금제</a>
                                                             <select id="carrier-plan" class="custom-select">
-                                                                <option value="defalt">선택</option>
+                                                                <option value="default">선택</option>
                                                             </select>
                                                           </div>
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">할인방식</a>
                                                             <select id="discount-list" class="custom-select">
-                                                                <option value="defalt">선택</option>
+                                                                <option value="default">선택</option>
                                                                 <option value="device-discount">공시지원할인</option>
                                                                 <option value="plan-discount">선택약정할인</option>
                                                             </select>
@@ -101,7 +85,7 @@
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">색상</a>
                                                             <select id="device-color" class="custom-select">
-                                                                <option value="defalt">선택</option>
+                                                                <option value="default">선택</option>
                                                             </select>
                                                           </div>
                                                      </div>
@@ -115,7 +99,7 @@
                                                                <td id="device-price"class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
-                                                               <td class="td-title-1" style="color:#666666;">공시지원금</td>
+                                                               <td id="device-support-title" class="td-title-1" style="color:#666666;">공시지원금</td>
                                                                <td id="support-price-01"class="td-title-2" style="color:#666666;">0</td>
                                                            </tr>
                                                            <tr>
@@ -152,16 +136,21 @@
                                                                  <td id="carrier-support-01" class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
-                                                                 <td class="td-title-1" style="color:#666666;">선택약정할인</td>
+                                                                 <td id="carrier-support-title" class="td-title-1" style="color:#666666;">선택약정할인</td>
                                                                  <td id="carrier-support-02" class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
                                                              <tr>
                                                                  <td class="td-title-1" style="color:#666666;">월 요금합계</td>
                                                                  <td id="carrier-total"class="td-title-2" style="color:#666666;">0</td>
                                                              </tr>
+                                                         </table>
+                                                     </div>
+                                                     <div class="payment-details pl-10 mb-50" >
+                                                         <h6 class="widget-title border-left mb-20">합계 </h6>
+                                                         <table>
                                                              <tr>
                                                                  <td class="order-total">Order Total</td>
-                                                                 <td id="price-total" class="order-total-price">0</td>
+                                                                 <td id="price-total" class="order-total-price" style="font-size:20px;">0</td>
                                                              </tr>
                                                          </table>
                                                      </div>
@@ -224,8 +213,9 @@
                                                          </div>
                                                      </div>
                                                      <!-- payment-method end -->
-                                                     <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">상담하기</button>
-                                                     <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">공유하기</button>
+                                                     <button class="submit-btn-1 mt-30 btn-hover-1" type="submit">상담</button>
+                                                     <button class="submit-btn-1 mt-30 btn-hover-1" onclick="copy_to_clipboard('<?php echo $_GET['carrier']?>')">공유</button>
+                                                     <button class="submit-btn-1 mt-30 btn-hover-1" >저장</button>
                                                  </div>
                                              </div>
                                          </form>
@@ -275,32 +265,40 @@
    <script>
       // 모든 정보를 담아놓은 핵심 object
       var localDataSet = {
-        "device" : {
+        "device" : {  // 단말기 종류
           "id" : "<?php echo $_GET['id']?>",
-          "model" : "",
-          "color_value" : "",
-          "storage_value" : "",
-          "storage_price" : 0
+          "model" : "",             // Model 이름
+          "color_value" : "",       // 색상 select value
+          "storage_value" : "",     // 저장용량 select value
+          "price" : 0               // 출고가
         },
-        "discount" : {
-          "how_value" : "선택", // 공시지원 : device, 선택약정 : plan
-          "period_value" : 1
+        "discount" : {  // 할인방식
+          "how_value" : "선택", // 공시지원 : device-discount, 선택약정 : plan-discount
+          "period" : 1,                     // 할부개월
+          "regular_device_discount" : 250000,
+          "regular_device_discount_option" : 100000,
+          "device_discount" : 0,            // 공시지원일경우 할인되는 가격
+          "device_discount_option" : 0,     // 추가지원근
+          "plan_discount" : 0.25            // 요금제지원일경우 할인되는 퍼센트
+
         },
-        "plan" : {
-          "value" : ""
+        "plan" : {  // 요금제
+          "value" : "", // 요금제 select value
+          "price" : 0,  // 요금제 가격
+          "id":0        // 요금제 ID
         },
-        "carrier" : {
+        "carrier" : { // 통신사
           "id" : "<?php echo $_GET['carrier']?>"
         }
       };
 
       // 저장용량 선택
       $("#device-storage").change(function(){
-        var price = localDataSet['device'].storage_price = ($(this).val()).split("-")[1];
-        localDataSet['device'].storage_value = $(this).val();
-        setDevicePrice(price);
-        totalPrice();
+        var price = ($(this).val()).split("-")[1];
+        localDataSet['device'].price = price;
+        localDataSet['device'].storage_value =  ($(this).val()).split("-")[0];
         console.log("localDataSet : " , localDataSet);
+        update();
       });
 
       // 할인방식 선택
@@ -309,34 +307,53 @@
         localDataSet['discount'].how_value = type;
         switch (type) {
           case "device-discount":
-            $("#support-price-01").text(numberWithCommas("250000"));
-            $("#carrier-support-02").text("0");
+            localDataSet['discount'].device_discount = localDataSet['discount'].regular_device_discount;
+            localDataSet['discount'].device_discount_option = localDataSet['discount'].regular_device_discount_option;
+            localDataSet['discount'].plan_discount = 0;
+            $("#device-support-title").css("color","#ff7f00");
+            $("#carrier-support-title").css("color","#666");
+            $("#support-price-01").css("color","#ff7f00")
+            $("#carrier-support-02").css("color","#666")
             break;
           case "plan-discount" :
-            var plan_price = CommasToNumber($("#carrier-price").text());
-            $("#support-price-01").text("0");
-            $("#carrier-support-02").text(numberWithCommas(plan_price-(plan_price*3/4)));
+            localDataSet['discount'].device_discount = 0;
+            localDataSet['discount'].device_discount_option = 0;
+            localDataSet['discount'].plan_discount = 0.25 ;
+            $("#device-support-title").css("color","#666");
+            $("#carrier-support-title").css("color","#ff7f00");
+            $("#support-price-01").css("color","#666")
+            $("#carrier-support-02").css("color","#ff7f00")
             break;
-
         }
-        console.log("$(this).val() : " , $(this).val());
         console.log("localDataSet : " , localDataSet);
+        update();
       });
 
       // 요금제 선택
       $("#carrier-plan").change(function(){
-        var price = ($(this).val()).split("-")[1];
-        $("#carrier-price").text(numberWithCommas(price));
-        localDataSet['plan'].value = $(this).val();
+        if($(this).val()){
+          var price = ($(this).val()).split("-")[1];
+          localDataSet['plan'].price = price;
+          localDataSet['plan'].value = $(this).val();
+          console.log("localDataSet : " , localDataSet);
+        }
+        else{
+          $('#carrier-plan option:eq(0)').prop('selected', true).trigger('change');
+        }
+        update();
       });
 
       // 할부개월 선택
       $("#discount-period").change(function(){
-        var device_price = CommasToNumber($("#device-price").text());
-        var period = $(this).val();
-        var price = numberWithCommas(parseInt(device_price/period));
-        $("#installment-month").text(price);
-        localDataSet['discount'].period_value = $(this).val();
+        if($(this).val()){
+          var period = $(this).val();
+          localDataSet['discount'].period = period;
+          console.log("localDataSet : " , localDataSet);
+        }
+        else{
+          $('#discount-period option:eq(0)').prop('selected', true).trigger('change');
+        }
+        update();
       });
 
       // 색상선택
@@ -349,21 +366,39 @@
 
         $("#zoom_03").attr("src",url);
         $("#zoom_03").attr("data-zoom-image",url);
+        console.log("localDataSet : " , localDataSet);
+        update();
       });
 
 
    </script>
 
    <script>
-      function updateCarrier(carrier){
+      // 현재 견적서의 URL을 반환
+      function getURL(carrier){
         var deviceID = "<?php echo $_GET['id']?>";
-        location.href=
-          "<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?" +
-          "id=" + deviceID +
-          "&carrier="+carrier;
+        var installment_period = $("#discount-period option").index($("#discount-period option:selected"))
+        var discount = $("#discount-list option").index($("#discount-list option:selected"));
+        var size = $("#device-storage").val();
+        var plan = $("#carrier-plan").val();
+        var color = $("#device-color").val()
+        var str ="<?php echo $_SERVER['DOCUMENT_ROOT']?>pg/about_item_v2.php?" +
+                  "id=" + deviceID +
+                  "&carrier="+ carrier +
+                  "&installment_period=" + installment_period +
+                  "&discount=" + discount +
+                  "&size=" + size +
+                  "&plan=" + plan +
+                  "&color=" + color;
+        return str;
       }
 
+      // 통신사를 옮길때, URL을 그대로 가져간다.
+      function updateCarrier(carrier){
+        location.href=getURL(carrier);
+      }
 
+      // 모바일용 결과창을 하단에 띄운다
       function showTotal(){
         if($("#mobileWrap").is(":hidden")){
           $("#mobileWrap").show();
@@ -421,36 +456,38 @@
 
       // 출고가 가격설정
       function setDevicePrice(price){
-        var discount_period = $("#discount-period option:checked").val(); // 할부개월
-        $("#device-price").text(numberWithCommas(price));                 // 출고가
-        $("#installment-price").text(numberWithCommas(price));            // 할부원금
-        $("#installment-month").text(numberWithCommas(price/discount_period));
+        var discount_period = $("#discount-period option:checked").val();         // 할부개월
+        $("#device-price").text(numberWithCommas(price));                         // 출고가
+        $("#installment-price").text(numberWithCommas(price));                    // 할부원금
+        $("#installment-month").text(numberWithCommas(price/discount_period));    // 월 할부금
       }
 
       function update(){
-        var device_price = CommasToNumber($("#device-price").text());                   // 출고가
-        var device_discount01 = CommasToNumber($("#support-price-01").text());          // 공시지원금
-        var device_discount02 = CommasToNumber($("#support-price-02").text());          // 추가지원금
-        var installment_price = device_price - device_discount01 - device_discount02;   // 총 할부원금
-        var installment_month = CommasToNumber($("#installment_month").text());         // 월 할부금
-        var installment_cash = CommasToNumber($("#installment-cash").text());           // 월 할부이자
+        $("#device-price").text(numberWithCommas(localDataSet['device'].price));
+        $("#support-price-01").text(numberWithCommas(localDataSet['discount'].device_discount));
+        $("#support-price-02").text(numberWithCommas(localDataSet['discount'].device_discount_option));
+        var installment_price = localDataSet['device'].price - localDataSet['discount'].device_discount - localDataSet['discount'].device_discount_option;
+        $("#installment-price").text(numberWithCommas(installment_price));
+        $("#installment-month").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period)));
+        $("#installment-cash").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period * 0.056)));
+        $("#installment-total").text(numberWithCommas(parseInt((installment_price / localDataSet['discount'].period) + (installment_price / localDataSet['discount'].period * 0.056))));
+        $("#carrier-price").text(numberWithCommas(localDataSet['plan'].price));
+        $("#carrier-support-01").text(0);
+        $("#carrier-support-02").text(numberWithCommas(localDataSet['plan'].price * parseFloat(localDataSet['discount'].plan_discount)));
+        var carrier_price = localDataSet['plan'].price - (localDataSet['plan'].price * localDataSet['discount'].plan_discount);
+        $("#carrier-total").text(numberWithCommas(carrier_price));
 
-
-        $("#price-total").text(numberWithCommas(device_price));
+        $("#price-total").text(numberWithCommas(parseInt((installment_price / localDataSet['discount'].period) + (installment_price / localDataSet['discount'].period * 0.056) + (installment_price / localDataSet['discount'].period * 0.056) + carrier_price)));
       }
-
    </script>
-
 
    <script>
+      menuHighlight();
 
-    menuHighlight();
-
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-      $("#resultPopup").show();
-    }
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $("#resultPopup").show();
+      }
    </script>
-
 
   <script>
     <?php
@@ -470,11 +507,11 @@
         $("#product-release").text("<?php echo $row['release']?>");
         $("#product-cpu").text("<?php echo $row['spec_cpu']?>");
         $("#product-name").text("<?php echo $row['name']?>");
-
-
         storageToPrice("<?php echo $row['price']?>");
         colorToName("<?php echo $row['color']?>")
 
+          //용량 첫번째것 선택
+          $("#device-storage option:eq(0)").prop("selected", true).trigger('change');
         <?php
       }
 
@@ -484,6 +521,32 @@
           "<?php echo $row['name']?>",
           "<?php echo $row['price']?>");
         <?php
+      }
+
+      // url에 '저장용량'이 있다면 선택 후 트리거
+      if(isset($_GET['size'])){
+        echo "$('#device-storage').val('".$_GET['size']."').prop('selected', true).trigger('change');";
+      }
+
+      // url에 '요금제'가 있다면 선택 후 트리거
+      if(isset($_GET['plan'])){
+        if(strcmp($_GET['plan'],"null"))
+          echo "$('#carrier-plan').val('".$_GET['plan']."').prop('selected', true).trigger('change');";
+      }
+
+      // url에 '할인방식'이 있다면 선택 후 트리거
+      if(isset($_GET['discount'])){
+        echo "$('#discount-list option:eq(".$_GET['discount'].")').prop('selected', true).trigger('change');";
+      }
+
+      // url에 '할부기간'이 있다면 선택 후 트리거
+      if(isset($_GET['installment_period'])){
+        echo "$('#discount-period option:eq(".$_GET['installment_period'].")').prop('selected', true).trigger('change');";
+      }
+
+      // url에 '색상'이 있다면 선택 후 트리거
+      if(isset($_GET['color'])){
+        echo "$('#device-color option:eq(".$_GET['color'].")').prop('selected', true).trigger('change');";
       }
     ?>
   </script>

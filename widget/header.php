@@ -30,9 +30,9 @@
                         <ul class="main-menu text-center">
                             <li><a href="/">홈</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=1">휴대폰 조회</a></li>
-                            <li><a href="shop.html">견적 저장소</a></li>
-                            <li><a href="#">고객센터</a></li>
-                            <li><a href="#">공지사항</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/store.php">견적 저장소</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/aboutus.php">고객센터</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/notice.php">공지사항</a></li>
                             <li><a href="#">관리자</a></li>
                         </ul>
                     </nav>
