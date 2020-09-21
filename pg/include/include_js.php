@@ -14,3 +14,7 @@
 
 <!-- 유틸 모음 -->
 <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/bz_online.js"></script>
+
+<!-- 유효성 검사 라이브러리-->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>

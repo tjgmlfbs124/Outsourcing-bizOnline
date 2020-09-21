@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subas || Home</title>
+    <title>Biz Online</title>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
 </head>
 
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Product Tab Style -2</h1>
+                                <h1 class="breadcrumbs-title">휴대폰 조회</h1>
                                 <ul class="breadcrumb-list">
                                     <li><a href="index.html">Home</a></li>
                                     <li>All Products</li>
@@ -180,13 +180,13 @@
       "<div class=\"col-lg-3 col-md-4\">"+
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
-      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&carrier=1\">"+
+      			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v3.php?id="+ id + "&carrier=1\">"+
       				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/"+model+"/black.png\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+
       			"<h6 class=\"product-title\">"+
-      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v2.php?id="+ id + "&carrier=1\">" + name + "</a>"+
+      				"<a  href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v3.php?id="+ id + "&carrier=1\">" + name + "</a>"+
       			"</h6>"+
       			"<h6 class=\"brand-name\">출시 : " + date + "</h6>"+
       			"<h5 class=\"pro-price\">" + storage + "</h5>"+

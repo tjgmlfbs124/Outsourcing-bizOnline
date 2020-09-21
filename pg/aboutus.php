@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subas || Home</title>
+    <title>Biz Online</title>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
 </head>
 
@@ -30,10 +30,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Product Tab Style -2</h1>
+                                <h1 class="breadcrumbs-title">고객센터</h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>All Products</li>
+                                    <li><a>Home</a></li>
+                                    <li>About Company</li>
                                 </ul>
                             </div>
                         </div>
@@ -53,22 +53,20 @@
                         <div class="col-md-4">
                             <div class="contact-address box-shadow">
                                 <i class="zmdi zmdi-pin"></i>
-                                <h6>House 06, Road 01, Katashur, Mohammadpur,</h6>
-                                <h6>Dhaka-1207, Bangladesh</h6>
+                                <h6>42424, 대구시 남구 영선길46, 2F(대명동)</h6>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="contact-address box-shadow">
                                 <i class="zmdi zmdi-phone"></i>
-                                <h6><a href="tel:555-555-1212">555-555-1212</a></h6>
-                                <h6><a href="tel:555-555-1212">666-666-1313</a></h6>
+                                <h6><a>010-4676-9997</a></h6>
+                                <h6><a>대표 정창희</a></h6>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="contact-address box-shadow">
                                 <i class="zmdi zmdi-email"></i>
-                                <h6>companyname@gmail.com</h6>
-                                <h6>info@domainname.com</h6>
+                                <h6>heres1116@naver.com</h6>
                             </div>
                         </div>
                     </div>

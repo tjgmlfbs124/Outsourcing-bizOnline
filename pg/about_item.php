@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Subas || Home</title>
+      <title>Biz Online</title>
       <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
    </head>
    <body>

@@ -1,3 +1,4 @@
+<?php if(!isset($_SESSION)) session_start(); ?>
 
 <!-- header-top-bar -->
 <div class="header-top-bar plr-185">
@@ -19,7 +20,7 @@
                 <!-- logo -->
                 <div class="col-lg-2 col-md-4">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/img/logo/logo.png" alt="main logo">
                         </a>
                     </div>
@@ -28,12 +29,12 @@
                 <div class="col-lg-8 d-none d-lg-block">
                     <nav id="primary-menu">
                         <ul class="main-menu text-center">
-                            <li><a href="/">홈</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/index.php?manufacturer=1">휴대폰 조회</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/store.php">견적 저장소</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/store.php?carrier=0">견적 저장소</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/aboutus.php">고객센터</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/notice.php">공지사항</a></li>
-                            <li><a href="#">관리자</a></li>
+                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/index.php">관리자</a></li>
+                            <li id="logout" style="float:right; display:none;"><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/form/logout.php">로그아웃</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -41,3 +42,17 @@
         </div>
     </div>
 </div>
+
+<script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/vendor/jquery-3.1.1.min.js"></script>
+<script>
+  <?php
+    if(isset($_SESSION['id'])){?>
+      $("#logout").show();
+    <?php
+    }
+    else{?>
+      $("#logout").hide();
+    <?php
+    }
+  ?>
+</script>

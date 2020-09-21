@@ -21,12 +21,15 @@ function is_ie() {
   return false;
 }
 
-function copy_to_clipboard(index) {
+function copy_to_clipboard(domain, carrier) {
   if( is_ie() ) {
 
-    window.clipboardData.setData("Text", getURL(index));
+    window.clipboardData.setData("Text", domain + getURL(carrier));
     alert("복사되었습니다.");
     return;
   }
-  prompt("Ctrl+C를 눌러 복사하세요.", getURL(index));
+  console.log("domain : " + domain);
+  console.log("carrier : " + carrier);
+  prompt("Ctrl+C를 눌러 복사하세요.", domain + getURL(carrier));
+
 }

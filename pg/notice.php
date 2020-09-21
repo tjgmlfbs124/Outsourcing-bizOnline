@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subas || Home</title>
+    <title>Biz Online</title>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
 </head>
 
@@ -30,10 +30,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Product Tab Style -2</h1>
+                                <h1 class="breadcrumbs-title">공지사항</h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>All Products</li>
+                                    <li><a>Home</a></li>
+                                    <li>Notice</li>
                                 </ul>
                             </div>
                         </div>
