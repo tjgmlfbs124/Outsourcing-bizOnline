@@ -212,7 +212,7 @@ class getForm{
 			if(isset($user_number)){
 				session_start();
 				$_SESSION['adminid']= $user_number;
-				$this->renderView("/pg/admin/menu.php");
+				$this->renderView("/pg/admin/menu.php?sub=excelManager");
 			}
 			else{
 				$this->renderAlertWithView("정보가 일치하지 않습니다.","/pg/admin/index.php");
@@ -220,6 +220,64 @@ class getForm{
 		}catch(Exception $e){
 			echo $e;
 		}
+	}
+
+
+	/**
+	* 카테고리 아이디 조회
+	* 이 카테고리 아이디는 요금제, 공시지원금, 추가지원금 조회에 쓰인다.
+	* 	@carrier : 통신사 id
+	* 	@plan : 요금제 이름
+	*/
+	function select_category_id($carrier, $plan){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "SELECT _id
+				FROM mobile_plan_category
+				WHERE `mobile_carrier_id` = ".$carrier."
+				AND `name`=\"".$plan."\"";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+	}
+
+	// 카테고리 아이디(통신사+요금)에 맞는 요금
+	function select_support_fund($category_id){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "
+			SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+			FROM support_fund F, Device D, mobile_plan P
+			WHERE F.device_id=D._id
+			   AND F.mobile_plan_id=P._id
+			   AND P.category_id = ".$category_id."
+			   ORDER BY device_id;";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+	}
+
+	// 저장한 견적들 조회
+	function select_plan(){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "SELECT * FROM mobile_plan";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+	}
+
+	function update_plan(){
+		
 	}
 }
 
