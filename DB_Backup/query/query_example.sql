@@ -91,8 +91,8 @@ CREATE TABLE `device_mobile_category`
 );
 
 ### 디바이스의 요금제 카테고리 삭제
-DELETE FROM device_mobile_category
-WHERE _id = 77;
+DELETE FROM mobile_plan
+WHERE _id = 132;
 
 ### 테이블 비교 (같은 값 가진 데이터)
 SELECT A.*, B.*
@@ -100,3 +100,21 @@ FROM device_mobile_category A, device_mobile_category B
 WHERE A.device_id = B.device_id
 AND A.category_id = B.category_id
 AND A._id <> B._id; #다름 (!=)
+
+
+#######################################################
+
+SELECT D._id, D.name, D.model, D.image_url, GROUP_CONCAT(S.storage SEPARATOR ',') as storage, D.release
+FROM device D, device_storage S
+WHERE S.device_id = D._id
+ AND D.manufacturer_id = 2
+GROUP BY D._id
+ORDER BY D.release DESC;
+
+### 모든 디바이스의 모든 요금제 조회
+SELECT D._id as Device_id, P._id as Plan_id
+FROM device D, mobile_plan P;
+
+SELECT D._id as Device_id, P._id as Plan_id
+FROM `device` D, `mobile_plan` P
+LIMIT 0, 10000;
