@@ -31,5 +31,4 @@ function copy_to_clipboard(domain, carrier) {
   console.log("domain : " + domain);
   console.log("carrier : " + carrier);
   prompt("Ctrl+C를 눌러 복사하세요.", domain + getURL(carrier));
-
 }

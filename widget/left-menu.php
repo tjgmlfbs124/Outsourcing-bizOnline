@@ -6,9 +6,9 @@
             <ul>
                 <li class="closed"><a href="#">데이터수정</a>
                     <ul>
-                        <li><a href="#">추가지원금 수정</a></li>
-                        <li><a href="#">할부이자 수정</a></li>
-                        <li><a href="#">Watch</a></li>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pg/admin/menu.php?sub=plan&carrier=1&plan=5G">요금제 변경</a></li>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pg/admin/menu.php?sub=excelManager">추가지원금 수정</a></li>
+                        <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pg/admin/menu.php?sub=installment_interest">할부이자 수정</a></li>
                         <li><a href="#">Head Phone</a></li>
                         <li><a href="#">Memory</a></li>
                     </ul>
