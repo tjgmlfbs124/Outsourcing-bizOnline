@@ -53,9 +53,21 @@ COMMIT; ===
 
 ### 디바이스 컬럼 업데이트 ###
 UPDATE `device`
-SET `release` = DATE_FORMAT('2019-10-25','%Y-%m-%d') WHERE _id=21;
+SET `release` = DATE_FORMAT('2019-08-23','%Y-%m-%d') 
+WHERE _id=39;
 
 ### 요금제 컬럼 업데이트
 UPDATE `mobile_plan`
-SET `name`="뉴 T끼리 맞춤형(200분+6GB)"
+SET `category_id`=5,
+`name`="뉴 T끼리 맞춤형(200분+6GB)",
+`price`=10000,
+`data`="100GB",
+`call`="조금",
+`message`="조금더"
 WHERE _id = 113;
+
+### 모든 디바이스의 컬럼을 다른 칼럼의 값+문자열로 변경
+BEGIN;
+UPDATE `device`
+SET `image_url`= CONCAT(device.model,"_IMG.jpg");
+COMMIT;
