@@ -2,28 +2,26 @@
 ### 요금제 조회
 SELECT C.name as c_name, P.*, PC.name as cat_name
 FROM mobile_carrier C, mobile_plan P, mobile_plan_category PC
-WHERE C._id = (
-	SELECT mobile_carrier_id
-	FROM mobile_plan_category
-	WHERE _id = P.category_id)
+WHERE C._id = PC.mobile_carrier_id
 AND PC._id = P.category_id;
 
-### 참고 SELECT 쿼리 문 >>
-SELECT _id FROM mobile_plan_category
-WHERE name = "5G" AND mobile_carrier_id = (
+### 참고 SELECT 쿼리 문 >> 
+SELECT _id FROM mobile_plan_category 
+WHERE name = "5G" 
+	AND mobile_carrier_id = ( 
 	SELECT _id FROM mobile_carrier WHERE name="SKT"
 );
 
 ### 요금제 조회 (통신사 추가) ###
 # 컬럼 이름이 name 으로 같아서 as 로 별칭 사용
-SELECT C.name as c_name, P.*
+SELECT C.name as c_name, P.* 
 FROM mobile_carrier C, mobile_plan P
 WHERE C._id = (
-	SELECT mobile_carrier_id
-	FROM mobile_plan_category
+	SELECT mobile_carrier_id 
+	FROM mobile_plan_category 
 	WHERE _id = P.category_id);
 
-### 디바이스 조회 (제조사 지정)
+### 디바이스 조회 (제조사 이름표기)
 SELECT M.name as m_name, D.*
 FROM manufacturer M, device D
 WHERE M._id = D.manufacturer_id;
@@ -65,19 +63,19 @@ WHERE S.device_id = D._id AND D.manufacturer_id = 1
 GROUP BY D._id;
 
 ### 제조사 이름으로 디바이스 조회(str{제조사})
-SELECT `_id`, `name`
-FROM device
+SELECT `_id`, `name` 
+FROM device 
 WHERE manufacturer_id=(
-    SELECT `_id`
-    FROM manufacturer
+    SELECT `_id` 
+    FROM manufacturer 
     WHERE `name`="{제조사}"
 );
 /* EX */
-SELECT `_id`, `name`
-FROM device
+SELECT `_id`, `name` 
+FROM device 
 WHERE manufacturer_id=(
-    SELECT `_id`
-    FROM manufacturer
+    SELECT `_id` 
+    FROM manufacturer 
     WHERE `name`="LG전자"
 );
 
@@ -115,8 +113,8 @@ WHERE S.device_id = %{device._id}
 AND C.device_id = %{device._id}
 AND D._ID = %{device._id}
 GROUP BY D._id;
-/*용량및 색상 결과값 ex>
-용량>(128G:990000,256G:1200000)
+/*용량및 색상 결과값 ex> 
+용량>(128G:990000,256G:1200000) 
 색상>(11:화이트:A1110_white.jpg:ffffff, 12:블랙:A1110_black.jpg:000000)
 */
 
@@ -138,28 +136,28 @@ AND (C.carrier_id = 1 OR C.carrier_id = 4)
 GROUP BY D._id;
 
 ### 특정 통신사 요금제 조회 (mobile_carrier)
-SELECT *
+SELECT * 
 FROM mobile_plan Plan
-WHERE Plan.category_id =
+WHERE Plan.category_id = 
     ANY(SELECT _id
     FROM mobile_plan_category
     WHERE mobile_carrier_id = 1);
 
 ### 특정 통신사 특정 카테고리 요금제 조회(mobile_carrier, mobile_plan_category.name)
-SELECT *
+SELECT * 
 FROM mobile_plan Plan
-WHERE Plan.category_id =
+WHERE Plan.category_id = 
     (SELECT _id
     FROM mobile_plan_category
-    WHERE `mobile_carrier_id` = %{mobile_carrier}
+    WHERE `mobile_carrier_id` = %{mobile_carrier} 
 			AND `name`="%{mobile_plan_category.name}");
 /*EX*/
-SELECT *
+SELECT * 
 FROM mobile_plan Plan
-WHERE Plan.category_id =
+WHERE Plan.category_id = 
     (SELECT _id
     FROM mobile_plan_category
-    WHERE `mobile_carrier_id` = 1
+    WHERE `mobile_carrier_id` = 1 
 		AND `name`="5G");
 
 
@@ -191,10 +189,10 @@ WHERE PC.mobile_carrier_id = C._id
 
 ### 특정 디바스의 특정 통신사 요금제 조회+요금제종류(device_id, mobile_carrier_id)
 SELECT P.*, PC.name as c_name
-FROM mobile_plan_category PC, mobile_plan P
+FROM mobile_plan_category PC mobile_plan P 
 	LEFT JOIN device_mobile_category M on P.category_id = M.category_id
 WHERE M.device_id = %{device_id}
-AND M.category_id =
+AND M.category_id = 
 	ANY(SELECT _id
 	FROM mobile_plan_category
 	WHERE mobile_carrier_id = %{mobile_carrier_id});
@@ -203,7 +201,7 @@ SELECT P.*, PC.name as c_name
 FROM mobile_plan_category PC, mobile_plan P
 	LEFT JOIN device_mobile_category M on P.category_id = M.category_id
 WHERE M.device_id = 1
-AND M.category_id =
+AND M.category_id = 
 	ANY(SELECT _id
 	FROM mobile_plan_category
 	WHERE mobile_carrier_id = 1)
@@ -239,7 +237,7 @@ WHERE DCAT.device_id = %{device_id}
 	AND DCAT.category_id = CAT._id;
 
 ### 각각 _id 에 맞는 결과값 리턴
-SELECT
+SELECT 
 	De._id as Device_id,
 	De.name as Device_name,
 	De.model as Device_model,
@@ -271,7 +269,6 @@ WHERE De._id=1
 	AND Img._id=1
 	AND Pl._id=1;
 
-
 ### 모든 보조금 리스트 출력, +디바이스이름 +요금제이름 +디바이스 순
 SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
 FROM support_fund F, Device D, mobile_plan P
@@ -284,7 +281,7 @@ SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_pl
 FROM support_fund F, Device D, mobile_plan P
 WHERE F.device_id=D._id
 	AND F.mobile_plan_id=P._id
-	AND P.category_id = ${category_id}
+	AND P.category_id = %{category_id}
 	ORDER BY device_id;
 /*ex*/
 SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
@@ -300,4 +297,77 @@ FROM support_fund F, Device D, mobile_plan P
 WHERE F.device_id=D._id
 	AND F.mobile_plan_id=P._id
 	ORDER BY device_id;
-### 모든 추가지원금 출력
+
+### 모든 공시지원금 출력(+통신사 이름 +요금카테고리)
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, MC.name, PC.name ,P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P, mobile_plan_category PC, mobile_carrier MC
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND PC._id = P.category_id
+	AND MC._id = PC.mobile_carrier_id
+	ORDER BY device_id;
+
+### 특정 통신사 지원금 출력(carrier_id)
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P, mobile_plan_category PC
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND P.category_id = PC._id
+	AND PC.mobile_carrier_id=%{carrier_id}
+	ORDER BY device_id;
+/* EX KT*/
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P, mobile_plan_category PC
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND P.category_id = PC._id
+	AND PC.mobile_carrier_id=1
+	ORDER BY device_id;
+
+### 특정 통신사 요금제카테고리 지원금 출력(category_id)
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND P.category_id = %{category_id}
+	ORDER BY device_id;
+/* EX KT5G*/
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND P.category_id = 1
+	ORDER BY device_id;
+
+### 특정 제조사의 요금제 카테고리 지원금 출력(category_id, manufacturer_id)
+/* EX KT 5G, 삼성전자*/
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND P.category_id = 1
+	AND D.manufacturer_id = 1
+	ORDER BY device_id;
+
+### 특정 제조사 지원금 출력(manufacturer_id)
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND D.manufacturer_id = %{manufacturer_id}
+	ORDER BY device_id;
+/*EX 1:삼성*/
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND D.manufacturer_id = 2
+	ORDER BY D.release;
+
+#######################################################################
+SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+FROM support_fund F, Device D, mobile_plan P
+WHERE F.device_id=D._id
+	AND F.mobile_plan_id=P._id
+	AND D.manufacturer_id = 2
+	ORDER BY D.release;

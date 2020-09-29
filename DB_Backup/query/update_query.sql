@@ -71,3 +71,13 @@ BEGIN;
 UPDATE `device`
 SET `image_url`= CONCAT(device.model,"_IMG.jpg");
 COMMIT;
+
+### 공시 지원금 금액 업데이트(value, id)
+UPDATE `support_fund`
+SET `fund`=${value}
+WHERE `_id`=${id}
+
+### 추가 지원금 금액 업데이트(value, id)
+UPDATE `support_fund`
+SET `additional_fund`=${value}
+WHERE `_id`=${id}
