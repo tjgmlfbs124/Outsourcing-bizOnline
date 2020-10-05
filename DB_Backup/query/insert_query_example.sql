@@ -167,12 +167,19 @@ INSERT
   VALUES (SELECT D._id as D_id, P._id as P_id, 0 as mFund, 0 as addFund FROM device D, mobile_plan P);
 
 ### 디바이스 추가 이후 해당 디바이스의 모든 요금제 보조금 추가(device_id)
-BEGIN;
-/* 디바이스 추가쿼리~ 이후*/
+/* 디바이스 추가쿼리 이후 사용*/
 INSERT
   INTO support_fund(`deivce_id`, `mobile_plan_id`, `fund`, `additional_fund`)
   VALUES (SELECT ${device_id} as D_id, P._id as P_id, 0 as mFund, 0 as addFund
     FROM mobile_plan P);
 
+### 요금제 추가 이후 해당 요금제의 모든 디바이스 보조금 추가(plan_id)
+/* 요금제 추가쿼리 이후 사용*/
+INSERT
+  INTO support_fund(`device_id`, `mobile_plan_id`, `fund`, `additional_fund`)
+  VALUES (
+    SELECT ${plan_id} as P_id, D._id as D_id, 0 as mFund, 0 as addFund
+    FROM device D
+  );
 
-################################################################################
+##########################################################################

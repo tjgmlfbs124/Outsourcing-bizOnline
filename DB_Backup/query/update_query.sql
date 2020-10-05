@@ -81,3 +81,50 @@ WHERE `_id`=${id}
 UPDATE `support_fund`
 SET `additional_fund`=${value}
 WHERE `_id`=${id}
+
+### 공시 지원금 금액 업데이트(device_id, plan_id, value)
+UPDATE `support_fund`
+SET `fund`=${value}
+WHERE `device_id`=${device_id}
+  AND `mobile_plan_id`=${plan_id};
+/* EX */
+UPDATE `support_fund`
+SET `fund`=100
+WHERE `device_id`=1
+  AND `mobile_plan_id`=3
+
+### 공시 지원금 금액 여러줄 업데이트(values[], id[])
+UPDATE `support_fund`
+  SET  `fund`=CASE
+    WHEN `_id` = ${id[0]} THEN ${values[0]}
+    WHEN `_id` = ${id[1]} THEN ${values[1]}
+    ...
+  END
+WHERE `_id` IN (${id[0]}, ${id[1]}, ...);
+/* EX */
+UPDATE `support_fund`
+  SET  `fund`=CASE
+    WHEN `_id` = 98 THEN 5000
+    WHEN `_id` = 99 THEN 6000
+    WHEN `_id` = 100 THEN 2000
+  END
+WHERE `_id`>=97 AND `_id`<=100;
+
+### 공시 지원금 여러줄 업데이트(device_ids[], plan_ids[], values[])
+UPDATE `support_fund`
+  SET `fund`=CASE
+    WHEN `device_id`=${device_ids[0]} 
+      AND `mobile_plan_id`=${plan_ids[0]} 
+    THEN ${values[0]}
+    WHEN `device_id`=${device_ids[1]} 
+      AND `mobile_plan_id`=${plan_ids[1]} 
+    THEN ${values[1]}
+    ...
+  END;
+/* EX */
+UPDATE `support_fund`
+  SET `fund`= 
+  (CASE
+    WHEN `device_id` = 1 AND `mobile_plan_id` = 3 THEN 500
+    WHEN `device_id` = 2 AND `mobile_plan_id` = 3 THEN 300
+  END);
