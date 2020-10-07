@@ -125,6 +125,13 @@ UPDATE `support_fund`
 UPDATE `support_fund`
   SET `fund`= 
   (CASE
-    WHEN `device_id` = 1 AND `mobile_plan_id` = 3 THEN 500
+    WHEN `device_id` = 1 AND `mobile_plan_id` = 3 THEN 10000
     WHEN `device_id` = 2 AND `mobile_plan_id` = 3 THEN 300
   END);
+
+### 공시 지원금 여러줄 업데이트2
+INSERT INTO `support_fund` () VALUES ()
+ON DUPLICATE KEY UPDATE `fund`=VALUES()
+/* 참조:https://stackoverflow.com/questions/3432/multiple-updates-in-mysql */
+INSERT INTO table (id,Col1,Col2) VALUES (1,1,1),(2,2,3),(3,9,3),(4,10,12)
+ON DUPLICATE KEY UPDATE Col1=VALUES(Col1),Col2=VALUES(Col2);

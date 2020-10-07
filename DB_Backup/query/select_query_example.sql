@@ -296,7 +296,7 @@ SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_pl
 FROM support_fund F, Device D, mobile_plan P
 WHERE F.device_id=D._id
 	AND F.mobile_plan_id=P._id
-	ORDER BY device_id;
+	ORDER BY device_id, mobile_plan_id;
 
 ### 모든 공시지원금 출력(+통신사 이름 +요금카테고리)
 SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, MC.name, PC.name ,P.name as plan_name, F.fund, F.additional_fund
@@ -340,7 +340,7 @@ WHERE F.device_id=D._id
 	ORDER BY device_id;
 
 ### 특정 제조사의 요금제 카테고리 지원금 출력(category_id, manufacturer_id)
-/* EX KT 5G, 삼성전자*/
+/* EX "KT 5G"=1, "삼성전자"=1 */
 SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
 FROM support_fund F, Device D, mobile_plan P
 WHERE F.device_id=D._id
@@ -364,10 +364,49 @@ WHERE F.device_id=D._id
 	AND D.manufacturer_id = 2
 	ORDER BY D.release;
 
+### 보조금 테이블의 디바이스 목록
+SELECT DISTINCT `device_id`, D.`name` device_name
+FROM support_fund SF INNER JOIN device D ON SF.device_id=D._id
+ORDER BY SF.device_id;
+
+### 보조금 테이블의 요금제 목록
+SELECT DISTINCT `mobile_plan_id`, P.`name` plan_name
+FROM support_fund SF INNER JOIN mobile_plan P ON SF.mobile_plan_id=P._id
+ORDER BY SF.mobile_plan_id;
+
+### 요금제 기준 모든 디바이스의 보조금 시트형태 조회
+SELECT `mobile_plan_id`, GROUP_CONCAT(fund SEPARATOR ',') as fund
+FROM support_fund SF
+GROUP BY `mobile_plan_id`
+ORDER BY `_id`
+
+### 모든 요금제/디바이스 출력
+SET @sql = NULL;
+SELECT 
+	GROUP_CONCAT(DISTINCT 
+		CONCAT(
+			'max(CASE WHEN device_id = ',
+      device_id,
+      ' THEN fund END) d_',
+			device_id
+		)
+	) INTO @sql
+FROM support_fund
+ORDER BY _id;
+SET @sql = CONCAT('SELECT mobile_plan_id, ', @sql,' 
+	FROM support_fund
+	GROUP BY mobile_plan_id
+	ORDER BY _id
+');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+/* rows to column 예제 쿼리*/
+select mobile_plan_id,
+	max(case when (device_id='1') then fund end ) as '1',
+	max(case when (device_id='2') then fund end ) as '2'
+from `support_fund`
+GROUP BY mobile_plan_id;
+
 #######################################################################
-SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
-FROM support_fund F, Device D, mobile_plan P
-WHERE F.device_id=D._id
-	AND F.mobile_plan_id=P._id
-	AND D.manufacturer_id = 2
-	ORDER BY D.release;
