@@ -54,7 +54,7 @@
                                           <input type="text" name="id" placeholder="아이디" style="margin:10px 0px 0px 0px;" required>
                                           <input type="password" name="password" placeholder="패스워드" style="margin:10px 0px 0px 0px;"required>
                                           <p style="margin-top:30px;">
-                                            <small><a href="#">비밀번호 찾기</a></small>
+                                            
                                           </p>
                                           <button class="submit-btn-1 btn-hover-1" type="submit"style="cursor:pointer;">로그인</button>
                                       </div>
@@ -95,5 +95,13 @@
           min: $.validator.format( "{0} 이상의 값을 입력하세요." )
       });
     });
+
+    <?php
+      $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
+      if($id){ ?>
+        location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=plan&sub=planList";
+      <?php
+      }
+    ?>
   </script>
 </html>

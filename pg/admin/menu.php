@@ -49,8 +49,8 @@
             <div class="blog-section mb-50">
                 <div class="container" style="max-width:1400px;">
                     <div class="row">
-                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/left-menu.php'?>
-                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/admin/'.$_GET['sub'].'.php'?>
+                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/admin/left-menu.php'?>
+                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/admin/'.$_GET['dir'].'/'.$_GET['sub'].'.php'?>
                     </div>
                 </div>
             </div>
