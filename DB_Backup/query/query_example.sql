@@ -52,6 +52,8 @@ SELECT D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONC
 SELECT *
 FROM information_schema.table_constraints
 
+SHOW CREATE TABLE {`table_name`};
+
 ### 특정DB(biz_online)의 제약조건 조회
 SELECT *
 FROM information_schema.table_constraints TB
@@ -59,12 +61,35 @@ WHERE TB.TABLE_SCHEMA = "biz_online";
 
 ### 제약조건 삭제/추가 ###
 ALTER TABLE `{FK_table_name}`
-DROP CONSTRAINT `{fk_constraint_name}`;
+DROP FOREIGN KEY `{fk_constraint_name}`;
 
 ALTER TABLE `device_image`
 ADD CONSTRAINT `fk_device_image_mobile_carrier1_idx`
 FOREIGN KEY (`carrier_id`) REFERENCES `mobile_carrier`(`_id`)
 ON UPDATE CASCADE;
+/* EX 2*/
+ALTER TABLE `support_fund`
+DROP FOREIGN KEY `fk_support_fund_device1`;
+
+ALTER TABLE `mobile_plan`
+ADD CONSTRAINT `fk_support_fund_device2`
+FOREIGN KEY(`device_id`) REFERENCES `device`(`_id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+### 컬럼 타입 변경
+ALTER TABLE `consultation_request`
+MODIFY `estimate_id` INT(10) UNSIGNED;
+
+### 컬럼 추가
+ALTER TABLE `consultation_request`
+ADD `estimate_id` INT(10) UNSIGNED
+
+### 테이블 생성 쿼리조회
+SHOW CREATE TABLE `{table_name}`
+
+### 테이블에 정의되어있는 key 가 연결되어있는 정보
+SHOW INDEXES IN `{table_name}`
 
 ALTER TABLE `user`
 ADD CONSTRAINT `fk_user_manager_idx`
@@ -95,7 +120,7 @@ CREATE TABLE `device_mobile_category`
     ON UPDATE CASCADE
 );
 
-### 디바이스의 요금제 카테고리 삭제
+### 요금제 삭제
 DELETE FROM mobile_plan
 WHERE _id = 132;
 

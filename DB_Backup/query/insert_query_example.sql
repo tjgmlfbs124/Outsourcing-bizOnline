@@ -7,17 +7,17 @@ VALUES ( (SELECT _id FROM mobile_carrier WHERE name="SKT"), "5G" );
 /*EX*/
 # "SKT"의 "5G" 요금제 "뚱뚱" 추가 >>>
 BEGIN;
-INSERT INTO mobile_plan ( `category_id`, `name`, `price`, `data`, `call`, `message` )
+INSERT INTO mobile_plan ( `category_id`, `name`, `price`, `data`, `data_call`, `data_message` )
 VALUES (
 	(
 		SELECT _id FROM mobile_plan_category WHERE name = "5G" AND mobile_carrier_id = (
-			SELECT _id FROM mobile_carrier WHERE name="SKT"
+			SELECT _id FROM mobile_carrier WHERE name="KT"
 		)
 	),
 	"뚱뚱",
 	99000,
   "99GB",
-  "조금",
+  "많이",
   "조금더"
 );
 SET @mPlan_id = (SELECT _id FROM mobile_plan ORDER BY _id DESC LIMIT 1);
