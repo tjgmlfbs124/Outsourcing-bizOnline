@@ -17,8 +17,6 @@
   $plan = $_GET['plan'];
   $color = $_GET['color'];
 
-  $date = date("Y-m-d h:i:s", time());
-
   $model = new getForm();
-  $model -> insert_cart_item($_SESSION['id'], $url, $device_id, $carrier, $installment_period, $discount, $size, $plan, $color, $date);
+  $model -> insert_cart_item($_SESSION['id'], $url, $device_id, $carrier, $installment_period, $discount, $size, $plan, $color);
 ?>

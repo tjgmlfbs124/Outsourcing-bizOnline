@@ -8,7 +8,7 @@
   $id = $_GET['id'];
 
   $model = new getForm();
-  $model -> delete_plan($id);
+  $model -> delete_notice($id);
 ?>
 
 </html>

@@ -5,10 +5,11 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
 
-  $id = $_GET['id'];
+  $query = $_POST['query'];
+  $support = $_GET['support'];
 
   $model = new getForm();
-  $model -> delete_plan($id);
+  $model -> update_funds($support, $query);
 ?>
 
 </html>
