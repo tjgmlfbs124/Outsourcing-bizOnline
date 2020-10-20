@@ -18,3 +18,5 @@
 <!-- 유효성 검사 라이브러리-->
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<!-- excel -->
+<!-- <script lang="javascript" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/lib/js/sheetjs/xlsx.full.min.js"></script> -->

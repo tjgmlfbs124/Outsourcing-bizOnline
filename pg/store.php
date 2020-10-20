@@ -137,7 +137,6 @@
         if($id){
           $carts = $api -> select_carts($id, $_GET["carrier"]);
           while ($row = $carts->fetch(PDO::FETCH_BOTH)){
-            echo "console.log('111');";
             $url = $row['url'];
             $device = $row['device_id'];
             $carrier = $row['carrier_id'];
@@ -147,10 +146,9 @@
             $date = $row['date'];
             $installment_period = $row['installment_period'];
             $discount = $row['discount'];
-
             $cart = $api -> select_cart($device, $carrier, $size, $plan, $color);
+            
             while ($row = $cart->fetch(PDO::FETCH_BOTH)){?>
-              console.log("@@@");
               $("#store-list").append(addItem(
                 "<?php echo $url ?>",
                 "<?php echo $row['Device_model'] ?>",
@@ -169,7 +167,7 @@
           }
         }
         else{
-           // echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
+           echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
         }
        ?>
    </script>

@@ -181,7 +181,7 @@
       	"<div class=\"product-item product-item-2\">"+
       		"<div class=\"product-img\">"+
       			"<a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v3.php?id="+ id + "&carrier=1\">"+
-      				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/"+model+"/black.png\" alt=\"\" />"+
+      				"<img src=\"<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/"+model+"/thumnail.jpg\" alt=\"\" />"+
       			"</a>"+
       		"</div>"+
       		"<div class=\"product-info\">"+

@@ -7,7 +7,11 @@
     <title>Biz Online</title>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_css.php'?>
 </head>
-
+<style>
+  .media:hover {
+    background-color:#f6f6f6;
+  }
+</style>
 <body>
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -50,52 +54,8 @@
           <div class="blog-section mb-50">
               <div class="container">
                   <div class="row">
-                      <div class="col-lg-9">
-                      </div>
-
-
-                      <div class="post-comments mb-60">
-                          <h4 class="blog-section-title border-left mb-30">comments on this product</h4>
-                          <!-- single-comments -->
-                          <div class="media mt-30">
-                              <div class="media-left pr-30">
-                                  <a href="#"><img class="media-object" src="img/author/2.jpg" alt="#"></a>
-                              </div>
-                              <div class="media-body">
-                                  <div class="clearfix">
-                                      <div class="name-commenter f-left">
-                                          <h6 class="media-heading"><a href="#">Gerald Barnes</a></h6>
-                                          <p class="mb-10">27 Jun, 2019 at 2:30pm</p>
-                                      </div>
-                                      <ul class="reply-delate f-right">
-                                          <li><a href="#">Reply</a></li>
-                                          <li>/</li>
-                                          <li><a href="#">Delate</a></li>
-                                      </ul>
-                                  </div>
-                                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis atestese bibendum feugiat ut eget eni Praesent  messages in con sectetur posuere dolor non.</p>
-                              </div>
-                          </div>
-                          <!-- single-comments -->
-                          <div class="media mt-30">
-                              <div class="media-left pr-30">
-                                  <a href="#"><img class="media-object" src="img/author/3.jpg" alt="#"></a>
-                              </div>
-                              <div class="media-body">
-                                  <div class="clearfix">
-                                      <div class="name-commenter f-left">
-                                          <h6 class="media-heading"><a href="#">Gerald Barnes</a></h6>
-                                          <p class="mb-10">27 Jun, 2019 at 2:30pm</p>
-                                      </div>
-                                      <ul class="reply-delate f-right">
-                                          <li><a href="#">Reply</a></li>
-                                          <li>/</li>
-                                          <li><a href="#">Delate</a></li>
-                                      </ul>
-                                  </div>
-                                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis atestese bibendum feugiat ut eget eni Praesent  messages in con sectetur posuere dolor non.</p>
-                              </div>
-                          </div>
+                      <div id="notice-list" class="post-comments mb-60" style="width:100%;">
+                          <h4 class="blog-section-title border-left mb-30">공지사항</h4>
                       </div>
                   </div>
               </div>
@@ -113,4 +73,37 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
 </body>
 
+<script>
+  function addNotice(id, title, writer, date){
+      $("#notice-list").append(""+
+      "<div class=\"media mt-30\" style=\"border-bottom:1px solid #ccc; cursor:pointer;\" onclick=\"location.href='<?php $_SERVER['DOCUMENT_ROOT']?>/pg/noticeInfo.php?id=" + id + "'\">"+
+          "<div class=\"media-body\">"+
+              "<div class=\"clearfix\">"+
+                  "<div class=\"name-commenter f-left\">"+
+                      "<h6 class=\"media-heading\"><a href=\"#\">"+title+"</a></h6>"+
+                      "<p class=\"mb-10\" >등록일 : " + date + "</p>"+
+                  "</div>"+
+                  "<ul class=\"reply-delate f-right\">"+
+                      "<li><a style=\"color:#777;\">" + writer + "</a></li>"+
+                  "</ul>"+
+              "</div>"+
+          "</div>"+
+      "</div>"
+    );
+  }
+  <?php
+    require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+    $api = new getForm();
+      $result = $api -> select_notices();
+      while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+        addNotice(
+          "<?php echo $row['_id'] ?>",
+          "<?php echo $row['title'] ?>",
+          "<?php echo $row['name'] ?>",
+          "<?php echo $row['date'] ?>"
+        );
+      <?php
+    }
+  ?>
+</script>
 </html>

@@ -65,13 +65,13 @@
                                                 <p style="margin:0px 0px 0px 0px;">아이디 <input type="text" name="id" id="id" style="margin:0px;" required minlength="5"></p>
                                                 <p style="margin:20px 0px 0px 0px;">패스워드 <input type="password" name="password" style="margin:0px;" required minlength="6"></p>
                                                 <p style="margin:20px 0px 0px 0px;">이름 <input type="text" placeholder="" name="aaa"  style="margin:0px;" required minlength="2"></p>
-                                                <p style="margin:20px 0px 0px 0px;">휴대폰번호 <input type="text" placeholder="" name="phone" style="margin:0px;" required digits="true" minlength="8"></p>
-                                                <p style="margin:20px 0px 0px 0px;" >추천인코드 <input type="text" placeholder="" name="recommender" style="margin:0px;" required digits="true"></p>
+                                                <p style="margin:20px 0px 0px 0px;">휴대폰번호 <input type="number" placeholder="" name="phone" style="margin:0px;" required digits="true" minlength="8"></p>
+                                                <p style="margin:20px 0px 0px 0px;" >추천인코드 <input type="text" placeholder="" name="recommender" style="margin:0px;" required maxlength="5"></p>
                                               </div>
                                           </div>
                                           <div class="row">
                                               <div class="col-md-6">
-                                                  <input class="submit-btn-1 mt-20 btn-hover-1 f-right" type="submit" value="가입신청">
+                                                  <input class="submit-btn-1 mt-20 btn-hover-1 f-right" type="submit" value="가입신청" style="cursor:pointer;">
                                               </div>
                                           </div>
                                       </div>

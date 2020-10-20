@@ -289,8 +289,8 @@
         "discount" : {  // 할인방식
           "how_value" : "선택", // 공시지원 : device-discount, 선택약정 : plan-discount
           "period" : 1,                     // 할부개월
-          "regular_device_discount" : 250000,
-          "regular_device_discount_option" : 100000,
+          "regular_device_discount" : 0,
+          "regular_device_discount_option" : 0,
           "device_discount" : 0,            // 공시지원일경우 할인되는 가격
           "device_discount_option" : 0,     // 추가지원근
           "plan_discount" : 0.25            // 요금제지원일경우 할인되는 퍼센트
@@ -312,7 +312,7 @@
         var storage = $(this).find("option:selected").data("storage");
         localDataSet['device'].price = price;
         localDataSet['device'].storage_value =  storage;
-        console.log("localDataSet : " , localDataSet);
+        console.log("storage-change localDataSet : " , localDataSet);
         update();
       });
 
@@ -320,7 +320,7 @@
       $("#discount-list").change(function(){
         var type = $(this).find("option:selected").data("value");
         localDataSet['discount'].how_value = type;
-          console.log("type : " , type);
+        console.log("type : " , type);
         switch (type) {
           case "device-discount":
             localDataSet['discount'].device_discount = localDataSet['discount'].regular_device_discount;
@@ -344,23 +344,31 @@
             localDataSet['plan'].price = 0;
             break;
         }
-        console.log("localDataSet : " , localDataSet);
         $(this).css("border","1px rgba(0, 0, 0, 0.1)")
         update();
+        console.log("discount-localDataSet : " , localDataSet);
       });
 
       // 요금제 선택
       $("#carrier-plan").change(function(){
         if($(this).val()){
-          var price = $(this).find("option:selected").data("price");
+          var price = $(this).find("option:selected").data("price") ? $(this).find("option:selected").data("price") : 0;
+          var fund = $(this).find("option:selected").data("fund") ? $(this).find("option:selected").data("fund") : 0;
+          var additional_fund = $(this).find("option:selected").data("additional_fund") ? $(this).find("option:selected").data("additional_fund") : 0;
+          
           localDataSet['plan'].price = price;
           localDataSet['plan'].value = $(this).val();
-          console.log("localDataSet : " , localDataSet);
+
+          localDataSet['discount'].regular_device_discount = fund;
+          localDataSet['discount'].regular_device_discount_option =additional_fund;
+          localDataSet['discount'].device_discount = localDataSet['discount'].regular_device_discount;
+          localDataSet['discount'].device_discount_option = localDataSet['discount'].regular_device_discount_option;
         }
         else{
           $('#carrier-plan option:eq(0)').prop('selected', true).trigger('change');
         }
         $(this).css("border","1px rgba(0, 0, 0, 0.1)")
+        console.log("plan-localDataSet : " , localDataSet);
         update();
       });
 
@@ -493,9 +501,6 @@
 
       // 기기용량 옵션추가
       function addStorageOption(id, storage, price){
-        console.log("id : " , id);
-        console.log("storage : " , storage);
-        console.log("price : " , price);
         $("#device-storage").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-storage=\"" + storage + "\">" + storage  + " </option>");
       };
 
@@ -505,8 +510,8 @@
       }
 
       // 요금제 옵션 추가
-      function addPlanOption(id, name, price){
-        $("#carrier-plan").append("<option value=\"" + id + "\" data-price=\"" + price + "\">" + name + " (월 " + numberWithCommas(price) + ")</option>");
+      function addPlanOption(id, name, price, fund, additional_fund){
+        $("#carrier-plan").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-fund=\"" + fund + "\" data-additional_fund=\"" + additional_fund + "\">" + name + " (월 " + numberWithCommas(price) + ")</option>");
       }
 
       // 출고가 가격설정
@@ -522,6 +527,7 @@
         $("#support-price-01").text(numberWithCommas(localDataSet['discount'].device_discount));
         $("#support-price-02").text(numberWithCommas(localDataSet['discount'].device_discount_option));
         var installment_price = localDataSet['device'].price - localDataSet['discount'].device_discount - localDataSet['discount'].device_discount_option;
+        console.log("installment : " , installment_price);
         $("#installment-price").text(numberWithCommas(installment_price));
         $("#installment-month").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period)));
         $("#installment-cash").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period * 0.056)));
@@ -566,7 +572,9 @@
         addPlanOption(
           "<?php echo $row['_id']?>",
           "<?php echo $row['name']?>",
-          "<?php echo $row['price']?>");
+          "<?php echo $row['price']?>",
+          "<?php echo $row['fund']?>",
+          "<?php echo $row['additional_fund']?>");
         <?php
       }
 
@@ -595,7 +603,6 @@
       if(isset($_GET['color'])){
         echo "$('#device-color').val('".$_GET['color']."').prop('selected', true).trigger('change');";
       }
-
     ?>
   </script>
 </html>
