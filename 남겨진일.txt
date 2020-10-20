@@ -1,0 +1,2 @@
+1. 추천인 code 외래키걸기
+2. device Update.php
