@@ -1,6 +1,6 @@
 ### 통신사 요금제 종류 추가 ###
 # "SKT" 요금제 종류 "5G" 추가 >>>>
-INSERT INTO mobile_plan_category(mobile_carrier_id, name) 
+INSERT INTO mobile_plan_category(mobile_carrier_id, name)
 VALUES ( (SELECT _id FROM mobile_carrier WHERE name="SKT"), "5G" );
 
 ### 통신사 요금제 추가 ###
@@ -8,9 +8,9 @@ VALUES ( (SELECT _id FROM mobile_carrier WHERE name="SKT"), "5G" );
 # "SKT"의 "5G" 요금제 "뚱뚱" 추가 >>>
 BEGIN;
 INSERT INTO mobile_plan ( `category_id`, `name`, `price`, `data`, `call`, `message` )
-VALUES ( 
+VALUES (
 	(
-		SELECT _id FROM mobile_plan_category WHERE name = "5G" AND mobile_carrier_id = ( 
+		SELECT _id FROM mobile_plan_category WHERE name = "5G" AND mobile_carrier_id = (
 			SELECT _id FROM mobile_carrier WHERE name="SKT"
 		)
 	),
@@ -69,13 +69,13 @@ INSERT INTO device_storage(`device_id`,`storage`, `price`)
 VALUES
 (@mDevice_id, "256GB", 1353000);
 /*해당 디바이스 색상 추가*/
-INSERT INTO device_image(`device_id`,`name`,`image_url`,`color`)
+INSERT INTO device_image(`device_id`,`name`,`image_url`,`color`,`carrier_id`)
 VALUES
-(@mDevice_id, "회색", "SM-N976N_IMG_gray.jpg", "545454"),
-(@mDevice_id, "클라우드블루", "SM-N976N_IMG_cblue.jpg", "a4c8e1"),
-(@mDevice_id, "흰색", "SM-N976N_IMG_white.jpg", "ffffff"),
-(@mDevice_id, "아우라블루", "SM-N976N_IMG_blue.jpg", "0000ff"),
-(@mDevice_id, "아우라레드", "SM-N976N_IMG_red.jpg", "ff0000");
+(@mDevice_id, "회색", "SM-N976N_IMG_gray.jpg", "545454",4),
+(@mDevice_id, "클라우드블루", "SM-N976N_IMG_cblue.jpg", "a4c8e1",4),
+(@mDevice_id, "흰색", "SM-N976N_IMG_white.jpg", "ffffff",4),
+(@mDevice_id, "아우라블루", "SM-N976N_IMG_blue.jpg", "0000ff",4),
+(@mDevice_id, "아우라레드", "SM-N976N_IMG_red.jpg", "ff0000",4);
 /*해당 디바이스 카테고리 추가*/
 INSERT INTO device_mobile_category(`device_id`, `category_id`)
 VALUES
@@ -125,23 +125,23 @@ WHERE M.name = "5G"
   AND Dev._id = 29
 
 ### 특정 제조사의 디바이스 3사 요금제 카테고리 추가3(str{제조사}, str{요금카테고리})
-INSERT 
+INSERT
   INTO device_mobile_category(`device_id`, `category_id`)
   SELECT Dev._id, M._id
   FROM device Dev, mobile_plan_category M
   WHERE M.name = "{요금카테고리}"
     AND Dev.manufacturer_id = (SELECT _id FROM manufacturer WHERE name="{제조사}");
 /*EX*/
-INSERT 
+INSERT
   INTO device_mobile_category(`device_id`, `category_id`)
   SELECT Dev._id, M._id
   FROM device Dev, mobile_plan_category M
-  WHERE M.name = "5g" 
+  WHERE M.name = "5g"
     AND Dev.manufacturer_id = (SELECT _id FROM manufacturer WHERE name="애플");
 
 ## 할부 개월 추가하기
 INSERT INTO installment(`month`)
-VALUES 
+VALUES
 (0),(6),(12),(18),(24),(30),(36)
 
 
@@ -162,7 +162,7 @@ FROM mobile_plan_category CAT, installment I
 
 ### 모든 디바이스*요금제 보조금 테이블에 입력
 BEGIN;
-INSERT 
+INSERT
   INTO support_fund(`device_id`, `mobile_plan_id`, `fund`, `additional_fund`)
   VALUES (SELECT D._id as D_id, P._id as P_id, 0 as mFund, 0 as addFund FROM device D, mobile_plan P);
 

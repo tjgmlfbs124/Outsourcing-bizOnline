@@ -4,7 +4,7 @@
 ALTER TABLE mobile_plan MODIFY COLUMN `call` varchar(45) NOT NULL;
 
 ### 데이터 업데이트 ###
-UPDATE mobile_plan 
+UPDATE mobile_plan
 SET `data`="200GB"
 WHERE `_id`=2;
 
@@ -49,11 +49,11 @@ SELECT D.name, GROUP_CONCAT(DISTINCT S.storage,":",S.price) as price, GROUP_CONC
   GROUP BY D._id;
 
 ### 제약조건 조회
-SELECT * 
+SELECT *
 FROM information_schema.table_constraints
 
 ### 특정DB(biz_online)의 제약조건 조회
-SELECT * 
+SELECT *
 FROM information_schema.table_constraints TB
 WHERE TB.TABLE_SCHEMA = "biz_online";
 
@@ -66,8 +66,13 @@ ADD CONSTRAINT `fk_device_image_mobile_carrier1_idx`
 FOREIGN KEY (`carrier_id`) REFERENCES `mobile_carrier`(`_id`)
 ON UPDATE CASCADE;
 
+ALTER TABLE `user`
+ADD CONSTRAINT `fk_user_manager_idx`
+FOREIGN KEY (`recommender`) REFERENCES `manager`(`code`)
+ON UPDATE CASCADE;
+
 ### 테이블 만들기 ###
-CREATE TABLE `installment` 
+CREATE TABLE `installment`
 (
   `_id` INT PRIMARY KEY AUTO_INCREMENT,
   `month` INT NOT NULL
