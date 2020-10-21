@@ -379,7 +379,7 @@
 
       function saveStore(){
         var url = getURL("<?php echo $_GET['carrier'] ?>");
-        location.href = "<?php $_SERVER['DOCUMENT_ROOT']?>/form/saveItem.php?" + url;
+        location.href = "<?php $_SERVER['DOCUMENT_ROOT']?>/form/addCart.php?" + url;
       }
       // 현재 견적서의 URL을 반환
       function getURL(carrier){

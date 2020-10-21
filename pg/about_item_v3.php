@@ -17,6 +17,10 @@
             <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
          </header>
 
+
+         <div class="mobile-menu-area d-block d-lg-none section">
+           <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/menu.php'?>
+         </div>
          <section id="page-content" class="page-wrapper section">
 
              <!-- SHOP SECTION START -->
@@ -355,7 +359,7 @@
           var price = $(this).find("option:selected").data("price") ? $(this).find("option:selected").data("price") : 0;
           var fund = $(this).find("option:selected").data("fund") ? $(this).find("option:selected").data("fund") : 0;
           var additional_fund = $(this).find("option:selected").data("additional_fund") ? $(this).find("option:selected").data("additional_fund") : 0;
-          
+
           localDataSet['plan'].price = price;
           localDataSet['plan'].value = $(this).val();
 
@@ -423,7 +427,7 @@
           var color = $("#device-color").val();
           var carrier = "<?php echo $_GET['carrier'] ?>";
           var device = "<?php echo $_GET['id'] ?>"
-          location.href = "<?php $_SERVER['DOCUMENT_ROOT']?>/form/saveItem.php?" + url;
+          location.href = "<?php $_SERVER['DOCUMENT_ROOT']?>/form/addCart.php?" + url;
         }
         else alert("단말기 옵션을 모두 선택해주세요.")
       }

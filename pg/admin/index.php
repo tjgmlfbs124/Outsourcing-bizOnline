@@ -21,6 +21,11 @@
         <header class="header-area header-wrapper">
            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/header.php'?>
         </header>
+
+
+        <div class="mobile-menu-area d-block d-lg-none section">
+          <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/menu.php'?>
+        </div>
           <!-- START HEADER AREA -->
 
           <!-- BREADCRUMBS SETCTION START -->
@@ -54,7 +59,7 @@
                                           <input type="text" name="id" placeholder="아이디" style="margin:10px 0px 0px 0px;" required>
                                           <input type="password" name="password" placeholder="패스워드" style="margin:10px 0px 0px 0px;"required>
                                           <p style="margin-top:30px;">
-                                            
+
                                           </p>
                                           <button class="submit-btn-1 btn-hover-1" type="submit"style="cursor:pointer;">로그인</button>
                                       </div>

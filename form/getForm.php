@@ -65,7 +65,7 @@ class getForm{
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "
-			SELECT DISTINCT P.*, SF.* FROM
+			SELECT DISTINCT P.*, SF._id AS fund_id, SF.device_id, SF.mobile_plan_id, SF.fund, SF.additional_fund FROM
 			support_fund SF INNER JOIN
 			mobile_plan P on P._id = SF.mobile_plan_id LEFT JOIN
 			device_mobile_category M on P.category_id = M.category_id
@@ -75,7 +75,6 @@ class getForm{
 			   ANY(SELECT _id
 			   FROM mobile_plan_category
 			   WHERE mobile_carrier_id = ".$carrier.");";
-				 // echo $sql;
 			$stmt = $pdo->prepare($sql);
 				$stmt->execute();
 				return $stmt;
@@ -177,9 +176,22 @@ class getForm{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "INSERT INTO user_estimate(url, user_id, device_id, carrier_id, installment_period, discount, size_id, plan_id, color_id)
 			VALUES(\"$url\",\"$id\",\"$device_id\",\"$carrier\",\"$installment_period\",\"$discount\",\"$size\",\"$plan\",\"$color\");";
+			echo $sql."<br><br>";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$this->renderAlertWithView("추가되었습니다.", "/pg/about_item_v3.php?".$url);
+		}catch(Exception $e){
+			echo $e;
+		}
+	}
+
+	function delete_cart_item($userid, $cartid){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "DELETE FROM user_estimate WHERE user_id=$userid AND _id=$cartid";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			$this->renderAlertWithView("삭제되었습니다.", "/pg/store.php?carrier=0");
 		}catch(Exception $e){
 			echo $e;
 		}

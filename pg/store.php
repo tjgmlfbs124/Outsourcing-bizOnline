@@ -107,7 +107,7 @@
       }
 
 
-      function addItem(url, model, image, name, date, carrier, color, size, plan, installment_period, discount){
+      function addItem(id, url, model, image, name, date, carrier, color, size, plan, installment_period, discount){
         return "" +
         "<div class=\"media author-post box-shadow mb-60\" onclick=\"location.href='<?php $_SERVER['DOCUMENT_ROOT']?>/pg/about_item_v3.php?"+url+"'\" style=\"cursor:pointer;\">"+
            "<div class=\"media-left pr-30\">"+
@@ -120,7 +120,9 @@
                     "<p class=\"mb-10\">"+model+"</p>"+
                  "</div>"+
                  "<ul class=\"reply-delate f-right\">"+
-                    "<li><a href=\"#\">"+date+"</a></li>"+
+                  "<li><a href=\"#\">"+date+"</a></li>"+
+                  "<li><a>&nbsp|&nbsp&nbsp</a></li>"+
+                  "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/delete_cart.php?id="+id+"\">삭제</a></li>"+
                  "</ul>"+
               "</div>"+
               "<p class=\"mb-0\">"+carrier+"&nbsp&nbsp|&nbsp&nbsp"+size+"&nbsp&nbsp|&nbsp&nbsp"+color+"&nbsp&nbsp|&nbsp&nbsp"+plan+"&nbsp&nbsp|&nbsp&nbsp"+installment_period+"개월 할부&nbsp&nbsp|&nbsp&nbsp"+discountObj[discount]+"</p>"+
@@ -128,10 +130,19 @@
         "</div>";
       }
 
-      function addEmptyItem(){
+      function addEmptyItem(id){
         return "" +
-        "<div class=\"media author-post box-shadow mb-60\">"+
-           "취급하지않는 기종입니다."+
+        "<div class=\"media author-post box-shadow mb-60\" >"+
+           "<div class=\"media-body\">"+
+              "<div class=\"clearfix\">"+
+                 "<div class=\"name-commenter f-left\">"+
+                 "판매가 끝난 기종입니다."+
+                 "</div>"+
+                 "<ul class=\"reply-delate f-right\">"+
+                    "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/delete_cart.php?id="+id+"\">삭제</a></li>"+
+                 "</ul>"+
+              "</div>"+
+           "</div>"+
         "</div>";
       }
       <?php
@@ -144,53 +155,49 @@
         if($id){
           $carts = $api -> select_carts($id, $_GET["carrier"]);
           while ($row = $carts->fetch(PDO::FETCH_BOTH)){
-            $url = $row['url'];
-            $device = isEmpty($row['device_id']);
-            $carrier = isEmpty($row['carrier_id']);
-            $size = isEmpty($row['size_id']);
-            $plan = isEmpty($row['plan_id']);
-            $color = isEmpty($row['color_id']);
-            $date = isEmpty($row['date']);
-            $installment_period = isEmpty($row['installment_period']);
-            $discount = isEmpty($row['discount']);
-            $cart = $api -> select_cart($device, $carrier, $size, $plan, $color);
-            while ($row = $cart->fetch(PDO::FETCH_BOTH)){?>
-              try{
+            if(empty($row['device_id'])){
+              $value = "null";?>
+              $("#store-list").append(addEmptyItem("<?php echo $row['_id']?>"));
+              <?php
+            }
+            else{
+              $device = $row['device_id'];
+              $carrier = $row['carrier_id'];
+              $size = $row['size_id'];
+              $plan = $row['plan_id'];
+              $color = $row['color_id'];
+              $date = $row['date'];
+              $installment_period = $row['installment_period'];
+              $discount = $row['discount'];
+              $url = $row['url'];
+              $id = $row['_id'];
+              $cart = $api -> select_cart($device, $carrier, $size, $plan, $color);
+              while ($row = $cart->fetch(PDO::FETCH_BOTH)){?>
+                try{
+                  $("#store-list").append(addItem(
+                    "<?php echo $id ?>",
+                    "<?php echo $url ?>",
+                    "<?php echo $row['Device_model'] ?>",
+                    "<?php echo $row['Image_url'] ?>",
+                    "<?php echo $row['Device_name'] ?>",
+                    "<?php echo $date ?>",
+                    "<?php echo $row['Carrier_name'] ?>",
+                    "<?php echo $row['Image_name'] ?>",
+                    "<?php echo $row['Storage_value'] ?>",
+                    "<?php echo $row['Plan_name'] ?>",
+                    "<?php echo $installment_period ?>",
+                    "<?php echo $discount ?>"
+                  ));
+                }catch(e){
 
-                $("#store-list").append(addItem(
-                  "<?php echo $url ?>",
-                  "<?php echo $row['Device_model'] ?>",
-                  "<?php echo $row['Image_url'] ?>",
-                  "<?php echo $row['Device_name'] ?>",
-                  "<?php echo $date ?>",
-                  "<?php echo $row['Carrier_name'] ?>",
-                  "<?php echo $row['Image_name'] ?>",
-                  "<?php echo $row['Storage_value'] ?>",
-                  "<?php echo $row['Plan_name'] ?>",
-                  "<?php echo $installment_period ?>",
-                  "<?php echo $discount ?>"
-                ));
-              }catch(e){
-
+                }
+              <?php
               }
-            <?php
             }
           }
         }
         else{
            echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
-        }
-
-        function isEmpty($value){
-          if(empty($value)){
-            $value = "null";?>
-            $("#store-list").append(addEmptyItem());
-            <?php
-            return $value;
-          }
-          else{
-            return $value;
-          }
         }
        ?>
    </script>

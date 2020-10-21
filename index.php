@@ -63,7 +63,7 @@
 
           <!-- BREADCRUMBS SETCTION START -->
           <div class="breadcrumbs-section plr-200 mb-80 section">
-              <div class="breadcrumbs overlay-bg">
+              <div class="breadcrumbs overlay-bg" style="background: url('<?php $_SERVER['DOCUMENT_ROOT']?>/asset/images/custom/index-main01.jpg')">
                   <div class="container">
                       <div class="row">
                           <div class="col-lg-12">
@@ -79,7 +79,6 @@
 
           <!-- Start page content -->
           <div id="page-content" class="page-wrapper section">
-
               <!-- LOGIN SECTION START -->
               <div class="login-section mb-80">
                   <div class="container">
@@ -93,8 +92,8 @@
                                           <input type="password" name="password" placeholder="패스워드" style="margin:10px 0px 0px 0px;"required>
                                           <p style="margin-top:30px;">
                                             <small><a href="/pg/signup.php">회원가입</a></small>
-                                            <small><a>&nbsp|&nbsp</a></small>
-                                            <small><a href="#">비밀번호 찾기</a></small>
+                                            <!-- <small><a>&nbsp|&nbsp</a></small>
+                                            <small><a href="#">비밀번호 찾기</a></small> -->
                                           </p>
                                           <button class="submit-btn-1 btn-hover-1" type="submit"style="cursor:pointer;">로그인</button>
                                       </div>
