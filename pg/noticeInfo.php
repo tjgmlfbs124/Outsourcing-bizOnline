@@ -129,10 +129,10 @@
     }
 
     <?php
-      require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
-      $api = new getForm();
-      $id = isset($_SESSION['id']) ? $_SESSION['id'] : false;
-      if($id){
+      if(!isset($_SESSION)) session_start();
+  		if(isset($_SESSION['id'])){
+        require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+        $api = new getForm();
         $result = $api -> select_notice($_GET['id']);
         while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
         $("input[name=writer]").val("글쓴이 : <?php echo $row['userid']?>");
@@ -144,7 +144,8 @@
         }
       }
       else{
-         echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/pg/admin");';
+        echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+              location.replace(\"/\")";
       }
     ?>
 </script>

@@ -5,16 +5,6 @@
           <div class="checkout-content box-shadow p-30">
              <div class="row">
                 <div class="col-lg-12" >
-                   <div class="product-tab pro-tab-menu pro-tab-menu-2 text-left" style="justify-content:flex-end;">
-                      <!-- Nav tabs -->
-                      <ul id="menu-list" class="nav" style="color:#555;">
-                         <li><a data-toggle="tab" onclick="onPage(0)" data-request="0" style="cursor:pointer;">전체</a></li>
-                         <li><a data-toggle="tab" onclick="onPage(1)" data-request="1" style="cursor:pointer;">승인 확인</a></li>
-                         <li><a data-toggle="tab" onclick="onPage(2)" data-request="2" style="cursor:pointer;">승인 미확인</a></li>
-                      </ul>
-                   </div>
-                </div>
-                <div class="col-lg-12" >
                    <div id="company-list" class="blog-details-area">
 
 
@@ -27,17 +17,6 @@
 </div>
 <!-- Javascript -->
 <script>
-  // 통신사 탭메뉴에 하이라이트
-  menuHighlight("<?php echo $_GET['request']?>");
-
-  function menuHighlight(carrier){
-    var menu = ($("a[data-request="+carrier+"]")[0]);
-    menu.classList.add("active");
-  }
-
-  function onPage(index){
-    location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=user&sub=userList&request=" + index
-  }
 
   function addItem(id, name, userid, approval, code, phone){
     var temp = "", str = "";
@@ -51,11 +30,6 @@
                 "<h6 class=\"media-heading\"><a href=\"#\">"+name+" (" + userid +  ")</a></h6>"+
                 "<p class=\"mb-10\">상태 : " + temp + "</p>"+
              "</div>"+
-             "<ul class=\"reply-delate f-right\">";
-
-            if(!approval) str = str + "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/updateUserRequest.php?id="+id+"\">승인</a></li>"+
-                                      "<li><a>&nbsp|&nbsp</a></li>";
-            str = str + "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/deleteUserRequest.php?id="+ id + "\">삭제</a></li>"+
           "</div>"+
           "<p class=\"mb-0\">연락처 : "+phone+"&nbsp&nbsp|&nbsp&nbsp추천인코드 : " + code + "</p>"+
        "</div>"+
@@ -68,11 +42,11 @@
     else return false;
   }
   <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     if(!isset($_SESSION)) session_start();
-		if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"manager")){
+		if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"company")){
+      require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
       $api = new getForm();
-      $result = $api -> select_users($_GET['request']);
+      $result = $api -> select_user_with_code($_SESSION['id']);
       while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
         $("#company-list").append(addItem(
           "<?php echo $row['_id']?>",

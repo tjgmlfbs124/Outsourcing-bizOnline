@@ -104,29 +104,50 @@ class getForm{
 	}
 
 	// 로그인
-	function select_user($id, $password){
+	function select_user($id, $password, $grade){
 		try{
-			$pdo = $GLOBALS["pdo"];
-			$sql = "SELECT * FROM user WHERE userid=\"".$id."\" AND password=\"".$password."\"";
+			if(!strcmp($grade, "default")) $this->renderAlertWithView("회원구분을 선택하세요.", "/");
+			else{
+				$pdo = $GLOBALS["pdo"];
+				if(!strcmp($grade,"user")){
+					$sql = "SELECT * FROM $grade WHERE userid=\"$id\" AND password=\"$password\"";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute();
 
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute();
-			while ($row = $stmt->fetch(PDO::FETCH_BOTH)){
-				$approval_date = $row['approval_date'];
-				$user_number = $row['_id'];
-			}
+					while ($row = $stmt->fetch(PDO::FETCH_BOTH)){
+						$approval_date = $row['approval_date'];
+						$user_number = $row['_id'];
+					}
+				}
+				else{
+					$sql = "SELECT * FROM manager WHERE userid=\"$id\" AND password=\"$password\" AND grade=\"$grade\"";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute();
 
-			if(!strcmp($approval_date, "")){ // 승인날짜가 비워져있다면
-				$this->renderAlertWithView("승인처리중인 계정입니다.", "/");
+					while ($row = $stmt->fetch(PDO::FETCH_BOTH)){
+						$approval_date = "null";
+						$user_number = $row['_id'];
+					}
+				}
+
+				if($stmt->rowCount() == 0){
+					$this->renderAlertWithView("일치하는 계정이 없습니다.", "/");
+				}
+				else if(!strcmp($approval_date, "")){ // 승인날짜가 비워져있다면
+					$this->renderAlertWithView("승인처리중인 계정입니다.", "/");
+				}
+				else{	// 승인날짜가 들어있다면
+					session_start();
+					$_SESSION['grade'] = $grade;
+					$_SESSION['id'] = $user_number;
+					$this->renderView("/pg/index.php?manufacturer=1");
+				}
 			}
-			else{	// 승인날짜가 들어있다면
-				session_start();
-				$_SESSION['id']=$user_number;
-				$this->renderView("/pg/index.php?manufacturer=1");
-			}
-		}catch(Exception $e){
+		}
+		catch(Exception $e){
 			echo $e;
 		}
+
 	}
 
 	function select_users($request){
@@ -138,6 +159,22 @@ class getForm{
 				$sql = "SELECT * FROM user WHERE approval_date IS NOT NULL";
 			else 	// 아직 승인되지 않은사람.
 				$sql = "SELECT * FROM user WHERE approval_date IS NULL";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+	}
+	function select_user_with_code($id){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql ="
+			SELECT * FROM user WHERE recommender = (
+				SELECT `code`
+		    FROM manager
+		    WHERE _id = $id
+			);";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			return $stmt;
@@ -543,29 +580,26 @@ class getForm{
 	 		}
 	}
 
-	function update_company($id, $userid, $password, $grade, $name, $company, $phone, $code){
+	function update_company($id, $password, $grade, $name, $company, $phone, $url){
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
 				$sql = "UPDATE manager SET
-					`userid`=\"$userid\",
 					`password`=\"$password\",
 					`grade`=\"$grade\",
 					`name`=\"$name\",
 					`company`=\"$company\",
-					`phone`=\"$phone\",
-					`code`=\"$code\"
+					`phone`=\"$phone\"
 				 	WHERE `_id`=$id";
-				echo "<br>".$sql."<br>";
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
-				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?sub=updateCompany&id=$id");
+				$this->renderAlertWithView("적용되었습니다.",$url);
 	 		}catch(Exception $e){
 				echo $e;
 				if(strpos($e, "code_UNIQUE") !== false){
-					$this->renderAlertWithView("코드가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?sub=updateCompany&id=$id");
+					$this->renderAlertWithView("코드가 중복됩니다. 다시입력해주세요.",$url);
 				}
 				else if(strpos($e, "userid_UNIQUE") !== false){
-					$this->renderAlertWithView("아이디가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?sub=updateCompany&id=$id");
+					$this->renderAlertWithView("아이디가 중복됩니다. 다시입력해주세요.",$url);
 				}
 	 		}
 	}

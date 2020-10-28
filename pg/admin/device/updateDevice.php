@@ -276,30 +276,24 @@
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
-    $id = isset($_SESSION['id']) ? $_SESSION['id'] : false;
-    if($id){
-      $result = $api -> select_item($_GET['id']);
-      while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
-        speratorColor("<?php echo $row['color']?>");
-        speratorSize("<?php echo $row['price']?>")
-        $("input[name=name]").val("<?php echo $row['name']?>");
-        $("input[name=modelName]").val("<?php echo $row['model']?>");
-        $("input[name=display]").val("<?php echo $row['spec_display']?>");
-        $("input[name=camera]").val("<?php echo $row['spec_cam']?>");
-        $("input[name=cpu]").val("<?php echo $row['spec_cpu']?>");
-        $("input[name=size]").val("<?php echo $row['spec_size']?>");
-        $("input[name=release]").val("<?php echo $row['release']?>");
-        $("#profileImg").attr("src","<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/<?php echo $row['model']?>/thumnail.jpg")
-      <?php
-      }
-      $result = $api -> select_device_category_id($_GET['id']);
-      while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
-        $("input[type=checkbox][value=<?php echo $row['category_id']?>]").prop("checked",true);
-      <?php
-      }
+    $result = $api -> select_item($_GET['id']);
+    while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
+      speratorColor("<?php echo $row['color']?>");
+      speratorSize("<?php echo $row['price']?>")
+      $("input[name=name]").val("<?php echo $row['name']?>");
+      $("input[name=modelName]").val("<?php echo $row['model']?>");
+      $("input[name=display]").val("<?php echo $row['spec_display']?>");
+      $("input[name=camera]").val("<?php echo $row['spec_cam']?>");
+      $("input[name=cpu]").val("<?php echo $row['spec_cpu']?>");
+      $("input[name=size]").val("<?php echo $row['spec_size']?>");
+      $("input[name=release]").val("<?php echo $row['release']?>");
+      $("#profileImg").attr("src","<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/<?php echo $row['model']?>/thumnail.jpg")
+    <?php
     }
-    else{
-
+    $result = $api -> select_device_category_id($_GET['id']);
+    while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
+      $("input[type=checkbox][value=<?php echo $row['category_id']?>]").prop("checked",true);
+    <?php
     }
   ?>
 

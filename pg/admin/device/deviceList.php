@@ -66,10 +66,8 @@
         $("#menu-list").append("<li onclick=\"onTabmenu(<?php echo $row['_id']?>)\"><a data-toggle=\"tab\" data-manufacturer=\"<?php echo $row['_id']?>\" style=\"cursor:pointer;\" ><?php echo $row['name']?></a></li>")
       <?php
       }
-
       $result = $api -> select_items($_GET['manufacturer']);
       while ($row = $result->fetch(PDO::FETCH_BOTH)){?>
-        console.log("name : <?php echo $row['name']?>" );
           $("#store-list").append(addItem(
             "<?php echo $row['_id']?>",
             "<?php echo $row['model']?>",

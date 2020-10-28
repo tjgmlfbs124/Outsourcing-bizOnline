@@ -92,17 +92,24 @@
     );
   }
   <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
-    $api = new getForm();
-      $result = $api -> select_notices();
-      while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
-        addNotice(
-          "<?php echo $row['_id'] ?>",
-          "<?php echo $row['title'] ?>",
-          "<?php echo $row['name'] ?>",
-          "<?php echo $row['date'] ?>"
-        );
-      <?php
+    if(!isset($_SESSION)) session_start();
+		if(isset($_SESSION['id'])){
+      require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+      $api = new getForm();
+        $result = $api -> select_notices();
+        while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+          addNotice(
+            "<?php echo $row['_id'] ?>",
+            "<?php echo $row['title'] ?>",
+            "<?php echo $row['name'] ?>",
+            "<?php echo $row['date'] ?>"
+          );
+        <?php
+      }
+    }
+    else{
+      echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+            location.replace(\"/\")";
     }
   ?>
 </script>

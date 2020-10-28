@@ -95,27 +95,21 @@
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
     $item = $api->select_plan();
-    $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
-    if($id){
-      while ($row = $item->fetch(PDO::FETCH_BOTH)){?>
-        $("#fund-list").append(addRow(
-          index,
-          "<?php echo $row['_id'] ?>",
-          "<?php echo $row['category_id'] ?>",
-          "<?php echo $row['carrier_id'] ?>",
-          "<?php echo $row['cat_name'] ?>",
-          "<?php echo $row['name'] ?>",
-          "<?php echo $row['price'] ?>",
-          "<?php echo $row['data'] ?>",
-          "<?php echo $row['data_call'] ?>",
-          "<?php echo $row['data_message'] ?>"
-        ));
-        index++;
-        <?php
-      }
-    }
-    else{
-      echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/pg/admin");';
+    while ($row = $item->fetch(PDO::FETCH_BOTH)){?>
+      $("#fund-list").append(addRow(
+        index,
+        "<?php echo $row['_id'] ?>",
+        "<?php echo $row['category_id'] ?>",
+        "<?php echo $row['carrier_id'] ?>",
+        "<?php echo $row['cat_name'] ?>",
+        "<?php echo $row['name'] ?>",
+        "<?php echo $row['price'] ?>",
+        "<?php echo $row['data'] ?>",
+        "<?php echo $row['data_call'] ?>",
+        "<?php echo $row['data_message'] ?>"
+      ));
+      index++;
+      <?php
     }
   ?>
 

@@ -87,13 +87,6 @@
       min: $.validator.format( "{0} 이상의 값을 입력하세요." )
     });
   });
-
-  <?php
-    $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
-    if(!$id){
-      echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/pg/admin");';
-    }
-  ?>
 </script>
 
 </html>

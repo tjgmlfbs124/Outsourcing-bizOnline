@@ -59,10 +59,10 @@
   function gradeIndexToName(grade){
     var name = "";
     switch (grade) {
-      case "1":
+      case "manager":
         name = "관리자";
         break;
-      case "2":
+      case "company":
         name = "사업자";
         break;
       default:
@@ -73,23 +73,17 @@
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
-    $id = isset($_SESSION['id']) ? $_SESSION['id'] : false;
-    if($id){
-      $result = $api -> select_companys($_GET['grade']);
-      while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
-        $("#company-list").append(addItem(
-          "<?php echo $row['_id']?>",
-          "<?php echo $row['name']?>",
-          "<?php echo $row['userid']?>",
-          "<?php echo $row['company']?>",
-          "<?php echo $row['grade']?>",
-          "<?php echo $row['phone']?>"
-        ));
-      <?php
-      }
-    }
-    else{
-       echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
+    $result = $api -> select_companys($_GET['grade']);
+    while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+      $("#company-list").append(addItem(
+        "<?php echo $row['_id']?>",
+        "<?php echo $row['name']?>",
+        "<?php echo $row['userid']?>",
+        "<?php echo $row['company']?>",
+        "<?php echo $row['grade']?>",
+        "<?php echo $row['phone']?>"
+      ));
+    <?php
     }
   ?>
 

@@ -151,53 +151,59 @@
 
         require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
         $api = new getForm();
-        $id = isset($_SESSION['id']) ? $_SESSION['id'] : false;
-        if($id){
-          $carts = $api -> select_carts($id, $_GET["carrier"]);
-          while ($row = $carts->fetch(PDO::FETCH_BOTH)){
-            if(empty($row['device_id'])){
-              $value = "null";?>
-              $("#store-list").append(addEmptyItem("<?php echo $row['_id']?>"));
-              <?php
-            }
-            else{
-              $device = $row['device_id'];
-              $carrier = $row['carrier_id'];
-              $size = $row['size_id'];
-              $plan = $row['plan_id'];
-              $color = $row['color_id'];
-              $date = $row['date'];
-              $installment_period = $row['installment_period'];
-              $discount = $row['discount'];
-              $url = $row['url'];
-              $id = $row['_id'];
-              $cart = $api -> select_cart($device, $carrier, $size, $plan, $color);
-              while ($row = $cart->fetch(PDO::FETCH_BOTH)){?>
-                try{
-                  $("#store-list").append(addItem(
-                    "<?php echo $id ?>",
-                    "<?php echo $url ?>",
-                    "<?php echo $row['Device_model'] ?>",
-                    "<?php echo $row['Image_url'] ?>",
-                    "<?php echo $row['Device_name'] ?>",
-                    "<?php echo $date ?>",
-                    "<?php echo $row['Carrier_name'] ?>",
-                    "<?php echo $row['Image_name'] ?>",
-                    "<?php echo $row['Storage_value'] ?>",
-                    "<?php echo $row['Plan_name'] ?>",
-                    "<?php echo $installment_period ?>",
-                    "<?php echo $discount ?>"
-                  ));
-                }catch(e){
+        if(strcmp($_SESSION['grade'],"user")){
+          echo 'alert("고객만 사용가능한 메뉴입니다."); location.replace("/pg/index.php?manufacturer=1");';
+        }
+        else{
+          if(!isset($_SESSION)) session_start();
+      		if(isset($_SESSION['id'])){
+            $carts = $api -> select_carts($id, $_GET["carrier"]);
+            while ($row = $carts->fetch(PDO::FETCH_BOTH)){
+              if(empty($row['device_id'])){
+                $value = "null";?>
+                $("#store-list").append(addEmptyItem("<?php echo $row['_id']?>"));
+                <?php
+              }
+              else{
+                $device = $row['device_id'];
+                $carrier = $row['carrier_id'];
+                $size = $row['size_id'];
+                $plan = $row['plan_id'];
+                $color = $row['color_id'];
+                $date = $row['date'];
+                $installment_period = $row['installment_period'];
+                $discount = $row['discount'];
+                $url = $row['url'];
+                $id = $row['_id'];
+                $cart = $api -> select_cart($device, $carrier, $size, $plan, $color);
+                while ($row = $cart->fetch(PDO::FETCH_BOTH)){?>
+                  try{
+                    $("#store-list").append(addItem(
+                      "<?php echo $id ?>",
+                      "<?php echo $url ?>",
+                      "<?php echo $row['Device_model'] ?>",
+                      "<?php echo $row['Image_url'] ?>",
+                      "<?php echo $row['Device_name'] ?>",
+                      "<?php echo $date ?>",
+                      "<?php echo $row['Carrier_name'] ?>",
+                      "<?php echo $row['Image_name'] ?>",
+                      "<?php echo $row['Storage_value'] ?>",
+                      "<?php echo $row['Plan_name'] ?>",
+                      "<?php echo $installment_period ?>",
+                      "<?php echo $discount ?>"
+                    ));
+                  }catch(e){
 
+                  }
+                <?php
                 }
-              <?php
               }
             }
           }
-        }
-        else{
-           echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
+          else{
+            echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+                  location.replace(\"/\")";
+          }
         }
        ?>
    </script>

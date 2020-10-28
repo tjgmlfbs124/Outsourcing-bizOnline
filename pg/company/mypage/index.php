@@ -3,7 +3,7 @@
     <h3> 요금제 변경 </h3>
   <div aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-          <form id="signForm" method="POST" action="/form/updateCompany.php?id=<?php echo $_GET['id']?>" enctype="multipart/form-data">
+          <form id="signForm" method="POST" action="/form/updateCompany.php" enctype="multipart/form-data">
               <div class="billing-details p-10">
                   <div class="row" style="margin:10px 0px 0px 0px;">
                     <input type="text" style="display:none;" name="url"></p>
@@ -37,7 +37,6 @@
                         <p style="margin:10px 0px 0px 0px;">등급
                           <select class="custom-select" name="grade" required>
                             <option value="default">선택 </option>
-                            <option value="manager">관리자 </option>
                             <option value="company">사업자 </option>
                           </select>
                           <!-- <input type="text" name="manufacturer" value="" style="display:none;"/> -->
@@ -91,19 +90,28 @@
 
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
-    $api = new getForm();
-    $result = $api -> select_company($_GET['id']);
-    while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
-      $("input[name=name]").val("<?php echo $row['name']?>");
-      $("input[name=company]").val("<?php echo $row['company']?>");
-      $("input[name=phone]").val("<?php echo $row['phone']?>");
-      $("input[name=id]").val("<?php echo $row['userid']?>");
-      $("input[name=password]").val("<?php echo $row['password']?>");
-      $("select[name=grade]").val("<?php echo $row['grade']?>").prop("selected",true);
-      $("input[name=code]").val("<?php echo $row['code']?>");
-      $("input[name=url]").val("<?php echo $_SERVER['REQUEST_URI']?>");
-    <?php
+    if(!isset($_SESSION)) session_start();
+		if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"company")){
+        $api = new getForm();
+        $result = $api -> select_company($_GET['id']);
+        while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+          $("input[name=name]").val("<?php echo $row['name']?>");
+          $("input[name=company]").val("<?php echo $row['company']?>");
+          $("input[name=phone]").val("<?php echo $row['phone']?>");
+          $("input[name=id]").val("<?php echo $row['userid']?>");
+          $("input[name=password]").val("<?php echo $row['password']?>");
+          $("select[name=grade]").val("<?php echo $row['grade']?>").prop("selected",true);
+          $("input[name=code]").val("<?php echo $row['code']?>");
+          $("select[name=grade]").val("<?php echo $row['grade']?>")
+          $("input[name=url]").val("<?php echo $_SERVER['REQUEST_URI']?>");
+        <?php
+        }
     }
+    else{
+      echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+            location.replace(\"/\")";
+    }
+
   ?>
 </script>
 

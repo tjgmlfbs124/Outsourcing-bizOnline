@@ -33,7 +33,8 @@
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/store.php?carrier=0">견적 저장소</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/aboutus.php">고객센터</a></li>
                             <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/notice.php">공지사항</a></li>
-                            <li><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/index.php">관리자</a></li>
+                            <li id="manager" style="display:none;"><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/index.php">관리자</a></li>
+                            <li id="company" style="display:none;"><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/company/index.php">사업자</a></li>
                             <li id="logout" style="float:right; display:none;"><a href="<?php $_SERVER['DOCUMENT_ROOT']?>/form/logout.php">로그아웃</a></li>
                         </ul>
                     </nav>
@@ -47,10 +48,13 @@
 <script>
   <?php
     if(isset($_SESSION['id'])){?>
+      console.log("<?php echo $_SESSION['grade']?>")
       $("#logout").show();
+      $("#" + "<?php echo $_SESSION['grade']?>").show();
     <?php
     }
     else{?>
+      $("#" + "<?php echo $_SESSION['grade']?>").hide();
       $("#logout").hide();
     <?php
     }

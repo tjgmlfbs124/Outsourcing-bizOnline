@@ -146,30 +146,24 @@
   <?php
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
-    $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
-    if($id){
-      $names = $api -> select_item_name();
-      $plans = $api -> select_funds();
-      while ($row = $names->fetch(PDO::FETCH_BOTH)){?>
-        arr[0].push("<?php echo $row['_id']?>");
-        arr[1].push("<?php echo $row['name']?>");
-        <?php
-      }
-      while ($row = $plans->fetch(PDO::FETCH_BOTH)){?>
-        if(curDevice_id != "<?php echo $row['device_id']?>") {
-          curDevice_id = "<?php echo $row['device_id']?>"
-          deviceCnt=0;
-        }
-        if(curDevice_id==1) {
-          arr.push(["<?php echo $row['plan_id']?>", "<?php echo $row['plan_name']?>"]);
-        }
-        arr[2+deviceCnt].push("<?php echo $row['additional_fund']?>");
-        deviceCnt++;
-        <?php
-      }
+    $names = $api -> select_item_name();
+    $plans = $api -> select_funds();
+    while ($row = $names->fetch(PDO::FETCH_BOTH)){?>
+      arr[0].push("<?php echo $row['_id']?>");
+      arr[1].push("<?php echo $row['name']?>");
+      <?php
     }
-    else{
-       echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/pg/admin");';
+    while ($row = $plans->fetch(PDO::FETCH_BOTH)){?>
+      if(curDevice_id != "<?php echo $row['device_id']?>") {
+        curDevice_id = "<?php echo $row['device_id']?>"
+        deviceCnt=0;
+      }
+      if(curDevice_id==1) {
+        arr.push(["<?php echo $row['plan_id']?>", "<?php echo $row['plan_name']?>"]);
+      }
+      arr[2+deviceCnt].push("<?php echo $row['additional_fund']?>");
+      deviceCnt++;
+      <?php
     }
     echo "search();"
   ?>

@@ -548,64 +548,72 @@
 
   <script>
     <?php
-      require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
-      $api = new getForm();
-      $item = $api -> select_item($_GET['id']);
-      $plan = $api -> select_plans($_GET['id'], $_GET['carrier']);
+      if(!isset($_SESSION)) session_start();
+  		if(isset($_SESSION['id'])){
 
-      while ($row = $item->fetch(PDO::FETCH_BOTH)){?>
-        localDataSet['device'].model = "<?php echo $row['model']?>";
-        $("#product-name").text("<?php echo $row['name']?>");
-        $("#product-model").text("<?php echo $row['model']?>");
-        $("#product-manufacturer").text("<?php echo $row['manufacturer_id']?>");
-        $("#product-display").text("<?php echo $row['spec_display']?>");
-        $("#product-size").text("<?php echo $row['spec_size']?>");
-        $("#product-cam").text("<?php echo $row['spec_cam']?>");
-        $("#product-release").text("<?php echo $row['release']?>");
-        $("#product-cpu").text("<?php echo $row['spec_cpu']?>");
-        $("#product-name").text("<?php echo $row['name']?>");
-        storageToPrice("<?php echo $row['price']?>");
-        colorToName("<?php echo $row['color']?>")
+        require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+        $api = new getForm();
+        $item = $api -> select_item($_GET['id']);
+        $plan = $api -> select_plans($_GET['id'], $_GET['carrier']);
 
-          //용량 첫번째것 선택
-          $("#device-storage option:eq(0)").prop("selected", true).trigger('change');
-        <?php
+        while ($row = $item->fetch(PDO::FETCH_BOTH)){?>
+          localDataSet['device'].model = "<?php echo $row['model']?>";
+          $("#product-name").text("<?php echo $row['name']?>");
+          $("#product-model").text("<?php echo $row['model']?>");
+          $("#product-manufacturer").text("<?php echo $row['manufacturer_id']?>");
+          $("#product-display").text("<?php echo $row['spec_display']?>");
+          $("#product-size").text("<?php echo $row['spec_size']?>");
+          $("#product-cam").text("<?php echo $row['spec_cam']?>");
+          $("#product-release").text("<?php echo $row['release']?>");
+          $("#product-cpu").text("<?php echo $row['spec_cpu']?>");
+          $("#product-name").text("<?php echo $row['name']?>");
+          storageToPrice("<?php echo $row['price']?>");
+          colorToName("<?php echo $row['color']?>")
+
+            //용량 첫번째것 선택
+            $("#device-storage option:eq(0)").prop("selected", true).trigger('change');
+          <?php
+        }
+
+        while ($row = $plan->fetch(PDO::FETCH_BOTH)){?>
+          addPlanOption(
+            "<?php echo $row['_id']?>",
+            "<?php echo $row['name']?>",
+            "<?php echo $row['price']?>",
+            "<?php echo $row['fund']?>",
+            "<?php echo $row['additional_fund']?>");
+          <?php
+        }
+
+        // url에 '저장용량'이 있다면 선택 후 트리거
+        if(isset($_GET['size'])){
+          echo "$('#device-storage').val('".$_GET['size']."').prop('selected', true).trigger('change');";
+        }
+
+        // url에 '요금제'가 있다면 선택 후 트리거
+        if(isset($_GET['plan'])){
+          if(strcmp($_GET['plan'],"null"))
+            echo "$('#carrier-plan').val('".$_GET['plan']."').prop('selected', true).trigger('change');";
+        }
+
+        // url에 '할인방식'이 있다면 선택 후 트리거
+        if(isset($_GET['discount'])){
+          echo "$('#discount-list').val('".$_GET['discount']."').prop('selected', true).trigger('change');";
+        }
+
+        // url에 '할부기간'이 있다면 선택 후 트리거
+        if(isset($_GET['installment_period'])){
+          echo "$('#discount-period').val('".$_GET['installment_period']."').prop('selected', true).trigger('change');";
+        }
+
+        // url에 '색상'이 있다면 선택 후 트리거
+        if(isset($_GET['color'])){
+          echo "$('#device-color').val('".$_GET['color']."').prop('selected', true).trigger('change');";
+        }
       }
-
-      while ($row = $plan->fetch(PDO::FETCH_BOTH)){?>
-        addPlanOption(
-          "<?php echo $row['_id']?>",
-          "<?php echo $row['name']?>",
-          "<?php echo $row['price']?>",
-          "<?php echo $row['fund']?>",
-          "<?php echo $row['additional_fund']?>");
-        <?php
-      }
-
-      // url에 '저장용량'이 있다면 선택 후 트리거
-      if(isset($_GET['size'])){
-        echo "$('#device-storage').val('".$_GET['size']."').prop('selected', true).trigger('change');";
-      }
-
-      // url에 '요금제'가 있다면 선택 후 트리거
-      if(isset($_GET['plan'])){
-        if(strcmp($_GET['plan'],"null"))
-          echo "$('#carrier-plan').val('".$_GET['plan']."').prop('selected', true).trigger('change');";
-      }
-
-      // url에 '할인방식'이 있다면 선택 후 트리거
-      if(isset($_GET['discount'])){
-        echo "$('#discount-list').val('".$_GET['discount']."').prop('selected', true).trigger('change');";
-      }
-
-      // url에 '할부기간'이 있다면 선택 후 트리거
-      if(isset($_GET['installment_period'])){
-        echo "$('#discount-period').val('".$_GET['installment_period']."').prop('selected', true).trigger('change');";
-      }
-
-      // url에 '색상'이 있다면 선택 후 트리거
-      if(isset($_GET['color'])){
-        echo "$('#device-color').val('".$_GET['color']."').prop('selected', true).trigger('change');";
+      else{
+        echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+              location.replace(\"/\")";
       }
     ?>
   </script>

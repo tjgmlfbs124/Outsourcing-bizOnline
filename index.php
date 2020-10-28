@@ -52,7 +52,7 @@
                   <div class="row">
                       <div class="col-lg-6 col-md-6 d-none d-md-block">
                           <div class="call-us">
-                              <p class="mb-0 roboto">(+88) 01234-567890</p>
+                              <p class="mb-0 roboto">Biz Online</p>
                           </div>
                       </div>
                   </div>
@@ -89,7 +89,15 @@
                                       <div class="login-account p-30 box-shadow">
                                           <p>Bz 몰에 오신것을 환영합니다.</p>
                                           <input type="text" name="id" placeholder="아이디" style="margin:10px 0px 0px 0px;" required>
-                                          <input type="password" name="password" placeholder="패스워드" style="margin:10px 0px 0px 0px;"required>
+                                          <input type="password" name="password" placeholder="패스워드" style="margin:10px 0px 0px 0px;" required>
+                                          <p style="margin:20px 0px 0px 0px;">회원 구분</p>
+                                          <select name="grade" class="custom-select" data-name="저장용량" style="margin:0px 0px 0px 0px; max-width:100px;" required>
+                                            <option value="default">선택</option>
+                                            <option value="user">고객</option>
+                                            <option value="company">사업자</option>
+                                            <option value="manager">관리자</option>
+                                          </select>
+
                                           <p style="margin-top:30px;">
                                             <small><a href="/pg/signup.php">회원가입</a></small>
                                             <!-- <small><a>&nbsp|&nbsp</a></small>
@@ -113,12 +121,7 @@
           </footer>
       </div>
 
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/vendor/jquery-3.1.1.min.js"></script>
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/popper.min.js"></script>
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/bootstrap.min.js"></script>
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/lib/js/jquery.nivo.slider.js"></script>
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/plugins.js"></script>
-      <script src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/js/main.js"></script>
+      <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/include/include_js.php'?>
   </body>
 
   <script>

@@ -103,8 +103,8 @@
 
     <?php
       if(!isset($_SESSION)) session_start();
-  		if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"manager")){?>
-        location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=plan&sub=planList";
+  		if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"company")){?>
+        location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/company/menu.php?dir=mypage&sub=index&id=<?php echo $_SESSION['id']?>";
         <?php
       }
       else{

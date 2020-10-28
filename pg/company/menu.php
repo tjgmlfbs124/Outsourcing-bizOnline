@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">관리자 메뉴</h1>
+                                <h1 class="breadcrumbs-title">사업자 메뉴</h1>
                                 <ul class="breadcrumb-list">
                                     <li><a>Home</a></li>
                                     <li>Admin_menu</li>
@@ -49,8 +49,8 @@
             <div class="blog-section mb-50">
                 <div class="container" style="max-width:1400px;">
                     <div class="row">
-                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/admin/left-menu.php'?>
-                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/admin/'.$_GET['dir'].'/'.$_GET['sub'].'.php'?>
+                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/company/left-menu.php'?>
+                        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/pg/company/'.$_GET['dir'].'/'.$_GET['sub'].'.php'?>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
 
   <?php
     if(!isset($_SESSION)) session_start();
-    if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"manager")){
+    if(isset($_SESSION['id']) && !strcmp($_SESSION['grade'],"company")){
 
     }
     else{

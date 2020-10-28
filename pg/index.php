@@ -222,21 +222,28 @@
 <!-- PHP -->
 <script>
   <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
-    $api = new getForm();
-    $items = $api -> select_items($_GET['manufacturer']);
+    if(!isset($_SESSION)) session_start();
+		if(isset($_SESSION['id'])){
+      require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+      $api = new getForm();
+      $items = $api -> select_items($_GET['manufacturer']);
 
-    while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
-      $("#device-list").append(addItem(
-        "<?php echo $row['_id'] ?>",
-        "<?php echo $row['name'] ?>",
-        "<?php echo $row['model'] ?>",
-        "<?php echo $row['release'] ?>",
-        separator("<?php echo $row['storage'] ?>"),
-        "<?php echo $row['manufacturer_id'] ?>",
-        "<?php echo $row['image_url'] ?>"
-      ));
-    <?php }
+      while ($row = $items->fetch(PDO::FETCH_BOTH)){?>
+        $("#device-list").append(addItem(
+          "<?php echo $row['_id'] ?>",
+          "<?php echo $row['name'] ?>",
+          "<?php echo $row['model'] ?>",
+          "<?php echo $row['release'] ?>",
+          separator("<?php echo $row['storage'] ?>"),
+          "<?php echo $row['manufacturer_id'] ?>",
+          "<?php echo $row['image_url'] ?>"
+        ));
+      <?php }
+    }
+    else{
+      echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
+            location.replace(\"/\")";
+    }
   ?>
 </script>
 
