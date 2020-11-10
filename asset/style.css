@@ -308,6 +308,23 @@
   border-bottom: 1px solid #ffbf7f;
   color: #666666;
 }
+
+/* @seo css 추가*/
+
+.pro-tab-menu div p{
+  float:left;
+  width:30%;
+  height:100%;
+  line-height:40px;
+  cursor:pointer;
+  color:#666;
+  text-align:center;
+  /* background:#fff; */
+}
+.pro-tab-menu div p.active{
+  background:#C3C3C3;
+  color: #fff;
+}
 /* -------------------------------------
     7.6 Blog section
 ------------------------------------- */
@@ -992,28 +1009,31 @@ transform: scale(1);
   position: relative;
 }
 .widget-color ul li::before {
-  background: #ff7f00 none repeat scroll 0 0;
+  /* background: #ff7f00 none repeat scroll 0 0; */
   border-radius: 50%;
   content: "";
-  height: 12px;
+  height: 20px;
   left: 0;
   margin-top: -6px;
   position: absolute;
-  top: 50%;
-  width: 12px;
+  top: 45%;
+  width: 20px;
+  cursor: pointer;
 }
 .widget-color ul li a {
   display: inline-block;
   font-size: 13px;
   line-height: 30px;
-  padding-left: 20px;
+  padding-left: 25px;
 }
-.widget-color ul li.color-1:before {background: #ffa07a;}
+
+/* .widget-color ul li.color-1:before {background: #ffa07a;}
 .widget-color ul li.color-2:before {background: #e9967a;}
 .widget-color ul li.color-3:before {background: #fe5858;}
 .widget-color ul li.color-4:before {background: #00b2ee;}
 .widget-color ul li.color-5:before {background: #00eeb3;}
-.widget-color ul li.color-6:before {background: #8dc63f;}
+.widget-color ul li.color-6:before {background: #8dc63f;} */
+
 /* -------------------------------------
     9.10 Widget operating system
 ------------------------------------- */

@@ -80,7 +80,7 @@ a:hover {
 /*header*/
 .main-menu > li:hover > a{
   color: #FF7F00;
-} 
+}
 .dropdwn > li:hover > a{
   color: #ff7f00;
 }
@@ -89,7 +89,7 @@ a:hover {
 }
 .single-mega-item > li:hover > a{
   color: #ff7f00;
-} 
+}
 .sticky .main-menu > li:hover > a{
   color: #FF7F00;
 }
@@ -105,7 +105,7 @@ a:hover {
 .user-meta > li > ul > li > a:hover {
   color: #FF7F00;
 }
-/*footer*/ 
+/*footer*/
 .footer-menu li:hover a, .footer-menu li:hover a i {
   color: #ff7f00;
 }
@@ -136,7 +136,7 @@ a:hover {
   background: #ff7f00 none repeat scroll 0 0;
 }
 .breadcrumb-list > li:hover::before {
-  color: #ff7f00; 
+  color: #ff7f00;
 }
 .breadcrumb-list > li:hover > a {
   color: #ff7f00;
@@ -162,7 +162,7 @@ a:hover {
   background: #ff7f00 none repeat scroll 0 0;
 }
 .widget-color ul li::before {
-  background: #ff7f00 none repeat scroll 0 0;
+  /* background: #ff7f00 none repeat scroll 0 0; */
 }
 .p-c a.active img {
   border: 1px solid #FF7F00;

@@ -52,10 +52,42 @@
                                                           <div class="imgs-zoom-area">
                                                              <img id="zoom_03" src="<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/default.png" data-zoom-image="<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/default.png" alt="">
                                                           </div>
-                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:20px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
+
+                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
+                                                            <a style="width:71.6px; line-height:40px; color:#666666;" data-name="색상">색상</a>
+                                                            <div class="single-pro-color-rating clearfix" >
+                                                              <div class="sin-pro-color f-left" style="height:100%;">
+                                                                  <div class="widget-color f-left" style="height:100%;">
+                                                                      <ul style="height:100%;" id="device-color"></ul>
+                                                                  </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;">저장용량</a>
-                                                            <select id="device-storage" class="custom-select" data-name="저장용량" >
-                                                            </select>
+
+                                                            <div id="device-storage" style="height:100%; float:left; width:100%;" data-name="저장용량">
+                                                            </div>
+                                                            <!-- <select id="device-storage" class="custom-select" data-name="저장용량" >
+                                                            </select> -->
+                                                          </div>
+
+                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
+                                                            <a style="width:100px; line-height:40px; color:#666666;" data-name="할인방식">할인방식</a>
+                                                            <div style="height:100%; float:left; width:100%;">
+                                                              <p class="active" style="width:50%;">공시지원할인</p>
+                                                              <p style="width:50%;">선택약정할인</p>
+                                                            </div>
+                                                          </div>
+
+                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
+                                                            <a style="width:100px; line-height:40px; color:#666666;" data-name="할인방식">가입유형</a>
+                                                            <div style="height:100%; float:left; width:100%;">
+                                                              <p class="active" style="width:33%;">신규가입</p>
+                                                              <p style="width:33%;">번호이동</p>
+                                                              <p style="width:33%;">기기변경</p>
+                                                            </div>
                                                           </div>
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
@@ -66,30 +98,13 @@
                                                           </div>
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
-                                                            <a style="width:100px; line-height:40px; color:#666666;" data-name="할인방식">할인방식</a>
-                                                            <select id="discount-list" class="custom-select">
-                                                                <option value="0" data-value="0">선택</option>
-                                                                <option value="1" data-value="device-discount">공시지원할인</option>
-                                                                <option value="2" data-value="plan-discount">선택약정할인</option>
-                                                            </select>
-                                                          </div>
-
-                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;" data-name="할부개월">할부개월</a>
-                                                            <select id="discount-period" class="custom-select">
-                                                                <option value="1">선택</option>
-                                                                <option value="24">24개월</option>
-                                                                <option value="30">30개월</option>
-                                                                <option value="36">36개월</option>
-                                                                <option value="48">48개월</option>
-                                                            </select>
-                                                          </div>
-
-                                                          <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
-                                                            <a style="width:100px; line-height:40px; color:#666666;" data-name="색상">색상</a>
-                                                            <select id="device-color" class="custom-select">
-                                                                <option value="0">선택</option>
-                                                            </select>
+                                                            <div style="height:100%; float:left; width:100%;">
+                                                              <p class="active" style="width:25%;">24개월</p>
+                                                              <p style="width:25%;">30개월</p>
+                                                              <p style="width:25%;">36개월</p>
+                                                              <p style="width:25%;">48개월</p>
+                                                            </div>
                                                           </div>
                                                      </div>
                                                  </div>
@@ -491,7 +506,7 @@
           var name = colors[idx].split(":")[1];
           var url = colors[idx].split(":")[2];
           var rgb = colors[idx].split(":")[3];
-          addColorOption(id, name, url) // 색상옵션 추가
+          addColorOption(id, name, url, rgb); // 색상옵션 추가
         }
         // colors.forEach((item, i) => {
         //   var id = item.split(":")[0];
@@ -505,12 +520,30 @@
 
       // 기기용량 옵션추가
       function addStorageOption(id, storage, price){
-        $("#device-storage").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-storage=\"" + storage + "\">" + storage  + " </option>");
+        $("#device-storage").append("<p data-id=\""+id+"\" data-price=\""+price+"\" data-storage=\""+storage+"\"style=\"width:25%;\">"+storage+"</p>");
+        // $("#device-storage").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-storage=\"" + storage + "\">" + storage  + " </option>");
       };
 
       // 기기색상 옵션추가
-      function addColorOption(id, name, url){
-        $("#device-color").append("<option data-img=\"" + url + "\" value=\"" + id + "\">" + name + "</option>");
+      function addColorOption(id, name, url, rgb){
+        $("head").append("<style>.color_"+rgb+":before{background:#"+rgb+";}</style>");
+        $("#device-color").append("<li class=\"color_"+rgb+"\" style=\"margin:0px; height:100%;\" id=\"color-list-"+id+"\" onclick=\"selectColorOption("+id+",\'"+url+"\')\"><a href=\"#\"></a></li>");
+        // $("#device-color").append("<option data-img=\"" + url + "\" value=\"" + id + "\">" + name + "</option>");
+      }
+
+      // 색상선택에 따른 ImageUrl을 띄운다
+      function selectColorOption(id, mUrl){
+        var imgName = mUrl;
+        var url = "<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/"+localDataSet['device'].model + "/" + imgName;
+        if(!mUrl) url = "<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/default.png";
+
+        localDataSet['device'].color_id = id;
+
+        $("#zoom_03").attr("src",url);
+        $("#zoom_03").attr("data-zoom-image",url);
+        // $(this).css("border","1px rgba(0, 0, 0, 0.1)")
+        console.log("localDataSet : " , localDataSet);
+        update();
       }
 
       // 요금제 옵션 추가
@@ -608,7 +641,7 @@
 
         // url에 '색상'이 있다면 선택 후 트리거
         if(isset($_GET['color'])){
-          echo "$('#device-color').val('".$_GET['color']."').prop('selected', true).trigger('change');";
+          echo "$('#device-color > #color-list-').val('".$_GET['color']."').prop('selected', true).trigger('change');";
         }
       }
       else{
@@ -616,5 +649,7 @@
               location.replace(\"/\")";
       }
     ?>
+
+    $(".color-1:before").css("background","#000");
   </script>
 </html>

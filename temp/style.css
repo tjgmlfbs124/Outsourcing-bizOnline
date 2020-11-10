@@ -995,12 +995,12 @@ transform: scale(1);
   background: #ff7f00 none repeat scroll 0 0;
   border-radius: 50%;
   content: "";
-  height: 12px;
+  height: 25px;
   left: 0;
   margin-top: -6px;
   position: absolute;
   top: 50%;
-  width: 12px;
+  width: 25px;
 }
 .widget-color ul li a {
   display: inline-block;

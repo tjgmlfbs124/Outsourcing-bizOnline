@@ -157,7 +157,7 @@
         else{
           if(!isset($_SESSION)) session_start();
       		if(isset($_SESSION['id'])){
-            $carts = $api -> select_carts($id, $_GET["carrier"]);
+            $carts = $api -> select_carts($_SESSION['id'], $_GET["carrier"]);
             while ($row = $carts->fetch(PDO::FETCH_BOTH)){
               if(empty($row['device_id'])){
                 $value = "null";?>
