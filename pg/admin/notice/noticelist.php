@@ -50,20 +50,15 @@
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
     $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
-    if($id){
-      $result = $api -> select_notices();
-      while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
-        $("#company-list").append(addItem(
-          "<?php echo $row['_id']?>",
-          "<?php echo $row['title']?>",
-          "<?php echo $row['date']?>",
-          "<?php echo $row['name']?>"
-        ));
-      <?php
-      }
-    }
-    else{
-       echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/");';
+    $result = $api -> select_notices();
+    while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+      $("#company-list").append(addItem(
+        "<?php echo $row['_id']?>",
+        "<?php echo $row['title']?>",
+        "<?php echo $row['date']?>",
+        "<?php echo $row['name']?>"
+      ));
+    <?php
     }
   ?>
 

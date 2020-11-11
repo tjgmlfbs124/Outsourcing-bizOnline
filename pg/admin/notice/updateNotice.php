@@ -90,19 +90,14 @@
     require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
     $api = new getForm();
     $id = isset($_SESSION['adminid']) ? $_SESSION['adminid'] : false;
-    if($id){
-      $result = $api -> select_notice($_GET['id']);
-      while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
-      $("input[name=writer]").val("<?php echo $row['userid']?>");
-      $("input[name=date]").val(getTimeStamp());
-      $("input[name=adminid]").val("<?php echo $id ?>");
-      $("input[name=title]").val("<?php echo $row['title'] ?>");
-      $("textarea[name=content]").val(lineBreaker("<?php echo $row['content'] ?>"));
-      <?php
-      }
-    }
-    else{
-       echo 'alert("회원정보가 없습니다. 다시 로그인해주세요."); location.replace("/pg/admin");';
+    $result = $api -> select_notice($_GET['id']);
+    while ($row = $result ->fetch(PDO::FETCH_BOTH)){?>
+    $("input[name=writer]").val("<?php echo $row['userid']?>");
+    $("input[name=date]").val(getTimeStamp());
+    $("input[name=adminid]").val("<?php echo $id ?>");
+    $("input[name=title]").val("<?php echo $row['title'] ?>");
+    $("textarea[name=content]").val(lineBreaker("<?php echo $row['content'] ?>"));
+    <?php
     }
   ?>
 </script>
