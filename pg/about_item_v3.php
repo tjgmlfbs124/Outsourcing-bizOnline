@@ -75,18 +75,18 @@
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;" data-name="할인방식">할인방식</a>
-                                                            <div style="height:100%; float:left; width:100%;">
-                                                              <p class="active" style="width:50%;">공시지원할인</p>
-                                                              <p style="width:50%;">선택약정할인</p>
+                                                            <div id="discount-list" style="height:100%; float:left; width:100%;">
+                                                              <p style="width:50%;" onclick="selectDiscountOption(this,'1')" id="discount-list-1">공시지원할인</p>
+                                                              <p style="width:50%;" onclick="selectDiscountOption(this,'2')" id="discount-list-2">선택약정할인</p>
                                                             </div>
                                                           </div>
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;" data-name="할인방식">가입유형</a>
-                                                            <div style="height:100%; float:left; width:100%;">
-                                                              <p class="active" style="width:33%;">신규가입</p>
-                                                              <p style="width:33%;">번호이동</p>
-                                                              <p style="width:33%;">기기변경</p>
+                                                            <div id="subscription-list" style="height:100%; float:left; width:100%;">
+                                                              <p id="subscription-list-0" style="width:33%;" onclick="selectSubscriptionOption(this,0,'new')">신규가입</p>
+                                                              <p id="subscription-list-1" style="width:33%;" onclick="selectSubscriptionOption(this,1,'number')">번호이동</p>
+                                                              <p id="subscription-list-2" style="width:33%;" onclick="selectSubscriptionOption(this,2,'device')">기기변경</p>
                                                             </div>
                                                           </div>
 
@@ -99,11 +99,11 @@
 
                                                           <div class="product-tab pro-tab-menu"  style="width:100%; margin:10px 0px 10px 0px; height:40px; font-size:13px; justify-content:left;">
                                                             <a style="width:100px; line-height:40px; color:#666666;" data-name="할부개월">할부개월</a>
-                                                            <div style="height:100%; float:left; width:100%;">
-                                                              <p class="active" style="width:25%;">24개월</p>
-                                                              <p style="width:25%;">30개월</p>
-                                                              <p style="width:25%;">36개월</p>
-                                                              <p style="width:25%;">48개월</p>
+                                                            <div id="installment-list" style="height:100%; float:left; width:100%;">
+                                                              <p id="installment-list-24" style="width:25%;" onclick="selectInstallmentOption(this, 24)">24개월</p>
+                                                              <p id="installment-list-30" style="width:25%;" onclick="selectInstallmentOption(this, 30)">30개월</p>
+                                                              <p id="installment-list-36" style="width:25%;" onclick="selectInstallmentOption(this, 36)">36개월</p>
+                                                              <p id="installment-list-48" style="width:25%;" onclick="selectInstallmentOption(this, 48)">48개월</p>
                                                             </div>
                                                           </div>
                                                      </div>
@@ -123,6 +123,10 @@
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">추가지원금</td>
                                                                <td id="support-price-02" class="td-title-2" style="color:#666666;">0</td>
+                                                           </tr>
+                                                           <tr>
+                                                               <td class="td-title-1" style="color: rgb(255, 127, 0);">임직원지원금</td>
+                                                               <td id="support-price-03" class="td-title-2" style="color: rgb(255, 127, 0);">0</td>
                                                            </tr>
                                                            <tr>
                                                                <td class="td-title-1" style="color:#666666;">총 할부원금</td>
@@ -184,48 +188,6 @@
                                                                  </h4>
 
                                                                  <div id="collapseTwo" class="panel-collapse collapse" >
-                                                                     <table>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">제품명</td>
-                                                                             <td id="product-name" class="td-title-2"  style="color:#666666;"></td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">모델명</td>
-                                                                             <td id="product-model" class="td-title-2" style="color:#666666;"></td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">제조사</td>
-                                                                             <td id="product-manufacturer" class="td-title-2" style="color:#666666;"></td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">제조국</td>
-                                                                             <td class="td-title-2" style="color:#666666;">한국</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">KC인증번호</td>
-                                                                             <td class="td-title-2" style="color:#666666;">-</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">디스플레이</td>
-                                                                             <td id="product-display" class="td-title-2" style="color:#666666;"></td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">크기/무게</td>
-                                                                             <td id="product-size" class="td-title-2" style="color:#666666;">*</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">카메라화소</td>
-                                                                             <td id="product-cam" class="td-title-2" style="color:#666666;">*</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">제조연월일</td>
-                                                                             <td id="product-release" class="td-title-2" style="color:#666666;">*</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                             <td class="td-title-1" style="color:#666666;">CPU</td>
-                                                                             <td id="product-cpu" class="td-title-2" style="color:#666666;">*</td>
-                                                                         </tr>
-                                                                     </table>
                                                                  </div>
                                                              </div>
                                                          </div>
@@ -251,26 +213,21 @@
             <?php require_once $_SERVER['DOCUMENT_ROOT'].'/widget/footer.php'?>
          </footer>
 
-         <div id="resultPopup" style="width:100%; height:auto; background:#ff7f00; bottom:0; position:fixed; display:none;  border-top-right-radius: 5px;  border-top-left-radius: 5px;" >
-           <div class="col-md-6"  style="">
-               <div class="payment-details pl-10 mb-50" style="margin:0px;">
-                 <p onclick="showTotal();" style="color:#fff;">▲</p>
-               </div>
-           </div>
-           <div class="col-md-6" id="mobileWrap" style=" display:none;">
+         <div id="resultPopup" style="width:100%; height:auto; background:#262626; bottom:0; position:fixed; display:none;" >
+           <div class="col-md-6" id="mobileWrap" >
                <div class="payment-details pl-10 mb-50" style="margin:0px;">
                    <table>
                      <tr>
                          <td class="td-title-1" style="color:#ffffff;">출고가</td>
-                         <td class="td-title-2" style="color:#ffffff;"><a id="product-price"></a></td>
+                         <td class="td-title-2" style="color:#ffffff;"><a id="mobile-device-price"></a></td>
                      </tr>
                      <tr>
-                         <td class="td-title-1" style="color:#ffffff;">지원금+할인</td>
-                         <td class="td-title-2" style="color:#ffffff;">-1,000,000</td>
+                         <td class="td-title-1" style="color:#ffffff;">지원금</td>
+                         <td class="td-title-2" style="color:#ffffff;"><a id="mobile-discount-price"></a></td>
                      </tr>
                      <tr>
-                         <td class="td-title-1" style="color:#ffffff;">금액</td>
-                         <td class="td-title-2" style="color:#ffffff;">800,000</td>
+                         <td class="td-title-1" style="color:#ffffff;">월 납입금액</td>
+                         <td class="td-title-2" style="color:#ffffff;" id="mobile-total-price">800,000</td>
                      </tr>
                    </table>
                </div>
@@ -302,7 +259,7 @@
           "id" : "<?php echo $_GET['id']?>",
           "model" : "",             // Model 이름
           "color_id" : "",       // 색상 select value
-          "storage_value" : "",     // 저장용량 select value
+          "storage_id" : "",     // 저장용량 select value
           "price" : 0               // 출고가
         },
         "discount" : {  // 할인방식
@@ -311,9 +268,9 @@
           "regular_device_discount" : 0,
           "regular_device_discount_option" : 0,
           "device_discount" : 0,            // 공시지원일경우 할인되는 가격
-          "device_discount_option" : 0,     // 추가지원근
-          "plan_discount" : 0.25            // 요금제지원일경우 할인되는 퍼센트
-
+          "device_discount_option" : 0,     // 추가지원금
+          "plan_discount" : 0.25,            // 요금제지원일경우 할인되는 퍼센트
+          "manager_discount" : 0            // 임직원 지원금
         },
         "plan" : {  // 요금제
           "value" : "", // 요금제 select value
@@ -322,18 +279,12 @@
         },
         "carrier" : { // 통신사
           "id" : "<?php echo $_GET['carrier']?>"
+        },
+        "subscription" : {
+          "id": 0,
+          "name" : ""
         }
       };
-
-      // 저장용량 선택
-      $("#device-storage").change(function(){
-        var price = $(this).find("option:selected").data("price");
-        var storage = $(this).find("option:selected").data("storage");
-        localDataSet['device'].price = price;
-        localDataSet['device'].storage_value =  storage;
-        console.log("storage-change localDataSet : " , localDataSet);
-        update();
-      });
 
       // 할인방식 선택
       $("#discount-list").change(function(){
@@ -435,13 +386,6 @@
         }
         if(isCheck) {
           var url = getURL("<?php echo $_GET['carrier'] ?>");
-          var installment_period = $("#discount-period option:selected").val();
-          var discount = $("#discount-list option:selected").val();
-          var size = $("#device-storage").val();
-          var plan = $("#carrier-plan").val();
-          var color = $("#device-color").val();
-          var carrier = "<?php echo $_GET['carrier'] ?>";
-          var device = "<?php echo $_GET['id'] ?>"
           location.href = "<?php $_SERVER['DOCUMENT_ROOT']?>/form/addCart.php?" + url;
         }
         else alert("단말기 옵션을 모두 선택해주세요.")
@@ -450,18 +394,20 @@
       // 현재 견적서의 URL을 반환
       function getURL(carrier){
         var deviceID = "<?php echo $_GET['id']?>";
-        var installment_period = $("#discount-period option:selected").val();
-        var discount = $("#discount-list option:selected").val();
-        var size = $("#device-storage").val();
+        var installment_period = localDataSet['discount'].period;
+        var discount = localDataSet['discount'].how_value;
+        var size = localDataSet['device'].storage_id;
         var plan = $("#carrier-plan").val();
-        var color = $("#device-color").val()
+        var color = localDataSet['device'].color_id;
+        var subscription = localDataSet['subscription'].id;
         var str ="id=" + deviceID +
                   "&carrier="+ carrier +
                   "&installment_period=" + installment_period +
                   "&discount=" + discount +
                   "&size=" + size +
                   "&plan=" + plan +
-                  "&color=" + color;
+                  "&color=" + color +
+                  "&subscription=" + subscription;
         return str;
       }
 
@@ -490,17 +436,12 @@
           var price = storages[idx].split(":")[2];
           addStorageOption(id, storage, price);
         }
-
-
-        // storages.forEach((item, i) => {
-        // });
       }
 
       // color id에 따른 이름 리턴
       function colorToName(color){
         var colorList = new Array();
         var colors = color.split(",");
-
         for(var idx=0; idx<colors.length; idx++){
           var id = colors[idx].split(":")[0];
           var name = colors[idx].split(":")[1];
@@ -508,30 +449,26 @@
           var rgb = colors[idx].split(":")[3];
           addColorOption(id, name, url, rgb); // 색상옵션 추가
         }
-        // colors.forEach((item, i) => {
-        //   var id = item.split(":")[0];
-        //   var name = item.split(":")[1];
-        //   var url = item.split(":")[2];
-        //   var rgb = item.split(":")[3];
-        //
-        //   addColorOption(id, name, url) // 색상옵션 추가
-        // });
       }
 
-      // 기기용량 옵션추가
-      function addStorageOption(id, storage, price){
-        $("#device-storage").append("<p data-id=\""+id+"\" data-price=\""+price+"\" data-storage=\""+storage+"\"style=\"width:25%;\">"+storage+"</p>");
-        // $("#device-storage").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-storage=\"" + storage + "\">" + storage  + " </option>");
-      };
+      // 옵션메뉴에 하이라이트 추가
+      function optionHighlight(childs, target){
+        removeAllChildClass(childs);
+        target.classList.add("active");
+      }
 
-      // 기기색상 옵션추가
+      // 기존에 선택된 하이라이트 삭제
+      function removeAllChildClass(childs){
+        for(var index=0; index<childs.length; index++){
+          childs[index].classList.remove("active");
+        }
+      }
+
+      // 기기색상 옵션 추가 및 선택 이벤
       function addColorOption(id, name, url, rgb){
         $("head").append("<style>.color_"+rgb+":before{background:#"+rgb+";}</style>");
         $("#device-color").append("<li class=\"color_"+rgb+"\" style=\"margin:0px; height:100%;\" id=\"color-list-"+id+"\" onclick=\"selectColorOption("+id+",\'"+url+"\')\"><a href=\"#\"></a></li>");
-        // $("#device-color").append("<option data-img=\"" + url + "\" value=\"" + id + "\">" + name + "</option>");
       }
-
-      // 색상선택에 따른 ImageUrl을 띄운다
       function selectColorOption(id, mUrl){
         var imgName = mUrl;
         var url = "<?php $_SERVER['DOCUMENT_ROOT']?>/image/phone/"+localDataSet['device'].model + "/" + imgName;
@@ -546,8 +483,74 @@
         update();
       }
 
+      // 기기용량 옵션 추가 및 선택 이벤
+      function addStorageOption(id, storage, price){
+        $("#device-storage").append("<p style=\"width:25%;\" id=\"storage-list-"+id+"\" onclick=\"selectStorageOption(this, "+id+",'"+storage+"',"+price+" );\">"+storage+"</p>");
+      };
+      function selectStorageOption(target, id, storage, price){
+        optionHighlight($("#device-storage").children(), target);
+        var price = price;
+        var storage = storage;
+        localDataSet['device'].price = price;
+        localDataSet['device'].storage_id =  id;
+        console.log("storage-change localDataSet : " , localDataSet);
+        update();
+      }
+
+      // 할인방식 선택 이벤트
+      function selectDiscountOption(target, type){
+        optionHighlight($("#discount-list").children(), target);
+        localDataSet['discount'].how_value = type;
+        console.log("type : " , type);
+        switch (type) {
+          case "1": // 공시지원할인
+            localDataSet['discount'].device_discount = localDataSet['discount'].regular_device_discount;
+            localDataSet['discount'].device_discount_option = localDataSet['discount'].regular_device_discount_option;
+            localDataSet['discount'].plan_discount = 0;
+            $("#device-support-title").css("color","#ff7f00");
+            $("#carrier-support-title").css("color","#666");
+            $("#support-price-01").css("color","#ff7f00")
+            $("#carrier-support-02").css("color","#666")
+            break;
+          case "2" : // 선택약정할인
+            localDataSet['discount'].device_discount = 0;
+            localDataSet['discount'].device_discount_option = 0;
+            localDataSet['discount'].plan_discount = 0.25 ;
+            $("#device-support-title").css("color","#666");
+            $("#carrier-support-title").css("color","#ff7f00");
+            $("#support-price-01").css("color","#666")
+            $("#carrier-support-02").css("color","#ff7f00")
+            break;
+          case "default" :
+            localDataSet['plan'].price = 0;
+            break;
+        }
+        update();
+        console.log("discount-localDataSet : " , localDataSet);
+      }
+
+      // 가입유형 선택 이벤트
+      function selectSubscriptionOption(target, id, type){
+        optionHighlight($("#subscription-list").children(), target);
+        localDataSet['subscription'].id = id;
+        localDataSet['subscription'].name = type;
+        update();
+        console.log("discount-localDataSet : " , localDataSet);
+      }
+
+      // 할부개월 선택 이벤트
+      function selectInstallmentOption(target, type){
+        optionHighlight($("#installment-list").children(), target);
+        localDataSet['discount'].period = type;
+        console.log("localDataSet : " , localDataSet);
+        update();
+
+      }
+
       // 요금제 옵션 추가
       function addPlanOption(id, name, price, fund, additional_fund){
+        console.log("fund : " ,fund);
+        console.log("additional_fund : " ,additional_fund);
         $("#carrier-plan").append("<option value=\"" + id + "\" data-price=\"" + price + "\" data-fund=\"" + fund + "\" data-additional_fund=\"" + additional_fund + "\">" + name + " (월 " + numberWithCommas(price) + ")</option>");
       }
 
@@ -564,7 +567,6 @@
         $("#support-price-01").text(numberWithCommas(localDataSet['discount'].device_discount));
         $("#support-price-02").text(numberWithCommas(localDataSet['discount'].device_discount_option));
         var installment_price = localDataSet['device'].price - localDataSet['discount'].device_discount - localDataSet['discount'].device_discount_option;
-        console.log("installment : " , installment_price);
         $("#installment-price").text(numberWithCommas(installment_price));
         $("#installment-month").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period)));
         $("#installment-cash").text(numberWithCommas(parseInt(installment_price / localDataSet['discount'].period * 0.056)));
@@ -574,8 +576,12 @@
         $("#carrier-support-02").text(numberWithCommas(localDataSet['plan'].price * parseFloat(localDataSet['discount'].plan_discount)));
         var carrier_price = localDataSet['plan'].price - (localDataSet['plan'].price * localDataSet['discount'].plan_discount);
         $("#carrier-total").text(numberWithCommas(carrier_price));
-
         $("#price-total").text(numberWithCommas(parseInt((installment_price / localDataSet['discount'].period) + (installment_price / localDataSet['discount'].period * 0.056) + (installment_price / localDataSet['discount'].period * 0.056) + carrier_price)));
+
+        // mobile
+        $("#mobile-device-price").text(numberWithCommas(localDataSet['device'].price));
+        $("#mobile-discount-price").text("-" + numberWithCommas(localDataSet['discount'].device_discount + localDataSet['discount'].device_discount_option + (localDataSet['plan'].price * localDataSet['discount'].plan_discount) + localDataSet['discount'].manager_discount));
+        $("#mobile-total-price").text(numberWithCommas(parseInt((installment_price / localDataSet['discount'].period) + (installment_price / localDataSet['discount'].period * 0.056) + (installment_price / localDataSet['discount'].period * 0.056) + carrier_price)));
       }
    </script>
 
@@ -620,7 +626,23 @@
 
         // url에 '저장용량'이 있다면 선택 후 트리거
         if(isset($_GET['size'])){
-          echo "$('#device-storage').val('".$_GET['size']."').prop('selected', true).trigger('change');";
+          echo "$('#storage-list-".$_GET['size']."').click();";
+        }else{
+          echo "$('#device-storage').children()[0].click();";
+        }
+
+        // url에 '색상'이 있다면 선택 후 트리거
+        if(isset($_GET['color'])){
+          echo "$('#color-list-".$_GET['color']."').click();";
+        }else{
+          echo "$('#device-color').children()[0].click();";
+        }
+
+        // url에 '가입유형'이 있다면 선택 후 트리거
+        if(isset($_GET['subscription'])){
+          echo "$('#subscription-list-".$_GET['subscription']."').click();";
+        }else{
+          echo "$('#subscription-list').children()[0].click();";
         }
 
         // url에 '요금제'가 있다면 선택 후 트리거
@@ -631,17 +653,16 @@
 
         // url에 '할인방식'이 있다면 선택 후 트리거
         if(isset($_GET['discount'])){
-          echo "$('#discount-list').val('".$_GET['discount']."').prop('selected', true).trigger('change');";
+          echo "$('#discount-list-".$_GET['discount']."').click();";
+        }else{
+          echo "$('#discount-list').children()[0].click();";
         }
 
         // url에 '할부기간'이 있다면 선택 후 트리거
         if(isset($_GET['installment_period'])){
-          echo "$('#discount-period').val('".$_GET['installment_period']."').prop('selected', true).trigger('change');";
-        }
-
-        // url에 '색상'이 있다면 선택 후 트리거
-        if(isset($_GET['color'])){
-          echo "$('#device-color > #color-list-').val('".$_GET['color']."').prop('selected', true).trigger('change');";
+          echo "$('#installment-list-".$_GET['installment_period']."').click();";
+        }else{
+          echo "$('#installment-list').children()[0].click();";
         }
       }
       else{
