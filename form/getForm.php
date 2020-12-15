@@ -65,7 +65,7 @@ class getForm{
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "
-			SELECT DISTINCT P.*, SF._id AS fund_id, SF.device_id, SF.mobile_plan_id, SF.fund, SF.additional_fund FROM
+			SELECT DISTINCT P.*, SF._id AS fund_id, SF.device_id, SF.mobile_plan_id, SF.new_number, SF.number_move, SF.device_change, SF.fund, SF.additional_fund FROM
 			support_fund SF INNER JOIN
 			mobile_plan P on P._id = SF.mobile_plan_id LEFT JOIN
 			device_mobile_category M on P.category_id = M.category_id
@@ -385,13 +385,13 @@ class getForm{
 		}
 	}
 
-	function update_plan(){
+	function update_plan($updateSQL){
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = $updateSQL;
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
-			$this->renderAlertWithView("저장되었습니다.","/pg/admin/menu.php?sub=plan");
+			$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?sub=plan");
 		}catch(Exception $e){
 			echo $e;
 		}
@@ -403,56 +403,93 @@ class getForm{
 			$sql = "DELETE FROM mobile_plan WHERE _id=".$id;
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
-			$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?sub=plan");
+			$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?dir=plan&sub=planList");
 		}catch(Exception $e){
 			echo $e;
 		}
 	}
 
+	// // 카테고리 아이디(통신사+요금)에 맞는 요금
+	// function select_item_name(){
+	// 		try{
+	// 			$pdo = $GLOBALS["pdo"];
+	// 			$sql = "SELECT _id, name FROM device";
+	// 			$stmt = $pdo->prepare($sql);
+	// 			$stmt->execute();
+	// 			return $stmt;
+	// 		}catch(Exception $e){
+	// 			echo $e;
+	// 		}
+	// }
+
 	// 카테고리 아이디(통신사+요금)에 맞는 요금
 	function select_item_name(){
-			try{
-				$pdo = $GLOBALS["pdo"];
-				$sql = "SELECT _id, name FROM device";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				return $stmt;
-			}catch(Exception $e){
-				echo $e;
-			}
-	}
-
-	function select_funds(){
-	 		try{
-	 			$pdo = $GLOBALS["pdo"];
-	 			$sql = "
-					### 모든 공시 지원금 출력
-					SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "SELECT F.mobile_plan_id as plan_id, P.name as plan_name
 					FROM support_fund F, Device D, mobile_plan P
 					WHERE F.device_id=D._id
 						AND F.mobile_plan_id=P._id
-						ORDER BY device_id, mobile_plan_id;
-					";
-	 			$stmt = $pdo->prepare($sql);
-	 			$stmt->execute();
-	 			return $stmt;
-	 		}catch(Exception $e){
-	 			echo $e;
-	 		}
+					GROUP BY plan_name
+					ORDER BY F.mobile_plan_id";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
 	}
 
-	function update_funds($support, $query){
+	// function select_funds(){
+	//  		try{
+	//  			$pdo = $GLOBALS["pdo"];
+	//  			$sql = "
+	// 				### 모든 공시 지원금 출력
+	// 				SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+	// 				FROM support_fund F, Device D, mobile_plan P
+	// 				WHERE F.device_id=D._id
+	// 					AND F.mobile_plan_id=P._id
+	// 					ORDER BY device_id, mobile_plan_id;
+	// 				";
+				 
+	//  			$stmt = $pdo->prepare($sql);
+	//  			$stmt->execute();
+	//  			return $stmt;
+	//  		}catch(Exception $e){
+	//  			echo $e;
+	//  		}
+	// }
+
+	function select_funds(){
+		try{
+			$pdo = $GLOBALS["pdo"];
+
+		   $sql = "
+		   SELECT F.device_id as device_id, D.name as device_name, GROUP_CONCAT(F.fund) AS fund, F.additional_fund,
+		   		  GROUP_CONCAT(F.new_number) AS new_number, GROUP_CONCAT(F.device_change) AS device_change, GROUP_CONCAT(F.number_move) AS number_move,
+		          F.mobile_plan_id as plan_id, P.name as plan_name
+		    FROM support_fund F, Device D, mobile_plan P
+		    WHERE F.device_id=D._id
+				AND F.mobile_plan_id=P._id
+			GROUP BY device_name
+			ORDER BY device_id, mobile_plan_id
+			";
+			
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+}
+
+	function update_funds($sql){
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
-	 			$sql = "UPDATE `support_fund`
-					SET `".$support."`=
-						(CASE "
-						.$query.
-						" END)";
-				// echo $sql;
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
-				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?sub=additional_fund");
+				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=fund&sub=fundList");
 	 		}catch(Exception $e){
 	 			echo $e;
 	 		}
@@ -492,7 +529,7 @@ class getForm{
 			";
  			$stmt = $pdo->prepare($sql);
  			$stmt->execute();
-			$this->renderAlertWithView("추가되었습니다.","/pg/admin/addDevice.php?sub=addDevice");
+			$this->renderAlertWithView("추가되었습니다.","/pg/admin/menu.php?dir=device&sub=addDevice");
  		}catch(Exception $e){
  			echo $e;
 		}
@@ -508,6 +545,18 @@ class getForm{
  		}catch(Exception $e){
  			echo $e;
  		}
+	}
+
+	function update_device($updateSQL, $manufacturer){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = $updateSQL;
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=device&sub=deviceList&manufacturer=$manufacturer");
+		}catch(Exception $e){
+			echo $e;
+		}
 	}
 
 	function delete_device($id, $manufacturer){

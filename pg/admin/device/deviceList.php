@@ -36,7 +36,7 @@
                   "<p class=\"mb-10\">"+model+"</p>"+
                "</div>"+
                "<ul class=\"reply-delate f-right\">"+
-                  "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=device&sub=updateDevice&id="+id+"\">"+"변경"+"</a></li>"+
+                  "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=device&sub=updateDevice&id="+id+"&manufacture=<?php echo $_GET['manufacturer']?>\">"+"변경"+"</a></li>"+
                   "<li><a>"+"&nbsp|&nbsp"+"</a></li>"+
                   "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/deleteDevice.php?id="+id+"&manufacture=<?php echo $_GET['manufacturer']?>\">"+"삭제"+"</a></li>"+
                "</ul>"+
@@ -53,7 +53,7 @@
     }
 
     function onTabmenu(id){
-      location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?sub=deviceManager&manufacturer="+id;
+      location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?sub=deviceList&dir=device&manufacturer="+id;
     }
 
   <?php

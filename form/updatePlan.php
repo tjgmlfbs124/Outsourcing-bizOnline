@@ -42,7 +42,7 @@
 
   }
   $model = new getForm();
-  $model -> update_plan($sql);
+  $model -> update_device($sql);
 
 ?>
 

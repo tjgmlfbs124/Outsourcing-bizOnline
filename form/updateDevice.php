@@ -3,6 +3,8 @@
   <meta charset="UTF-8">
 </head>
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
+
   $device_id = $_GET['id'];
   $files = $_FILES;
   $thumnail = $_FILES['thumnailImage']["tmp_name"];
@@ -57,7 +59,6 @@
   echo "device_release : " .$device_release."<br>";
 
   $sql = "
-  BEGIN;
   UPDATE `device`
   SET `name`=\"$deviceName\",
   `model`=\"$deviceModel\",
@@ -70,6 +71,9 @@
   WHERE (`_id`=$device_id);";
 
   echo $sql."<br>";
+
+  $model = new getForm();
+  $model -> update_device($sql, $manufacturer);
 ?>
 
 </html>
