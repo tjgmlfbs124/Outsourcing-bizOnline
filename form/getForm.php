@@ -592,11 +592,12 @@ class getForm{
 	function select_companys($grade){
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
-				if($grade == 0 ){
+				if($grade == "0" ){
 		 			$sql = "SELECT * FROM manager";
 				}else{
-		 			$sql = "SELECT * FROM manager WHERE grade=$grade";
+					 $sql = "SELECT * FROM manager WHERE grade=\"$grade\"";
 				}
+
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
 	 			return $stmt;

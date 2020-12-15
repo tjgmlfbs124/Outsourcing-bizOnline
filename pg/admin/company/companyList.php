@@ -9,8 +9,8 @@
                       <!-- Nav tabs -->
                       <ul id="menu-list" class="nav" style="color:#555;">
                          <li><a data-toggle="tab" onclick='onGrade(0)' data-grade="0" style="cursor:pointer;">전체</a></li>
-                         <li><a data-toggle="tab" onclick='onGrade(1)' data-grade="1" style="cursor:pointer;">관리자</a></li>
-                         <li><a data-toggle="tab" onclick='onGrade(2)' data-grade="2" style="cursor:pointer;">사업자</a></li>
+                         <li><a data-toggle="tab" onclick='onGrade("manager")' data-grade="manager" style="cursor:pointer;">관리자</a></li>
+                         <li><a data-toggle="tab" onclick='onGrade("company")' data-grade="company" style="cursor:pointer;">사업자</a></li>
                       </ul>
                    </div>
                 </div>
@@ -34,7 +34,7 @@
     menu.classList.add("active");
   }
   function onGrade(grade){
-    location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?sub=companyList&grade=" + grade
+    location.href="<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=company&sub=companyList&grade=" + grade
   }
   function addItem(id, name, userid, company, grade, phone){
     return "" +
