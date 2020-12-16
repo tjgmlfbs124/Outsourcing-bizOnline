@@ -606,7 +606,8 @@ input[type="text"],
 input[type="file"],
 input[type="password"],
 input[type="tel"],
-input[type="number"] {
+input[type="number"],
+input[type="date"]{
   background: #fff none repeat scroll 0 0;
   /* border: 1px solid transparent; */
   border: 1px solid lightgray;
