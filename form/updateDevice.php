@@ -59,6 +59,7 @@
   echo "device_release : " .$device_release."<br>";
 
   $sql = "
+  BEGIN;
   UPDATE `device`
   SET `name`=\"$deviceName\",
   `model`=\"$deviceModel\",

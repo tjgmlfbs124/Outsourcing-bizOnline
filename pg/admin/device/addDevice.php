@@ -101,7 +101,7 @@
                         <p style="margin:20px 0px 0px 0px;">크기/무게<input type="text" name="size" style="margin:0px;" required></p>
                       </div>
                       <div class="col-md-4">
-                        <p style="margin:20px 0px 0px 0px;">출시일<input type="text" name="release" style="margin:0px;" required></p>
+                        <p style="margin:20px 0px 0px 0px;">출시일<input type="date" name="release" style="margin:0px;" required></p>
                       </div>
 
                       <!-- 지원가능한 통신망 -->
