@@ -13,7 +13,7 @@
   if(strpos($content, "\n") != false) {
     $content = str_replace("\r\n","<br>",$content);
   }
-
+  
   $model = new getForm();
   $model -> update_notice($id, $title, $content, $date, $adminid);
 

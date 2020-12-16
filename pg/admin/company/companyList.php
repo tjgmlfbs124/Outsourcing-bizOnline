@@ -48,7 +48,7 @@
              "<ul class=\"reply-delate f-right\">"+
               "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/pg/admin/menu.php?dir=company&sub=updateCompany&id="+id+"\">변경</a></li>"+
               "<li><a>&nbsp|&nbsp</a></li>"+
-              "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/deleteCompany.php?id="+ id + "\">삭제</a></li>"+
+              "<li><a href=\"<?php $_SERVER['DOCUMENT_ROOT']?>/form/deleteCompany.php?dir=company&id="+ id + "\">삭제</a></li>"+
              "</ul>"+
           "</div>"+
           "<p class=\"mb-0\">연락처 : "+phone+"&nbsp&nbsp|&nbsp&nbsp구분 : " + gradeIndexToName(grade) + "</p>"+
