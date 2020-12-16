@@ -11,6 +11,7 @@
   $password = $_POST['password'];
   $grade = $_POST['grade'];
   $model -> select_user($id, $password, $grade);
+
 ?>
 
 </html>
