@@ -19,7 +19,7 @@
                       </span>
                         <table class="text-center" id="sampletable">
                             <thead>
-                                <tr id="table-thead1">
+                                <tr id="table-thead1" style="display:none;">
                                 </tr>
                                 <tr id="table-thead2">
                                 </tr>
@@ -210,6 +210,7 @@
       $NumberMove = explode(",", $row['number_move']);
       $DeviceChange = explode(",", $row['device_change']);
     ?>
+      console.log("$row['fund'] : "+<?= $row['fund'] ?>+", Cnt: "+<?= count($fund) ?>); 
       arr.push([
                 "<?php echo $row['device_id']?>", 
                 "<?php echo $row['device_name']?>"
@@ -222,6 +223,7 @@
                   "<?php echo $NumberMove[$fundCnt] ?>", 
                   "<?php echo $DeviceChange[$fundCnt] ?>"
                 );
+    
     <?php
         $fundCnt++;
       }?>
@@ -231,7 +233,7 @@
     }
     echo "search();"
   ?>
-  /*var demo = "<?= $planCnt ?>";
-  console.log("cosole : "+demo);*/
+  console.log("planCnt : "+<?= $planCnt ?>);
+  console.log("fundCnt : "+<?= $fundCnt ?>);
 
 </script>

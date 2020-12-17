@@ -390,6 +390,7 @@ class getForm{
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = $updateSQL;
+			echo "getform_sql: ".$sql."<br>";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=plan&sub=planList");
@@ -446,14 +447,14 @@ class getForm{
 			$pdo = $GLOBALS["pdo"];
 
 		   $sql = "
-		   SELECT F.device_id as device_id, D.name as device_name, GROUP_CONCAT(F.fund) AS fund, F.additional_fund,
-		   		  GROUP_CONCAT(F.new_number) AS new_number, GROUP_CONCAT(F.device_change) AS device_change, GROUP_CONCAT(F.number_move) AS number_move,
-		          F.mobile_plan_id as plan_id, P.name as plan_name
-		    FROM support_fund F, Device D, mobile_plan P
-		    WHERE F.device_id=D._id
+		    SELECT F.device_id as device_id, D.name as device_name, GROUP_CONCAT(F.fund ORDER BY F.mobile_plan_id) AS fund, F.additional_fund,
+				GROUP_CONCAT(F.new_number ORDER BY F.mobile_plan_id) AS new_number, GROUP_CONCAT(F.device_change ORDER BY F.mobile_plan_id) AS device_change, 
+				GROUP_CONCAT(F.number_move ORDER BY F.mobile_plan_id) AS number_move
+			FROM support_fund F, Device D, mobile_plan P
+			WHERE F.device_id=D._id
 				AND F.mobile_plan_id=P._id
 			GROUP BY device_name
-			ORDER BY device_id, mobile_plan_id
+			ORDER BY device_id, mobile_plan_id;
 			";
 			
 			$stmt = $pdo->prepare($sql);
@@ -467,7 +468,8 @@ class getForm{
 
 	function update_funds($sql){
 	 		try{
-	 			$pdo = $GLOBALS["pdo"];
+				 $pdo = $GLOBALS["pdo"];
+				//  echo "sql:".$sql."<br>";
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
 				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=fund&sub=fundList");
@@ -625,9 +627,9 @@ class getForm{
 					 WHERE `_id`=$id";
 					 
 				echo "SQL: ".$sql;
-	 			// $stmt = $pdo->prepare($sql);
-	 			// $stmt->execute();
-				// $this->renderAlertWithView("적용되었습니다.",$url);
+	 			$stmt = $pdo->prepare($sql);
+	 			$stmt->execute();
+				$this->renderAlertWithView("적용되었습니다.",$url);
 	 		}catch(Exception $e){
 				echo $e;
 				if(strpos($e, "code_UNIQUE") !== false){
