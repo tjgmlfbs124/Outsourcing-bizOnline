@@ -213,7 +213,6 @@ class getForm{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "INSERT INTO user_estimate(url, user_id, device_id, carrier_id, installment_period, discount, size_id, plan_id, color_id)
 			VALUES(\"$url\",\"$id\",\"$device_id\",\"$carrier\",\"$installment_period\",\"$discount\",\"$size\",\"$plan\",\"$color\");";
-			echo $sql."<br><br>";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$this->renderAlertWithView("추가되었습니다.", "/pg/about_item_v3.php?".$url);
