@@ -639,8 +639,6 @@
                                     +'&plan='+localDataSet.plan['value']
                                     +'&color='+localDataSet.device['color_id']
                                     +'&subscription='+localDataSet.subscription['id'];
-        var arg2 = "test2";
-        var arg3 = "test3";
         // 안드로이드 스튜디오 메소드 호출
         window.Android.doShare(arg1);
       }
@@ -648,9 +646,6 @@
 
   <script>
     <?php
-      if(!isset($_SESSION)) session_start();
-  		if(isset($_SESSION['id'])){
-
         require $_SERVER['DOCUMENT_ROOT'].'/form/getForm.php';
         $api = new getForm();
         $item = $api -> select_item($_GET['id']);
@@ -729,11 +724,6 @@
         }else{
           echo "$('#installment-list').children()[0].click();";
         }
-      }
-      else{
-        echo "alert(\"로그인정보가 없습니다.로그인화면으로 이동합니다.\");
-              location.replace(\"/\")";
-      }
     ?>
 
     $(".color-1:before").css("background","#000");

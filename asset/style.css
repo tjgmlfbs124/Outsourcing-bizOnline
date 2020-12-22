@@ -1019,6 +1019,7 @@ transform: scale(1);
   top: 45%;
   width: 20px;
   cursor: pointer;
+  border: 1px solid darkgray;
 }
 .widget-color ul li a {
   display: inline-block;

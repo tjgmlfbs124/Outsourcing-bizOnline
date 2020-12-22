@@ -20,3 +20,6 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <!-- excel -->
 <!-- <script lang="javascript" src="<?php $_SERVER['DOCUMENT_ROOT']?>/asset/lib/js/sheetjs/xlsx.full.min.js"></script> -->
+
+<!-- kakaotalk -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>

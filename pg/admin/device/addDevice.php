@@ -1,6 +1,6 @@
 
 <div class="col-lg-9 order-lg-2 order-1">
-    <h3 style="margin-bottom:20px;"> 요금제 변경 </h3>
+    <h3 style="margin-bottom:20px;"> 단말기 추가 </h3>
   <div aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
           <form id="signForm" method="POST" action="/form/add_device.php" enctype="multipart/form-data">
@@ -101,7 +101,7 @@
                         <p style="margin:20px 0px 0px 0px;">크기/무게<input type="text" name="size" style="margin:0px;" required></p>
                       </div>
                       <div class="col-md-4">
-                        <p style="margin:20px 0px 0px 0px;">출시일<input type="text" name="release" style="margin:0px;" required></p>
+                        <p style="margin:20px 0px 0px 0px;">출시일<input type="date" name="release" style="margin:0px;" required></p>
                       </div>
 
                       <!-- 지원가능한 통신망 -->

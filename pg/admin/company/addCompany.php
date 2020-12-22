@@ -1,6 +1,6 @@
 
 <div class="col-lg-9 order-lg-2 order-1">
-    <h3> 요금제 변경 </h3>
+    <h3> 사업자 추가 </h3>
   <div aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
           <form id="signForm" method="POST" action="/form/addCompany.php" enctype="multipart/form-data">

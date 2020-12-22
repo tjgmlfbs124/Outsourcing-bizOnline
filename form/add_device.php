@@ -55,9 +55,9 @@
     $filename = $type == "color" ? basename($colorImage["name"]) : "thumnail.jpg";
 
     // 모델명으로 폴더 생성
-    makeDirectory($_SERVER['DOCUMENT_ROOT']."image/phone/".$deviceModel."/");
+    makeDirectory($_SERVER['DOCUMENT_ROOT']."/image/phone/".$deviceModel."/");
 
-    $target_file =  $_SERVER['DOCUMENT_ROOT']."image/phone/".$deviceModel."/".$filename;
+    $target_file =  $_SERVER['DOCUMENT_ROOT']."/image/phone/".$deviceModel."/".$filename;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
     $check = getimagesize($colorImage["tmp_name"]);

@@ -13,6 +13,7 @@
   $phone = $_POST['phone'];
   $grade = $_POST['grade'];
   $url = $_POST['url'];
+
   $model = new getForm();
   $model -> update_company($id, $password, $grade, $name, $company, $phone,  $url);
 ?>

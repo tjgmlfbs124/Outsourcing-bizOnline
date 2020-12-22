@@ -65,7 +65,7 @@ class getForm{
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "
-			SELECT DISTINCT P.*, SF._id AS fund_id, SF.device_id, SF.mobile_plan_id, SF.fund, SF.additional_fund FROM
+			SELECT DISTINCT P.*, SF._id AS fund_id, SF.device_id, SF.mobile_plan_id, SF.new_number, SF.number_move, SF.device_change, SF.fund, SF.additional_fund FROM
 			support_fund SF INNER JOIN
 			mobile_plan P on P._id = SF.mobile_plan_id LEFT JOIN
 			device_mobile_category M on P.category_id = M.category_id
@@ -140,6 +140,7 @@ class getForm{
 					session_start();
 					$_SESSION['grade'] = $grade;
 					$_SESSION['id'] = $user_number;
+					$_SESSION['adminid'] = $user_number;
 					$this->renderView("/pg/index.php?manufacturer=1");
 				}
 			}
@@ -213,6 +214,7 @@ class getForm{
 			$pdo = $GLOBALS["pdo"];
 			$sql = "INSERT INTO user_estimate(url, user_id, device_id, carrier_id, installment_period, discount, size_id, plan_id, color_id)
 			VALUES(\"$url\",\"$id\",\"$device_id\",\"$carrier\",\"$installment_period\",\"$discount\",\"$size\",\"$plan\",\"$color\");";
+			echo $sql."<br><br>";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$this->renderAlertWithView("추가되었습니다.", "/pg/about_item_v3.php?".$url);
@@ -384,13 +386,14 @@ class getForm{
 		}
 	}
 
-	function update_plan(){
+	function update_plan($updateSQL){
 		try{
 			$pdo = $GLOBALS["pdo"];
 			$sql = $updateSQL;
+			echo "getform_sql: ".$sql."<br>";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
-			$this->renderAlertWithView("저장되었습니다.","/pg/admin/menu.php?sub=plan");
+			$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=plan&sub=planList");
 		}catch(Exception $e){
 			echo $e;
 		}
@@ -402,56 +405,74 @@ class getForm{
 			$sql = "DELETE FROM mobile_plan WHERE _id=".$id;
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
-			$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?sub=plan");
+			$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?dir=plan&sub=planList");
 		}catch(Exception $e){
 			echo $e;
 		}
 	}
 
+	// // 카테고리 아이디(통신사+요금)에 맞는 요금
+	// function select_item_name(){
+	// 		try{
+	// 			$pdo = $GLOBALS["pdo"];
+	// 			$sql = "SELECT _id, name FROM device";
+	// 			$stmt = $pdo->prepare($sql);
+	// 			$stmt->execute();
+	// 			return $stmt;
+	// 		}catch(Exception $e){
+	// 			echo $e;
+	// 		}
+	// }
+
 	// 카테고리 아이디(통신사+요금)에 맞는 요금
 	function select_item_name(){
-			try{
-				$pdo = $GLOBALS["pdo"];
-				$sql = "SELECT _id, name FROM device";
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				return $stmt;
-			}catch(Exception $e){
-				echo $e;
-			}
-	}
-
-	function select_funds(){
-	 		try{
-	 			$pdo = $GLOBALS["pdo"];
-	 			$sql = "
-					### 모든 공시 지원금 출력
-					SELECT F._id as id, F.device_id as device_id, D.name as device_name, F.mobile_plan_id as plan_id, P.name as plan_name, F.fund, F.additional_fund
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = "SELECT F.mobile_plan_id as plan_id, P.name as plan_name
 					FROM support_fund F, Device D, mobile_plan P
 					WHERE F.device_id=D._id
 						AND F.mobile_plan_id=P._id
-						ORDER BY device_id, mobile_plan_id;
-					";
-	 			$stmt = $pdo->prepare($sql);
-	 			$stmt->execute();
-	 			return $stmt;
-	 		}catch(Exception $e){
-	 			echo $e;
-	 		}
+					GROUP BY plan_name
+					ORDER BY F.mobile_plan_id";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
 	}
 
-	function update_funds($support, $query){
+	function select_funds(){
+		try{
+			$pdo = $GLOBALS["pdo"];
+
+		   $sql = "
+		    SELECT F.device_id as device_id, D.name as device_name, GROUP_CONCAT(F.fund ORDER BY F.mobile_plan_id) AS fund, F.additional_fund,
+				GROUP_CONCAT(F.new_number ORDER BY F.mobile_plan_id) AS new_number, GROUP_CONCAT(F.device_change ORDER BY F.mobile_plan_id) AS device_change, 
+				GROUP_CONCAT(F.number_move ORDER BY F.mobile_plan_id) AS number_move
+			FROM support_fund F, Device D, mobile_plan P
+			WHERE F.device_id=D._id
+				AND F.mobile_plan_id=P._id
+			GROUP BY device_name
+			ORDER BY device_id, mobile_plan_id;
+			";
+			
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			
+			return $stmt;
+		}catch(Exception $e){
+			echo $e;
+		}
+}
+
+	function update_funds($sql){
 	 		try{
-	 			$pdo = $GLOBALS["pdo"];
-	 			$sql = "UPDATE `support_fund`
-					SET `".$support."`=
-						(CASE "
-						.$query.
-						" END)";
-				// echo $sql;
+				 $pdo = $GLOBALS["pdo"];
+				//  echo "sql:".$sql."<br>";
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
-				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?sub=additional_fund");
+				$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=fund&sub=fundList");
 	 		}catch(Exception $e){
 	 			echo $e;
 	 		}
@@ -483,15 +504,17 @@ class getForm{
 					INSERT INTO device_mobile_category(`device_id`, `category_id`)
 					VALUES
 					$devicePlanCategories
-					INSERT INTO support_fund(`device_id`, `mobile_plan_id`, `fund`, `additional_fund`)
-					SELECT D._id as D_id, P._id as P_id, 0 as mFund, 0 as addFund
+					INSERT INTO support_fund(`device_id`, `mobile_plan_id`, `fund`, `additional_fund`, `new_number`, `number_move`, `device_change`) 
+					SELECT D._id as D_id, P._id as P_id, 0 as mFund, 0 as addFund, 0 as newnumber, 0 as numbermove, 0 as devicechange 
 					  FROM Device D, mobile_plan P
 					  WHERE D._id = @mDevice_id;
 				COMMIT;
 			";
+			echo "SQL : ".$sql;
+
  			$stmt = $pdo->prepare($sql);
- 			$stmt->execute();
-			$this->renderAlertWithView("추가되었습니다.","/pg/admin/addDevice.php?sub=addDevice");
+			$stmt->execute();
+			$this->renderAlertWithView("추가되었습니다.","/pg/admin/menu.php?dir=device&sub=addDevice");
  		}catch(Exception $e){
  			echo $e;
 		}
@@ -507,6 +530,18 @@ class getForm{
  		}catch(Exception $e){
  			echo $e;
  		}
+	}
+
+	function update_device($updateSQL, $manufacturer){
+		try{
+			$pdo = $GLOBALS["pdo"];
+			$sql = $updateSQL;
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			$this->renderAlertWithView("적용되었습니다.","/pg/admin/menu.php?dir=device&sub=deviceList&manufacturer=$manufacturer");
+		}catch(Exception $e){
+			echo $e;
+		}
 	}
 
 	function delete_device($id, $manufacturer){
@@ -528,13 +563,13 @@ class getForm{
 								VALUES(\"$userid\",\"$password\",\"$grade\",\"$name\",\"$company\",\"$phone\",\"$code\")";
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
-				$this->renderAlertWithView("추가되었습니다.","/pg/admin/menu.php?sub=addCompany");
+				$this->renderAlertWithView("추가되었습니다.","/pg/admin/menu.php?dir=company&sub=addCompany");
 	 		}catch(Exception $e){
 				if(strpos($e, "code_UNIQUE") !== false){
-					$this->renderAlertWithView("코드가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?sub=addCompany");
+					$this->renderAlertWithView("코드가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?dir=company&sub=addCompany");
 				}
 				else if(strpos($e, "userid_UNIQUE") !== false){
-					$this->renderAlertWithView("아이디가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?sub=addCompany");
+					$this->renderAlertWithView("아이디가 중복됩니다. 다시입력해주세요.","/pg/admin/menu.php?dir=company&sub=addCompany");
 				}
 	 		}
 	}
@@ -542,11 +577,12 @@ class getForm{
 	function select_companys($grade){
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
-				if($grade == 0 ){
+				if($grade == "0" ){
 		 			$sql = "SELECT * FROM manager";
 				}else{
-		 			$sql = "SELECT * FROM manager WHERE grade=$grade";
+					 $sql = "SELECT * FROM manager WHERE grade=\"$grade\"";
 				}
+
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
 	 			return $stmt;
@@ -561,7 +597,7 @@ class getForm{
 				$sql = "DELETE FROM manager WHERE _id=$id";
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
-				$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?sub=companyList&grade=0");
+				$this->renderAlertWithView("삭제되었습니다.","/pg/admin/menu.php?dir=company&sub=companyList&grade=0");
 	 		}catch(Exception $e){
 				echo $e;
 	 		}
@@ -588,7 +624,9 @@ class getForm{
 					`name`=\"$name\",
 					`company`=\"$company\",
 					`phone`=\"$phone\"
-				 	WHERE `_id`=$id";
+					 WHERE `_id`=$id";
+					 
+				echo "SQL: ".$sql;
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
 				$this->renderAlertWithView("적용되었습니다.",$url);
@@ -607,6 +645,7 @@ class getForm{
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
 				$sql = "INSERT INTO notice (`title`,`content`, `date`, `writer`) VALUES (\"$title\", \"$content\", \"$date\", $adminid)";
+				echo "SQL: ".$sql;
 	 			$stmt = $pdo->prepare($sql);
 	 			$stmt->execute();
 				$this->renderAlertWithView("추가되었습니다.","/pg/admin/menu.php?dir=notice&sub=noticelist");
@@ -660,8 +699,9 @@ class getForm{
 	 		try{
 	 			$pdo = $GLOBALS["pdo"];
 				$sql = "UPDATE notice SET `title`=\"$title\", `content`=\"$content\", `date`=\"$date\", `writer`=$adminid WHERE `_id`=$id";
-	 			$stmt = $pdo->prepare($sql);
-	 			$stmt->execute();
+
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute();
 	 			$this->renderAlertWithView("변경되었습니다.", "/pg/admin/menu.php?dir=notice&sub=noticelist");
 	 		}catch(Exception $e){
 				echo $e;

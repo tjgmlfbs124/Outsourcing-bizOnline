@@ -30,6 +30,11 @@
                             <tbody id="fund-list">
                             </tbody>
                         </table>
+
+                        <form id="signForm" method="POST" action="/form/updatePlan.php" enctype="multipart/form-data" style="visibility:hidden;">
+                          <input id="plan-array" type="text" name="data" >
+                          <input id="planForm" type="submit" name="submit">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,6 +83,7 @@
         if(child[0].nodeName == "INPUT"){ var column = child[0].getAttribute("data-column");
           jsonObject[column] = child[0].value;
         }
+
         if(child[0].nodeName == "SELECT"){
           var column =child[0].getAttribute("data-column")
           var value = child[0].options[child[0].selectedIndex].value;
@@ -87,7 +93,9 @@
       jsonArray.push(jsonObject);
     }
     $("#plan-array").val(JSON.stringify(jsonArray));
-    $("#planForm").submit();
+
+    console.log("JSON.stringify(jsonArray) : " , JSON.stringify(jsonArray))
+    $("#planForm").click();
   }
 
 

@@ -1,6 +1,6 @@
 
 <div class="col-lg-9 order-lg-2 order-1">
-    <h3 style="margin-bottom:20px;"> 요금제 변경 </h3>
+    <h3 style="margin-bottom:20px;"> 단말기 변경 </h3>
   <div aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
           <form id="signForm" method="POST" action="/form/updateDevice.php?id=<?php echo $_GET['id']?>" enctype="multipart/form-data">
@@ -296,7 +296,7 @@
     <?php
     }
   ?>
-
+  $(".custom-select").val(<?php echo $_GET['manufacture']?>).attr('selected', 'selected');
 </script>
 
 </html>
