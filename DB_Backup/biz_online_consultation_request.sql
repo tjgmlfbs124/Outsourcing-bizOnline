@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: biz_online
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,11 +24,12 @@ DROP TABLE IF EXISTS `consultation_request`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consultation_request` (
   `_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `url` text,
-  `user_id` int unsigned NOT NULL,
+  `comment` text,
+  `estimate_id` int unsigned DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`_id`),
-  KEY `fk_consultation request_user1_idx` (`user_id`),
-  CONSTRAINT `consultation_request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`_id`) ON UPDATE CASCADE
+  KEY `fk_estimate_id-user_estimate_id2` (`estimate_id`),
+  CONSTRAINT `fk_estimate_id-user_estimate_id2` FOREIGN KEY (`estimate_id`) REFERENCES `user_estimate` (`_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-02 13:43:52
+-- Dump completed on 2020-12-10 14:51:37

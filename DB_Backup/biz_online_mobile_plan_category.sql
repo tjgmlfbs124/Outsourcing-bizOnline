@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: biz_online
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `mobile_plan_category` (
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`_id`),
   KEY `fk_mobile plan category_mobile carrier1` (`mobile_carrier_id`),
-  CONSTRAINT `fk_mobile plan category_mobile carrier1` FOREIGN KEY (`mobile_carrier_id`) REFERENCES `mobile_carrier` (`_id`) ON UPDATE CASCADE
+  CONSTRAINT `fk_mobile_plan_category_mobile_carrier2` FOREIGN KEY (`mobile_carrier_id`) REFERENCES `mobile_carrier` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +38,7 @@ CREATE TABLE `mobile_plan_category` (
 
 LOCK TABLES `mobile_plan_category` WRITE;
 /*!40000 ALTER TABLE `mobile_plan_category` DISABLE KEYS */;
-INSERT INTO `mobile_plan_category` VALUES (1,2,'5G'),(2,2,'LTE'),(3,2,'3G'),(4,1,'5G'),(5,1,'LTE'),(6,1,'3G'),(7,3,'5G'),(8,3,'LTE'),(9,3,'3G');
+INSERT INTO `mobile_plan_category` VALUES (1,2,'5G'),(4,1,'5G'),(7,3,'5G');
 /*!40000 ALTER TABLE `mobile_plan_category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-02 13:43:54
+-- Dump completed on 2020-12-10 14:51:36

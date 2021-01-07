@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: biz_online
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,12 +28,12 @@ CREATE TABLE `mobile_plan` (
   `name` varchar(45) NOT NULL,
   `price` int unsigned NOT NULL,
   `data` varchar(45) NOT NULL,
-  `call` varchar(45) NOT NULL,
-  `message` varchar(45) NOT NULL,
+  `data_call` varchar(45) NOT NULL,
+  `data_message` varchar(45) NOT NULL,
   PRIMARY KEY (`_id`),
   KEY `fk_mobile plan_mobile plan category1` (`category_id`),
-  CONSTRAINT `fk_mobile plan_mobile plan category1` FOREIGN KEY (`category_id`) REFERENCES `mobile_plan_category` (`_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_mobile_plan_mobile_plan_category2` FOREIGN KEY (`category_id`) REFERENCES `mobile_plan_category` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `mobile_plan` (
 
 LOCK TABLES `mobile_plan` WRITE;
 /*!40000 ALTER TABLE `mobile_plan` DISABLE KEYS */;
-INSERT INTO `mobile_plan` VALUES (1,1,'슬림',55000,'9GB','무제한','무제한'),(2,1,'5GX스텐다드',75000,'200GB','무제한','무제한'),(3,1,'5GX프라임',89000,'무제한','무제한','무제한'),(4,1,'5GX플래티넘',125000,'무제한','무제한','무제한'),(5,1,'0틴 5G',45000,'9GB','무제한','무제한'),(6,4,'5G Y틴',47000,'10GB(+1Mbps무제한)','무제한(영상/부가300분)','무제한'),(7,4,'5G 슬림',55000,'8GB','무제한(조건부 무제한)','무제한');
+INSERT INTO `mobile_plan` VALUES (3,1,'5GX프라임',89000,'무제한','무제한','무제한'),(4,1,'5GX플래티넘',125000,'무제한','무제한','무제한'),(5,1,'0틴 5G',45000,'9GB','무제한','무제한'),(6,4,'5G Y틴',47000,'10GB(+1Mbps무제한)','무제한(영상/부가300분)','무제한'),(7,4,'5G 슬림',55000,'8GB','무제한(조건부 무제한)','무제한'),(8,4,'5G Y슬림',55000,'8GB+(1Mbps무제한)','무제한(영상/부가300분)','무제한'),(9,4,'슬림 Plus',60000,'8GB(+1Mbps무제한)','무제한(영상/부가300분)','무제한'),(10,7,'5G 프리미어 슈퍼',115000,'무제한','무제한','무제한'),(11,7,'5G 프리미어 플러스',105000,'무제한','무제한','무제한'),(12,7,'5G 프리미어 레귤러',71250,'무제한','무제한','무제한'),(13,7,'5G 스마트',85000,'무제한','무제한','무제한'),(14,7,'5G 스텐다드',75000,'150GB(+5Mbps무제한)','무제한','무제한'),(15,7,'5G 라이트',55000,'9GB(+1Mbps무제한)','무제한','무제한'),(16,7,'5G 라이트 시니어',45000,'8GB(+1Mbps무제한)','무제한','무제한'),(17,7,'5G 라이트 청소년',45000,'8GB','무제한(영상/부가300분)','무제한'),(18,4,'슈퍼플랜 베이직',80000,'무제한','무제한(조건부 무제한)','무제한'),(19,4,'슈퍼플랜 스페셜',100000,'무제한','무제한(조건부 무제한)','무제한'),(91,4,'5G Y슈퍼플랜 베이직',80000,'무제한','무제한(영상/부가300분)','무제한'),(92,4,'5G Y슈퍼플랜 스페셜',100000,'무제한','무제한(영상/부가300분)','무제한'),(93,4,'슈퍼플랜 베이직 Plus',90000,'무제한','무제한(영상/부가300분)','무제한'),(94,4,'슈퍼플랜 스페셜 Plus',110000,'무제한','무제한(영상/부가300분)','무제한'),(95,4,'슈퍼플랜 프리미엄 Plus',130000,'무제한','무제한(영상/부가300분)','무제한');
 /*!40000 ALTER TABLE `mobile_plan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-02 13:43:51
+-- Dump completed on 2020-12-10 14:51:35
